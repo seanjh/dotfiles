@@ -1,4 +1,4 @@
-# swap
+# Vim
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
 [._]s[a-v][a-z]
@@ -10,3 +10,4 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+vim/bundle

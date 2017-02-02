@@ -1,6 +1,17 @@
-" ========== Powerline ======================
+" ========== CtrlP =========================
 
-let g:Powerline_symbols = 'fancy'
+" Ignore files and folders.
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|Trash)$',
+  \ 'file': '\v(tags|\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart|ipa))$',
+  \ 'link': '\v\.__INCLUDE_VERSION__$',
+  \}
+
+
+" ========== Vim-JSX =======================
+
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
 
 " ========== Syntastic ======================
 
@@ -20,5 +31,9 @@ function! FindConfig(prefix, what, where)
     return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
 endfunction
 
+let g:syntastic_python_checkers = ['flake8', 'pylint']
+
+" Use the virtualenv pylint (if available)
+" let g:syntastic_python_pylint_exec = '$(which pylint)'  
+
 let g:syntastic_javascript_checkers = ['jscs', 'eslint']
-let g:syntastic_python_checkers = ["flake8"]

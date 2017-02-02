@@ -1,4 +1,8 @@
-" ========== Syntastic =====================
+" ========== Powerline ======================
+
+let g:Powerline_symbols = 'fancy'
+
+" ========== Syntastic ======================
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

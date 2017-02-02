@@ -1,1 +1,1 @@
-:map <F7> :SyntasticCheck<CR>:lopen<CR>
+:map <F5> :SyntasticCheck<CR>:lopen<CR>

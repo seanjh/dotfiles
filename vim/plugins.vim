@@ -1,3 +1,9 @@
+" ========== Vim Airline =========================
+
+" https://github.com/vim-airline/vim-airline/wiki/FAQ#vim-airline-doesnt-appear-until-i-create-a-new-split
+set laststatus=2
+
+
 " ========== CtrlP =========================
 
 " Ignore files and folders.
@@ -32,8 +38,5 @@ function! FindConfig(prefix, what, where)
 endfunction
 
 let g:syntastic_python_checkers = ['flake8', 'pylint']
-
-" Use the virtualenv pylint (if available)
-" let g:syntastic_python_pylint_exec = '$(which pylint)'  
 
 let g:syntastic_javascript_checkers = ['jscs', 'eslint']

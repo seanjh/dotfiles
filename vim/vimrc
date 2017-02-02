@@ -3,11 +3,14 @@
 
 set nocompatible
 filetype off
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'Yggdroot/indentLine'
@@ -17,8 +20,8 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'mxw/vim-jsx'
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+call vundle#end()
+filetype plugin indent on
 
 
 " ========== General ========================
@@ -32,13 +35,14 @@ set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 set hidden
-set lazyredraw			"Don't update while executing macros
+set lazyredraw			            "Don't update while executing macros
 set showmode
 set wildmenu
-set ignorecase			"Case insensitive search
-set smartcase			"Except when the search has casing
-set encoding=utf-8  		"The encoding displayed.
-set fileencoding=utf-8  	"The encoding written to file.
+set ignorecase			            "Case insensitive search
+set smartcase			              "Except when the search has casing
+set encoding=utf-8  		        "The encoding displayed.
+set fileencoding=utf-8  	      "The encoding written to file.
+
 
 " ========== Font ==========================
 
@@ -51,6 +55,7 @@ source ~/.vim/plugins.vim	"Plugin-specific settings
 filetype plugin indent on
 syntax enable
 set background=dark
+
 if has('gui_running')
   set background=dark
   colorscheme solarized
@@ -77,3 +82,5 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
+
+

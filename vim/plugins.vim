@@ -6,12 +6,10 @@ set laststatus=2
 
 " ========== CtrlP =========================
 
-" Ignore files and folders.
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn|Trash)$',
-  \ 'file': '\v(tags|\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart|ipa))$',
-  \ 'link': '\v\.__INCLUDE_VERSION__$',
-  \}
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(pyc|swp|swo|exe|so|dll)$',
+  \ }
 
 
 " ========== Vim-JSX =======================
@@ -44,5 +42,16 @@ function! FindConfig(prefix, what, where)
 endfunction
 
 let g:syntastic_python_checkers = ['flake8', 'pylint']
+let g:syntastic_python_pylint_args = "--load-plugins=pylint_django --disable=C0111"
 
 let g:syntastic_javascript_checkers = ['jscs', 'eslint']
+
+let b:syntastic_javascript_jscs_args =
+    \ get(g:, 'syntastic_javascript_jscs_args', '') .
+    \ FindConfig('-c', '.jscsrc', expand('<afile>:p:h', 1))
+let b:syntastic_javascript_eslint_args =
+    \ get(g:, 'syntastic_javascript_eslint_args', '') .
+    \ FindConfig('-c', '.eslintrc.json', expand('<afile>:p:h', 1))
+let b:syntastic_python_pylint_args =
+    \ get(g:, 'syntastic_python_pylint_args', '') .
+    \ FindConfig('-c', '.pylintrc', expand('<afile>:p:h', 1))

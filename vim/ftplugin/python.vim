@@ -1,7 +1,7 @@
 let python_highlight_all=1
 
-highlight BadWhitespace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+highlight badwhitespace ctermbg=red guibg=darkred
+au bufread,bufnewfile *.py,*.pyw,*.c,*.h match badwhitespace /\s\+$/
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
@@ -13,6 +13,3 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix |
 
 let g:netrw_list_hide= '.*\.pyc$'
-
-" Pylint settings with the Django plugin
-let g:syntastic_python_pylint_args = "--load-plugins=pylint_django --disable=C0111"

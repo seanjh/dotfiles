@@ -62,7 +62,7 @@ if has('gui_running')
   colorscheme solarized
   " Font settings
   if has("gui_macvim")
-    set guifont=Consolas\ 18
+    set guifont=Consolas:h18
   elseif has("win32")
     set guifont=Consolas\ 18
   else

@@ -34,9 +34,9 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2               "Close automatically, open manually
-let g:syntastic_check_on_open = 0               "Display errors on open
-let g:syntastic_check_on_wq = 0                 "Display errors on save
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 let g:syntastic_aggregate_errors = 1
 
 " find and load nested configuration files
@@ -59,3 +59,6 @@ let b:syntastic_javascript_eslint_args =
 let b:syntastic_python_pylint_args =
     \ get(g:, 'syntastic_python_pylint_args', '') .
     \ FindConfig('-c', '.pylintrc', expand('<afile>:p:h', 1))
+
+autocmd FileType go let g:syntastic_aggregate_errors = 1
+autocmd FileType go let g:syntastic_go_checkers = ["go", "govet", "golint"]

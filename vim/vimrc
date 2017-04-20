@@ -54,7 +54,6 @@ source ~/.vim/plugins.vim	      "Plugin-specific settings
 
 " ========== Look & Feel ====================
 
-filetype plugin indent on
 syntax enable
 set background=dark
 

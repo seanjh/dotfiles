@@ -43,12 +43,13 @@ set ignorecase			            "Case insensitive search
 set smartcase			              "Except when the search has casing
 set encoding=utf-8  		        "The encoding displayed.
 set fileencoding=utf-8  	      "The encoding written to file.
+set hlsearch                    "Highlight search matches
 
 
 " ========== Font ==========================
 
-source ~/.vim/mappings.vim	"Keyboard mappings
-source ~/.vim/plugins.vim	"Plugin-specific settings
+source ~/.vim/mappings.vim	    "Keyboard mappings
+source ~/.vim/plugins.vim	      "Plugin-specific settings
 
 
 " ========== Look & Feel ====================

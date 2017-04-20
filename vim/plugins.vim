@@ -1,3 +1,8 @@
+" ========== NetRW ==============================
+
+let g:netrw_list_hide= '.*\.sw[a-p]$,.*\.py[cod]$,^__pycache__\/$'
+
+
 " ========== Vim Airline =========================
 
 " https://github.com/vim-airline/vim-airline/wiki/FAQ#vim-airline-doesnt-appear-until-i-create-a-new-split
@@ -7,7 +12,7 @@ set laststatus=2
 " ========== CtrlP =========================
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'dir':  '\v[\/]((\.(git|hg|svn))|(node_modules|bower_components))$',
   \ 'file': '\v\.(pyc|swp|swo|exe|so|dll)$',
   \ }
 
@@ -15,7 +20,6 @@ let g:ctrlp_custom_ignore = {
 " ========== Vim-JSX =======================
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-
 
 
 " ========== Vim-Javascript ================

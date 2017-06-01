@@ -15,6 +15,7 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]((\.(git|hg|svn))|(node_modules|bower_components))$',
   \ 'file': '\v\.(pyc|swp|swo|exe|so|dll)$',
   \ }
+let g:ctrlp_working_path_mode = 'rw'
 
 
 " ========== Vim-JSX =======================
@@ -45,8 +46,7 @@ function! FindConfig(prefix, what, where)
     return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
 endfunction
 
-let g:syntastic_python_checkers = ['flake8', 'pylint']
-let g:syntastic_python_pylint_args = "--load-plugins=pylint_django --disable=C0111"
+let g:syntastic_python_checkers = ['flake8']
 
 let g:syntastic_javascript_checkers = ['jscs', 'eslint']
 

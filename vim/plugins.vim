@@ -46,16 +46,18 @@ function! FindConfig(prefix, what, where)
     return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
 endfunction
 
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['flake8', 'py3kwarn']
 
-let g:syntastic_javascript_checkers = ['jscs', 'eslint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
+let g:jsx_ext_required = 0
 
 let b:syntastic_javascript_jscs_args =
     \ get(g:, 'syntastic_javascript_jscs_args', '') .
     \ FindConfig('-c', '.jscsrc', expand('<afile>:p:h', 1))
 let b:syntastic_javascript_eslint_args =
     \ get(g:, 'syntastic_javascript_eslint_args', '') .
-    \ FindConfig('-c', '.eslintrc.json', expand('<afile>:p:h', 1))
+    \ FindConfig('-c', '.eslintrc*', expand('<afile>:p:h', 1))
 let b:syntastic_python_pylint_args =
     \ get(g:, 'syntastic_python_pylint_args', '') .
     \ FindConfig('-c', '.pylintrc', expand('<afile>:p:h', 1))

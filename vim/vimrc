@@ -68,6 +68,7 @@ if has('gui_running')
     set guifont=Consolas\ 15
   else
     set guifont=Ubuntu\ Mono\ 15
+  colorscheme solarized
   endif
 
 else
@@ -84,3 +85,7 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
+
+
+" ========== Copy & Paste ===================
+" set clipboard=unnamed

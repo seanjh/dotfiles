@@ -8,7 +8,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -21,6 +20,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'lifepillar/vim-solarized8'
 
 call vundle#end()
 filetype plugin indent on
@@ -47,7 +47,7 @@ set fileencoding=utf-8  	      "The encoding written to file.
 set hlsearch                    "Highlight search matches
 
 
-" ========== Font ==========================
+" ========== Extra Settings =================
 
 source ~/.vim/mappings.vim	    "Keyboard mappings
 source ~/.vim/plugins.vim	      "Plugin-specific settings
@@ -57,22 +57,19 @@ source ~/.vim/plugins.vim	      "Plugin-specific settings
 
 syntax enable
 set background=dark
+set term=xterm-256color
+set termencoding=utf-8
+colorscheme solarized8_dark
 
+" Font settings
 if has('gui_running')
-  set background=dark
-  colorscheme solarized
-  " Font settings
   if has("gui_macvim")
     set guifont=Monaco:h15
   elseif has("win32")
     set guifont=Consolas\ 15
   else
     set guifont=Ubuntu\ Mono\ 15
-  colorscheme solarized
   endif
-
-else
-  colorscheme torte
 endif
 
 
@@ -85,7 +82,3 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
-
-
-" ========== Copy & Paste ===================
-" set clipboard=unnamed

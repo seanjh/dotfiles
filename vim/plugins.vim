@@ -9,6 +9,11 @@ let g:netrw_list_hide= '.*\.sw[a-p]$,.*\.py[cod]$,^__pycache__\/$'
 set laststatus=2
 
 
+" ========= IndentLine ==========================
+let g:indentLine_char = '┆'
+
+
+
 " ========== CtrlP =========================
 
 let g:ctrlp_custom_ignore = {

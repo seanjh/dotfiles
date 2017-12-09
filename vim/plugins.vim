@@ -9,16 +9,11 @@ let g:netrw_list_hide= '.*\.sw[a-p]$,.*\.py[cod]$,^__pycache__\/$'
 set laststatus=2
 
 
-" ========= IndentLine ==========================
-let g:indentLine_char = '┆'
-
-
-
 " ========== CtrlP =========================
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]((\.(git|hg|svn))|(node_modules|bower_components))$',
-  \ 'file': '\v\.(pyc|swp|swo|exe|so|dll)$',
+  \ 'file': '\v\.(py[co]|swp|swo|exe|so|dll)$',
   \ }
 let g:ctrlp_working_path_mode = 'rw'
 
@@ -69,3 +64,7 @@ let b:syntastic_python_pylint_args =
 
 autocmd FileType go let g:syntastic_aggregate_errors = 1
 autocmd FileType go let g:syntastic_go_checkers = ["go", "govet", "golint"]
+
+
+" ========== Vim Local vimrc ==================
+let g:local_vimrc = {'names':['.local.vimrc'],'hash_fun':'LVRHashOfFile'}

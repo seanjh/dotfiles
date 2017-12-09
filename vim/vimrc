@@ -21,6 +21,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'lifepillar/vim-solarized8'
+Plugin 'MarcWeber/vim-addon-local-vimrc'
 
 call vundle#end()
 filetype plugin indent on
@@ -45,6 +46,8 @@ set smartcase			              "Except when the search has casing
 set encoding=utf-8  		        "The encoding displayed.
 set fileencoding=utf-8  	      "The encoding written to file.
 set hlsearch                    "Highlight search matches
+set ttyfast                     "Better redraw performance
+set re=1                        "Use the old regex engine
 
 
 " ========== Extra Settings =================
@@ -57,9 +60,10 @@ source ~/.vim/plugins.vim	      "Plugin-specific settings
 
 syntax enable
 set background=dark
+colorscheme solarized8_dark
+
 set term=xterm-256color
 set termencoding=utf-8
-colorscheme solarized8_dark
 
 " Font settings
 if has('gui_running')
@@ -82,3 +86,7 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
+
+
+" ========== Misc ==========================
+au CursorHold,CursorHoldI * checktime   "Trigger file change check

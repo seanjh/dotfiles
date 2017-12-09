@@ -1,7 +1,4 @@
-highlight BadWhitespace ctermbg=red guibg=darkred
-
-au BufRead,BufNewFile *.js,*.jsx,*.json
-    \ match BadWhitespace /\s\+$/ |
+au BufRead,BufNewFile *.yml,*.yaml
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |

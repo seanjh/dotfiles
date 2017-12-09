@@ -11,5 +11,6 @@ au BufNewFile,BufRead *.py
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix |
+    \ set colorcolumn=120 |
 
-let g:netrw_list_hide= '.*\.pyc$'
+let g:netrw_list_hide= '.*\.py[co]$'

@@ -20,7 +20,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'lifepillar/vim-solarized8'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'MarcWeber/vim-addon-local-vimrc'
 
 call vundle#end()
@@ -60,7 +60,7 @@ source ~/.vim/plugins.vim	      "Plugin-specific settings
 
 syntax enable
 set background=dark
-colorscheme solarized8_dark
+colorscheme solarized
 
 set term=xterm-256color
 set termencoding=utf-8

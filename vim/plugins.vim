@@ -40,6 +40,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_aggregate_errors = 1
 
+let g:syntastic_mode_map = {
+  \ "mode": "active",
+  \ "active_filetypes": [],
+  \ "passive_filetypes": ["scala"] }
+
 " find and load nested configuration files
 function! FindConfig(prefix, what, where)
     let cfg = findfile(a:what, escape(a:where, ' ') . ';')
@@ -47,11 +52,9 @@ function! FindConfig(prefix, what, where)
 endfunction
 
 let g:syntastic_python_checkers = ['flake8', 'py3kwarn']
-
+let g:jsx_ext_required = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-let g:jsx_ext_required = 0
-
 let b:syntastic_javascript_jscs_args =
     \ get(g:, 'syntastic_javascript_jscs_args', '') .
     \ FindConfig('-c', '.jscsrc', expand('<afile>:p:h', 1))
@@ -64,6 +67,8 @@ let b:syntastic_python_pylint_args =
 
 autocmd FileType go let g:syntastic_aggregate_errors = 1
 autocmd FileType go let g:syntastic_go_checkers = ["go", "govet", "golint"]
+
+let g:syntastic_scala_checkers = ['fsc', 'scalastyle']
 
 
 " ========== Vim Local vimrc ==================

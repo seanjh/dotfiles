@@ -1,6 +1,6 @@
 " ========== NetRW ==============================
 
-let g:netrw_list_hide= '.*\.sw[a-p]$,.*\.py[cod]$,^__pycache__\/$'
+let g:netrw_list_hide= '.*\.class$,.*\.sw[a-p]$,.*\.py[cod]$,^__pycache__\/$'
 
 
 " ========== Vim Airline =========================

@@ -11,7 +11,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/syntastic'
 Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
@@ -55,7 +54,12 @@ set re=1                        "Use the old regex engine
 " ========== Extra Settings =================
 
 source ~/.vim/mappings.vim	    "Keyboard mappings
-source ~/.vim/plugins.vim	      "Plugin-specific settings
+source ~/.vim/plugins/netrw.vim
+source ~/.vim/plugins/airline.vim
+source ~/.vim/plugins/ctrlp.vim
+source ~/.vim/plugins/ale.vim
+source ~/.vim/plugins/syntastic.vim
+source ~/.vim/plugins/misc.vim
 
 
 " ========== Look & Feel ====================
@@ -91,4 +95,6 @@ set expandtab
 
 
 " ========== Misc ==========================
+
+highlight badwhitespace ctermbg=red guibg=darkred
 au CursorHold,CursorHoldI * checktime   "Trigger file change check

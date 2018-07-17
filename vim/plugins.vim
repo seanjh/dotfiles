@@ -52,18 +52,21 @@ function! FindConfig(prefix, what, where)
 endfunction
 
 let g:syntastic_python_checkers = ['flake8', 'py3kwarn']
+let b:syntastic_python_pylint_args =
+    \ get(g:, 'syntastic_python_pylint_args', '') .
+    \ FindConfig('-c', '.pylintrc', expand('<afile>:p:h', 1))
+
 let g:jsx_ext_required = 0
+
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 let b:syntastic_javascript_jscs_args =
     \ get(g:, 'syntastic_javascript_jscs_args', '') .
     \ FindConfig('-c', '.jscsrc', expand('<afile>:p:h', 1))
+
 let b:syntastic_javascript_eslint_args =
     \ get(g:, 'syntastic_javascript_eslint_args', '') .
     \ FindConfig('-c', '.eslintrc*', expand('<afile>:p:h', 1))
-let b:syntastic_python_pylint_args =
-    \ get(g:, 'syntastic_python_pylint_args', '') .
-    \ FindConfig('-c', '.pylintrc', expand('<afile>:p:h', 1))
 
 autocmd FileType go let g:syntastic_aggregate_errors = 1
 autocmd FileType go let g:syntastic_go_checkers = ["go", "govet", "golint"]

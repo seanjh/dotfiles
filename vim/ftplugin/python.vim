@@ -1,18 +1,15 @@
 let python_highlight_all=1
 
-highlight badwhitespace ctermbg=red guibg=darkred
-au bufread,bufnewfile *.py,*.pyw,*.c,*.h match badwhitespace /\s\+$/
+" Display tabs at the beginning of a line in Python mode as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+" Make trailing whitespace be flagged as bad.
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal textwidth=120
+setlocal expandtab
+setlocal autoindent
+setlocal fileformat=unix
 setlocal colorcolumn=99
-
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=120 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix |
-    "\ set colorcolumn=100 |
-
-let g:netrw_list_hide= '.*\.py[co]$'

@@ -58,7 +58,6 @@ source ~/.vim/plugins/netrw.vim
 source ~/.vim/plugins/airline.vim
 source ~/.vim/plugins/ctrlp.vim
 source ~/.vim/plugins/ale.vim
-source ~/.vim/plugins/syntastic.vim
 source ~/.vim/plugins/misc.vim
 
 

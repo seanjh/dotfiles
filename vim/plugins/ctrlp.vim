@@ -3,3 +3,4 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(py[co]|swp|swo|exe|so|dll)$',
   \ }
 let g:ctrlp_working_path_mode = 'rw'
+let g:ctrlp_show_hidden = 1

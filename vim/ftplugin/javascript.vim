@@ -1,7 +1,7 @@
 highlight BadWhitespace ctermbg=red guibg=darkred
 
 let b:ale_linters = ['eslint']
-"let b:ale_fixers = ['prettier', 'eslint']
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
 
 setlocal tabstop=2
 setlocal softtabstop=2

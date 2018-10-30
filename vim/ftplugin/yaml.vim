@@ -1,3 +1,5 @@
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
+
 au BufRead,BufNewFile *.yml,*.yaml
     \ set tabstop=2 |
     \ set softtabstop=2 |

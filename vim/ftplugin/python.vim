@@ -14,4 +14,4 @@ setlocal textwidth=120
 setlocal expandtab
 setlocal autoindent
 setlocal fileformat=unix
-setlocal colorcolumn=99
+setlocal colorcolumn=80

@@ -1,0 +1,40 @@
+[user]
+	name = Sean Herman
+	email = seanherman@gmail.com
+[push]
+  default = simple
+[core]
+	editor = vim
+	excludesfile = /home/sean/.gitignore_global
+[help]
+	autocorrect = 30
+[credential]
+	helper = cache --timeout=7200
+[merge]
+	tool = vimdiff
+[diff]
+	tool = vimdiff
+[github]
+	user = seanjh
+[alias]
+  a     = add
+  aa    = add --all
+  b     = branch
+  st    = status
+  ps    = push
+  psb   = !git ps --set-upstream origin 
+  pl    = pull
+  co    = checkout
+  cob   = checkout --branch
+  c     = commit
+  cm    = c -m
+  amend = c --amend -m
+  undo  = reset HEAD --
+  last  = log -1 HEAD
+  bls   = branch --sort=-committerdate --format='%(authordate:short) %(objectname:short) %(objecttype) %(refname:short) %(authoremail)'
+  blsr  = bls --all
+  ls    = log --pretty=format:"%C(yellow)%h\\ %Creset%s%Cblue\\ [%cn]\\%Cred%d" --decorate
+  lg    = log --color --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset" --abbrev-commit
+  diffstat  = diff --stat -r
+  dev       = !git co dev && git pl origin dev
+  master    = !git co master && git pl origin master

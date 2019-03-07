@@ -1,4 +1,6 @@
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript']
 
-au BufRead *md
-    \ set textwidth=79 |
+setlocal textwidth=100
+setlocal colorcolumn=100
+setlocal expandtab
+setlocal autoindent

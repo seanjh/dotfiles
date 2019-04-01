@@ -243,6 +243,7 @@
 # http://www.python.org/
 --type-add=python:ext:py
 --type-add=python:firstlinematch:/^#!.*\bpython/
+--ignore-directory=is:.venv
 # R
 # http://www.r-project.org/
 --type-add=rr:ext:R

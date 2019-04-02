@@ -5,7 +5,7 @@
   default = simple
 [core]
 	editor = vim
-	excludesfile = /home/sean/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [help]
 	autocorrect = 30
 [credential]
@@ -22,7 +22,7 @@
   b     = branch
   st    = status
   ps    = push
-  psb   = !git ps --set-upstream origin 
+  psb   = !git ps --set-upstream origin
   pl    = pull
   co    = checkout
   cob   = checkout --branch

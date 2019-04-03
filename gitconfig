@@ -25,7 +25,7 @@
   psb   = !git ps --set-upstream origin
   pl    = pull
   co    = checkout
-  cob   = checkout --branch
+  cob   = co -b
   c     = commit
   cm    = c -m
   amend = c --amend -m

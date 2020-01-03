@@ -1,6 +1,6 @@
 let python_highlight_all=1
 
-let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace', 'isort']
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace', 'isort', 'black']
 
 " Display tabs at the beginning of a line in Python mode as bad.
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/

@@ -7,4 +7,4 @@ let g:javascript_plugin_jsdoc = 1
 
 
 " ========== Vim Local vimrc ==================
-let g:local_vimrc = {'names':['.local.vimrc'],'hash_fun':'LVRHashOfFile'}
+"let g:local_vimrc = {'names':['.vimrc'],'hash_fun':'LVRHashOfFile'}

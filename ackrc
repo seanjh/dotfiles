@@ -244,6 +244,7 @@
 --type-add=python:ext:py
 --type-add=python:firstlinematch:/^#!.*\bpython/
 --ignore-directory=is:.venv
+--ignore-directory=is:.direnv
 # R
 # http://www.r-project.org/
 --type-add=rr:ext:R

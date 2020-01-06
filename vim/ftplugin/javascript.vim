@@ -11,4 +11,3 @@ setlocal autoindent
 setlocal fileformat=unix
 
 au BufRead,BufNewFile *.js,*.jsx,*.json match BadWhitespace /\s\+$/
-

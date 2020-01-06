@@ -9,17 +9,14 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Yggdroot/indentLine'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'MarcWeber/vim-addon-local-vimrc'
+Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'Yggdroot/indentLine'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'MarcWeber/vim-addon-local-vimrc'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'w0rp/ale'
-Plugin 'editorconfig/editorconfig-vim'
 Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
@@ -46,14 +43,12 @@ set encoding=utf-8  		        "The encoding displayed.
 set fileencoding=utf-8  	      "The encoding written to file.
 set hlsearch                    "Highlight search matches
 set ttyfast                     "Better redraw performance
-set re=1                        "Use the old regex engine
 
 
 " ========== Extra Settings =================
 
 source ~/.vim/mappings.vim	    "Keyboard mappings
 source ~/.vim/plugins/netrw.vim
-source ~/.vim/plugins/airline.vim
 source ~/.vim/plugins/ctrlp.vim
 source ~/.vim/plugins/ale.vim
 source ~/.vim/plugins/misc.vim

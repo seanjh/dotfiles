@@ -22,7 +22,7 @@
   b     = branch
   st    = status
   ps    = push
-  psb   = !git ps --set-upstream origin
+  pso   = !git ps --set-upstream origin
   pl    = pull
   co    = checkout
   cob   = co -b
@@ -38,3 +38,4 @@
   diffstat  = diff --stat -r
   dev       = !git co dev && git pl origin dev
   master    = !git co master && git pl origin master
+  qa        = !git co qa && git pl origin qa

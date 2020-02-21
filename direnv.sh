@@ -1,4 +1,4 @@
-https://github.com/direnv/direnv/wiki/Node#using-nvm
+# https://github.com/direnv/direnv/wiki/Node#using-nvm
 use_nvm() {
   local node_version=$1
 

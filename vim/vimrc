@@ -18,6 +18,8 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'jparise/vim-graphql'
+Plugin 'hashivim/vim-terraform'
+Plugin 'preservim/nerdtree'
 
 call vundle#end()
 filetype plugin indent on
@@ -43,15 +45,18 @@ set encoding=utf-8  		        "The encoding displayed.
 set fileencoding=utf-8  	      "The encoding written to file.
 set hlsearch                    "Highlight search matches
 set ttyfast                     "Better redraw performance
+set foldmethod=syntax           "Syntax based folding
+set foldlevel=999
 
 
 " ========== Extra Settings =================
 
 source ~/.vim/mappings.vim	    "Keyboard mappings
-source ~/.vim/plugins/netrw.vim
-source ~/.vim/plugins/ctrlp.vim
 source ~/.vim/plugins/ale.vim
+source ~/.vim/plugins/ctrlp.vim
 source ~/.vim/plugins/misc.vim
+source ~/.vim/plugins/netrw.vim
+source ~/.vim/plugins/nerdtree.vim
 
 
 " ========== Look & Feel ====================

@@ -64,6 +64,8 @@
 --ignore-directory=is:cover_db
 # Node modules created by npm
 --ignore-directory=is:node_modules
+--ignore-directory=is:dist
+--ignore-directory=is:coverage
 # CMake cache
 # http://www.cmake.org/
 --ignore-directory=is:CMakeFiles
@@ -203,6 +205,8 @@
 --type-add=java:ext:java,properties
 # JavaScript
 --type-add=js:ext:js
+# TypeScript
+--type-add=ts:ext:ts,tsx
 # JSP
 # http://www.oracle.com/technetwork/java/javaee/jsp/index.html
 --type-add=jsp:ext:jsp,jspx,jspf,jhtm,jhtml

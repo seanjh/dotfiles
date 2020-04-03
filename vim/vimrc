@@ -18,6 +18,7 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'jparise/vim-graphql'
+Plugin 'leafgarland/typescript-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'preservim/nerdtree'
 

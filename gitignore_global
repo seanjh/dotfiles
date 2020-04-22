@@ -99,5 +99,6 @@ $RECYCLE.BIN/
 # ignore all .a files
 *.a
 
-# direnv environment files
+# environment files
+.env
 .envrc

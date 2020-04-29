@@ -37,6 +37,10 @@ layout_python-venv() {
     export PATH
 }
 
+use_tfenv() {
+  tfenv use $1
+}
+
 
 # via https://github.com/direnv/direnv/wiki/Python#pyenv
 use_pyenv() {

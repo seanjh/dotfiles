@@ -21,6 +21,7 @@ Plugin 'jparise/vim-graphql'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'preservim/nerdtree'
+"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 call vundle#end()
 filetype plugin indent on
@@ -54,6 +55,7 @@ set foldlevel=999
 
 source ~/.vim/mappings.vim	    "Keyboard mappings
 source ~/.vim/plugins/ale.vim
+source ~/.vim/plugins/coc.vim
 source ~/.vim/plugins/ctrlp.vim
 source ~/.vim/plugins/misc.vim
 source ~/.vim/plugins/netrw.vim

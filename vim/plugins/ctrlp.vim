@@ -1,5 +1,5 @@
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]((\.(git|hg|svn|tox|venv|direnv))|(__pycache__|node_modules|bower_components))$',
+  \ 'dir':  '\v[\/]((\.(git|hg|svn|tox|venv|direnv))|(__pycache__|node_modules|bower_components|dist|coverage|coverage-integration))$',
   \ 'file': '\v\.(py[co]|swp|swo|exe|so|dll)$',
   \ }
 

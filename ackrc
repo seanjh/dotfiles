@@ -64,8 +64,11 @@
 --ignore-directory=is:cover_db
 # Node modules created by npm
 --ignore-directory=is:node_modules
+# Common TypeScript build directory
 --ignore-directory=is:dist
+# Common coverage report directory
 --ignore-directory=is:coverage
+--ignore-directory=is:coverage-integration
 # CMake cache
 # http://www.cmake.org/
 --ignore-directory=is:CMakeFiles

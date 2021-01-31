@@ -37,6 +37,7 @@
   lg    = log --color --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset" --abbrev-commit
   diffstat  = diff --stat -r
   dev       = !git co dev && git pl origin dev
+  main      = !git co main && git pl origin main
   master    = !git co master && git pl origin master
   qa        = !git co qa && git pl origin qa
   save      = commit --all --no-verify --verbose --message=save

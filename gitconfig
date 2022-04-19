@@ -1,6 +1,6 @@
 [user]
 	name = Sean Herman
-	email = seanherman@gmail.com
+	email = sherman1@rbi.com
 [push]
   default = simple
 [core]
@@ -43,3 +43,5 @@
   save      = commit --all --no-verify --verbose --message=save
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main

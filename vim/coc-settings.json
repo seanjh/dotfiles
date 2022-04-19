@@ -8,8 +8,6 @@
       "rootPatterns": ["go.mod"],
       "disableWorkspaceFolders": true,
       "filetypes": ["go"]
-    },
-    "python.analysis.diagnosticEnabled": false,
-    "python.linting.enabled": false
+    }
   }
 }

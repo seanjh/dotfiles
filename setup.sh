@@ -17,5 +17,5 @@ ln -sf "$SCRIPT_DIR/gitignore_global" "$GIT_IGNORE_TARGET" && echo "installed $G
 ln -sf "$SCRIPT_DIR/tmux.conf" "$TMUX_TARGET" && echo "installed $TMUX_TARGET" || echo tmux.conf error
 ln -sf "$SCRIPT_DIR/vim" "$VIM_TARGET" && echo "installed $VIM_TARGET" || echo vim/ error
 ln -sf "$SCRIPT_DIR/inputrc" "$INPUTRC_TARGET" && echo "installed $INPUTRC_TARGET" || echo .inputrc error
-[ ! -d "$HOME/.vim/bundle/Vundle.vim" ] && echo cloning Vundle && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || echo Vundle error
+vim -c 'PlugInstall' -c 'qa!'
 mkdir -p "$HOME/.config/direnv" && ln -sf "$SCRIPT_DIR/direnv.sh" "$DIRENV_TARGET" && echo "installed $DIRENV_TARGET" || echo direnvrc error

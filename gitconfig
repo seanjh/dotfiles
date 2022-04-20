@@ -1,5 +1,5 @@
 [user]
-	name = Sean Herman
+	name = Seab Herman
 	email = seanherman@gmail.com
 [push]
   default = simple
@@ -8,8 +8,6 @@
 	excludesfile = ~/.gitignore_global
 [help]
 	autocorrect = 30
-[credential]
-	helper = cache --timeout=7200
 [merge]
 	tool = vimdiff
 [diff]
@@ -21,14 +19,11 @@
   aa    = add --all
   b     = branch
   st    = status
-  ps    = push
   pso   = !git ps --set-upstream origin
-  pl    = pull
   co    = checkout
   cob   = co -b
   c     = commit
   cm    = c -m
-  amend = c --amend -m
   undo  = reset HEAD --
   last  = log -1 HEAD
   bls   = branch --sort=-committerdate --format='%(authordate:short) %(objectname:short) %(objecttype) %(refname:short) %(authoremail)'
@@ -41,3 +36,13 @@
   master    = !git co master && git pl origin master
   qa        = !git co qa && git pl origin qa
   save      = commit --all --no-verify --verbose --message=save
+  wip       = commit --all --no-verify --verbose --message=wip
+[init]
+	defaultBranch = main
+[includeIf "gitdir:~/rbi/**"]
+  path = ~/rbi/.gitconfig
+[includeIf "gitdir:/Users/**/**"]
+	path = mac.gitconfig
+[includeIf "gitdir:/home/**/**"]
+	path = linux.gitconfig
+# vim: ft=gitconfig

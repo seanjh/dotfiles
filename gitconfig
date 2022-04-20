@@ -31,10 +31,10 @@
   ls    = log --pretty=format:"%C(yellow)%h\\ %Creset%s%Cblue\\ [%cn]\\%Cred%d" --decorate
   lg    = log --color --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset" --abbrev-commit
   diffstat  = diff --stat -r
-  dev       = !git co dev && git pl origin dev
-  main      = !git co main && git pl origin main
-  master    = !git co master && git pl origin master
-  qa        = !git co qa && git pl origin qa
+  dev       = !git checkout dev && git pull origin dev
+  main      = !git checkout main && git pull origin main
+  master    = !git checkout master && git pull origin master
+  qa        = !git checkout qa && git pull origin qa
   save      = commit --all --no-verify --verbose --message=save
   wip       = commit --all --no-verify --verbose --message=wip
 [init]

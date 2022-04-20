@@ -39,6 +39,8 @@
   wip       = commit --all --no-verify --verbose --message=wip
 [init]
 	defaultBranch = main
+[pull]
+	rebase = false
 [includeIf "gitdir:~/rbi/**"]
   path = ~/rbi/.gitconfig
 [includeIf "gitdir:/Users/**/**"]

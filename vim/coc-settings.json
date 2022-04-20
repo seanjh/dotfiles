@@ -4,10 +4,15 @@
   "languageserver": {
     "golang": {
       "command": "gopls",
-      "args": ["serve", "-debug", "0.0.0.0:8484", "-rpc.trace"],
       "rootPatterns": ["go.mod"],
       "disableWorkspaceFolders": true,
       "filetypes": ["go"]
+    },
+    "python": {
+      "filetypes": ["py"],
+      "pyright.enable": true,
+      "python.analysis.diagnosticEnabled": false,
+      "python.linting.enabled": false
     }
   }
 }

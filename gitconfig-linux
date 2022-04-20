@@ -1,4 +1,3 @@
 [credential]
-  # https://developer-old.gnome.org/libsecret/
-	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+  helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 # vim: ft=gitconfig

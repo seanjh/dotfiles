@@ -1,0 +1,3 @@
+[credential]
+  helper = manager
+# vim: ft=gitconfig

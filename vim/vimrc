@@ -6,19 +6,18 @@ filetype off
 
 call plug#begin()
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'altercation/vim-colors-solarized'
 Plug 'w0rp/ale'
-Plug 'scrooloose/nerdcommenter'
-Plug 'Yggdroot/indentLine'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'jparise/vim-graphql'
-Plug 'leafgarland/typescript-vim'
-Plug 'hashivim/vim-terraform'
-Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdtree'
+"Plug 'vim-scripts/indentpython.vim'
+"Plug 'pangloss/vim-javascript'
+"Plug 'mxw/vim-jsx'
+"Plug 'jparise/vim-graphql'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'hashivim/vim-terraform'
 
 " Initialize plugin system
 call plug#end()
@@ -54,18 +53,18 @@ set foldlevel=999
 
 source ~/.vim/mappings.vim	    "Keyboard mappings
 source ~/.vim/plugins/ale.vim
-source ~/.vim/plugins/coc.vim
 source ~/.vim/plugins/ctrlp.vim
-source ~/.vim/plugins/misc.vim
-source ~/.vim/plugins/netrw.vim
+source ~/.vim/plugins/coc.vim
 source ~/.vim/plugins/nerdtree.vim
+source ~/.vim/plugins/netrw.vim
+source ~/.vim/plugins/misc.vim
 
 
 " ========== Look & Feel ====================
 
 syntax on
 set background=dark
-colorscheme solarized
+colorscheme habamax
 
 set term=xterm-256color
 set termencoding=utf-8

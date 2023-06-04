@@ -1,2 +1,4 @@
 # Instructions
-Follow the [Vundle Quick Start](https://github.com/VundleVim/Vundle.vim#quick-start) instructions to bootstrap a new environment.
+
+- Install vim (see [Building Vim from source](https://github.com/ycm-core/YouCompleteMe/wiki/Building-Vim-from-source))
+- 

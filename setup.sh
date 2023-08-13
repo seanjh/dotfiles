@@ -13,6 +13,7 @@ TMUX_TARGET="$HOME/.tmux.conf"
 VIM_TARGET="$HOME/.vim"
 DIRENV_TARGET="$HOME/.config/direnv/direnvrc"
 INPUTRC_TARGET="$HOME/.inputrc"
+NVIM_INIT_TARGET="$HOME/.config/nvim/init.lua"
 
 ln -sf "$SCRIPT_DIR/ackrc" "$ACK_TARGET" && echo "installed $ACK_TARGET" || echo ackrc error
 ln -sf "$SCRIPT_DIR/gitconfig" "$GIT_TARGET" && echo "installed $GIT_TARGET" || echo gitconfig error
@@ -25,3 +26,4 @@ ln -sf "$SCRIPT_DIR/vim" "$VIM_TARGET" && echo "installed $VIM_TARGET" || echo v
 ln -sf "$SCRIPT_DIR/inputrc" "$INPUTRC_TARGET" && echo "installed $INPUTRC_TARGET" || echo .inputrc error
 vim -c 'PlugInstall' -c 'qa!'
 mkdir -p "$HOME/.config/direnv" && ln -sf "$SCRIPT_DIR/direnv.sh" "$DIRENV_TARGET" && echo "installed $DIRENV_TARGET" || echo direnvrc error
+mkdir -p "$HOME/.config/nvim" && ln -sf "$SCRIPT_DIR/nvim/init.lua" "$NVIM_INIT_TARGET" && echo "installed $NVIM_INIT_TARGET" || echo .nvim/init.lua error

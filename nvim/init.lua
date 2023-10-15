@@ -44,6 +44,8 @@ vim.g.maplocalleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.colorcolumn = "90"
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -79,7 +81,11 @@ require('lazy').setup({
     "nvim-tree/nvim-tree.lua",
     dependencies = {},
     opts = {
-      filters = { custom = { "^.git$" } },
+      filters = {
+        custom = { "^.git$" },
+        dotfiles = false,
+        git_ignored = false,
+      },
     },
   },
 
@@ -95,11 +101,40 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+  },
+
+  {
+    "elentok/format-on-save.nvim",
+    opts = function()
+      local formatters = require("format-on-save.formatters")
+      return {
+        exclude_path_patterns = {
+          "/node_modules/",
+          ".local/share/nvim/lazy",
+        },
+        formatter_by_ft = {
+          html = formatters.lsp,
+          json = formatters.lsp,
+          python = {
+            formatters.remove_trailing_whitespace,
+            formatters.black,
+          },
+          terraform = formatters.lsp,
+          typescript = formatters.eslint_d_fix,
+          typescriptreact = formatters.eslint_d_fix,
+          yaml = formatters.lsp,
+        },
+        -- fallback_formatter = {
+        --   formatters.remove_trailing_whitespace,
+        --   formatters.remove_trailing_newlines,
+        -- },
+      }
+    end
   },
 
   {
@@ -119,7 +154,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -133,7 +168,8 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
+          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
@@ -168,9 +204,11 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
+    main = 'ibl',
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
+      indent = {
+        char = '┊',
+      },
     },
   },
 
@@ -206,6 +244,8 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+
+  "jparise/vim-graphql",
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -448,6 +488,8 @@ end
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
+local lspconfig_util = require 'lspconfig.util'
+
 local servers = {
   -- clangd = {},
   -- gopls = {},
@@ -455,11 +497,20 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  denols = {
+    root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc"),
+  },
+  tsserver = {
+    root_dir = lspconfig_util.root_pattern("tsconfig.json"),
+  },
+  terraformls = {},
 
   lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
+    settings = {
+      Lua = {
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
+      },
     },
   },
 }
@@ -480,11 +531,14 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
-    require('lspconfig')[server_name].setup {
+    local lspconfig = require('lspconfig')
+
+    lspconfig[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-      settings = servers[server_name],
+      settings = (servers[server_name] or {}).settings,
       filetypes = (servers[server_name] or {}).filetypes,
+      root_dir = (servers[server_name] or {}).root_dir,
     }
   end
 }

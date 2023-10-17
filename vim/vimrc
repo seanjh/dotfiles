@@ -12,12 +12,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdcommenter'
 Plug 'preservim/nerdtree'
-"Plug 'vim-scripts/indentpython.vim'
+Plug 'jparise/vim-graphql'
+Plug 'hashivim/vim-terraform'
 "Plug 'pangloss/vim-javascript'
 "Plug 'mxw/vim-jsx'
-"Plug 'jparise/vim-graphql'
 "Plug 'leafgarland/typescript-vim'
-"Plug 'hashivim/vim-terraform'
 
 " Initialize plugin system
 call plug#end()
@@ -47,6 +46,8 @@ set hlsearch                    "Highlight search matches
 set ttyfast                     "Better redraw performance
 set foldmethod=syntax           "Syntax based folding
 set foldlevel=999
+
+let g:loaded_matchparen=1
 
 
 " ========== Extra Settings =================

@@ -1,0 +1,7 @@
+[shell]
+program = "/opt/homebrew/bin/bash"
+args = ["-l", "-c", "tmux attach || tmux"]
+
+[font]
+normal = { family = "Inconsolata Nerd Font Mono", style = "Regular" }
+size = 16

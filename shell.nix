@@ -1,13 +1,6 @@
 let
   nixpkgs = builtins.fetchTarball "https://github.com/NixOS/nixpkgs/tarball/nixos-23.11";
   pkgs = import nixpkgs { config = {}; overlays = []; };
-
-  dotfiles = pkgs.fetchFromGitHub {
-    owner = "seanjh";
-    repo = "dotfiles";
-    rev = "19229e2fe4e25dbcc77b178e3ceb846decb4624c";
-    sha256 = "sha256-u3nll+ZP075o+VfLlh/5FurDU+VPeWEpq/XYqP6LNNE=";
-  };
 in
 
 pkgs.mkShellNoCC {
@@ -31,17 +24,18 @@ pkgs.mkShellNoCC {
   fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" "Inconsolata" "DroidSansMono" ]; })
   ];
+	ss
 
   shellHook = ''
     mkdir -p $HOME/.config/{nvim,direnv}
-    cp -f "${dotfiles}/shell.nix" "$HOME/.config/shell.nix"
-    ln -sf "${dotfiles}/direnv.sh" "$HOME/.config/direnv/direnvrc"
-    ln -sf "${dotfiles}/gitconfig" "$HOME/.gitconfig"
-    ln -sf "${dotfiles}/gitignore_global" "$HOME/.gitignore_global"
-    ln -sf "${dotfiles}/gitconfig-linux" "$HOME/.gitignore-linux"
-    ln -sf "${dotfiles}/inputrc" "$HOME/.inputrc"
-    ln -sf "${dotfiles}/nvim/init.lua" "$HOME/.config/nvim/init.lua"
-    ln -sf "${dotfiles}/nvim/lua/" "$HOME/.config/nvim"
-    ln -sf "${dotfiles}/tmux.conf" "$HOME/.tmux.conf"
+    cp -f "$HOME/.env/dotfiles/shell.nix" "$HOME/.config/shell.nix"
+    ln -sf "$HOME/.env/dotfiles/direnv.sh" "$HOME/.config/direnv/direnvrc"
+    ln -sf "$HOME/.env/dotfiles/gitconfig" "$HOME/.gitconfig"
+    ln -sf "$HOME/.env/dotfiles/gitignore_global" "$HOME/.gitignore_global"
+    ln -sf "$HOME/.env/dotfiles/gitconfig-linux" "$HOME/.gitignore-linux"
+    ln -sf "$HOME/.env/dotfiles/inputrc" "$HOME/.inputrc"
+    ln -sf "$HOME/.env/dotfiles/nvim/init.lua" "$HOME/.config/nvim/init.lua"
+    ln -sf "$HOME/.env/dotfiles/nvim/lua/" "$HOME/.config/nvim"
+    ln -sf "$HOME/.env/dotfiles/tmux.conf" "$HOME/.tmux.conf"
   '';
 }

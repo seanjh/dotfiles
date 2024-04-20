@@ -1,63 +1,52 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-set -x
+# Function to detect the shell and update the respective config file
+update_shell_config() {
+  local config_file="$1"
+  local snippet_marker="# Load custom Nix environment"
+
+  echo "Modifying $config_file to load shell.nix on startup..."
+  if grep -q "$snippet_marker" "$config_file"; then
+    echo "Configuration snippet already present in $config_file"
+    return
+  fi
+
+  cat <<EOF >> "$config_file"
+# Load custom Nix environment
+if [ -f "\$HOME/.env/dotfiles/shell.nix" ]; then
+  source "\$(nix-build --no-out-link "\$HOME/.env/dotfiles/shell.nix")/activate"
+fi
+EOF
+}
+
+if ! command -v nix &> /dev/null; then
+  echo "Nix is not installed. Installing Nix..."
+  sh <(curl -L https://nixos.org/nix/install) --daemon
+fi
+
+if ! command -v nix &> /dev/null; then
+  echo "Failed to install Nix. Please check the installation logs."
+  exit 1
+fi
 
 GIT_REF="${1:-main}"
-GITHUB_REPO=seanjh/dotfiles
-NIX_FILENAME=shell.nix
-NIX_BOOTSTRAP_PATH="$HOME/.config/shell.nix"
-NIX_SHELL_URL="https://raw.githubusercontent.com/${GITHUB_REPO}/${GIT_REF}/${NIX_FILENAME}"
 
-CURRENT_SHELL="$(getent passwd $USER | cut -d: -f7)"
-SHELL_RC=
-SHELL_NAME=
+# Clone dotfiles repository
+DOTFILES_DIR="$HOME/.env/dotfiles"
+if [ ! -d "$DOTFILES_DIR" ]; then
+    echo "Cloning dotfiles repository..."
+    git clone -b "$GIT_REF" --single-branch https://github.com/seanjh/dotfiles "$DOTFILES_DIR"
+fi
 
-check_nix_install() {
-  if ! command -v nix-shell >/dev/null 2>&1; then
-    echo "Intalling Nix..."
-    curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-  fi
-}
+# Detect default shell and update the correct shell configuration file
+DEFAULT_SHELL=$(basename "$SHELL")
+if [ "$DEFAULT_SHELL" = "bash" ]; then
+  update_shell_config "$HOME/.bashrc"
+elif [ "$DEFAULT_SHELL" = "zsh" ]; then
+  update_shell_config "$HOME/.zshrc"
+else
+  echo "Unsupported shell: $DEFAULT_SHELL"
+  exit 1
+fi
 
-initialize_with_nix() {
-  mkdir -p "$HOME/.config"
-  echo "Downloading Nix bootstrap configuration..."
-  curl -L -o "$NIX_BOOTSTRAP_PATH" "$NIX_SHELL_URL"
-  nix-shell "$NIX_BOOTSTRAP_PATH"
-}
-
-SNIPPET="# Automatically enter Nix shell
-if [[ -z \"\$IN_NIX_SHELL\" ]]; then
-  nix-shell $NIX_BOOTSTRAP_PATH --run \"exec $CURRENT_SHELL\"
-fi"
-
-configure_autoload() {
-  if [[ "$CURRENT_SHELL" == *"/bash"* ]]; then
-    SHELL_RC="$HOME/.bashrc"
-    SHELL_NAME="bash"
-  elif [[ "$CURRENT_SHELL" == *"/zsh"* ]]; then
-    SHELL_RC="$HOME/.zshrc"
-    SHELL_NAME="zsh"
-  else
-    echo "Unsupported shell."
-    exit 1
-  fi
-
-  if ! grep -q "Automatically enter Nix shell" "$SHELL_RC"; then
-    echo "$SNIPPET " >> "$SHELL_RC"
-    echo "Snippet added to your $SHELL_RC."
-  else
-    echo "Snippet already exists in $SHELL_RC."
-  fi
-}
-
-finish() {
-  exit # drop out of the initial nix-shell
-  . "$SHELL_RC"
-}
-
-check_nix_install
-initialize_with_nix
-configure_autoload
-#finish
+echo "Setup complete. Please restart your shell."

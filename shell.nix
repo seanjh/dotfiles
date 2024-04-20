@@ -5,14 +5,18 @@ let
   dotfiles = pkgs.fetchFromGitHub {
     owner = "seanjh";
     repo = "dotfiles";
-    rev = "bc3ede877ee88a449600bbe73a4d144e13987346";
+    rev = "19229e2fe4e25dbcc77b178e3ceb846decb4624c";
     sha256 = "sha256-u3nll+ZP075o+VfLlh/5FurDU+VPeWEpq/XYqP6LNNE=";
   };
 in
 
 pkgs.mkShellNoCC {
   packages = with pkgs; [
+    aws-vault
+    awscli2
     direnv
+    gcc
+    gh
     go
     jq
     nodenv
@@ -30,13 +34,14 @@ pkgs.mkShellNoCC {
 
   shellHook = ''
     mkdir -p $HOME/.config/{nvim,direnv}
+    cp -f "${dotfiles}/shell.nix" "$HOME/.config/shell.nix"
     ln -sf "${dotfiles}/direnv.sh" "$HOME/.config/direnv/direnvrc"
     ln -sf "${dotfiles}/gitconfig" "$HOME/.gitconfig"
     ln -sf "${dotfiles}/gitignore_global" "$HOME/.gitignore_global"
     ln -sf "${dotfiles}/gitconfig-linux" "$HOME/.gitignore-linux"
     ln -sf "${dotfiles}/inputrc" "$HOME/.inputrc"
     ln -sf "${dotfiles}/nvim/init.lua" "$HOME/.config/nvim/init.lua"
-    ln -sf "${dotfiles}/nvim/lua/" "$HOME/.config/nvim/lua"
+    ln -sf "${dotfiles}/nvim/lua/" "$HOME/.config/nvim"
     ln -sf "${dotfiles}/tmux.conf" "$HOME/.tmux.conf"
   '';
 }

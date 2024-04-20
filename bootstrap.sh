@@ -21,12 +21,10 @@ check_nix_install() {
 }
 
 initialize_with_nix() {
-  if [ ! -f "$NIX_BOOTSTRAP_PATH" ]; then
-    mkdir -p "$HOME/.config"
-    echo "Downloading Nix bootstrap configuration..."
-    curl -L -o "$NIX_BOOTSTRAP_PATH" "$NIX_SHELL_URL"
-    nix-shell "$NIX_BOOTSTRAP_PATH"
-  fi
+  mkdir -p "$HOME/.config"
+  echo "Downloading Nix bootstrap configuration..."
+  curl -L -o "$NIX_BOOTSTRAP_PATH" "$NIX_SHELL_URL"
+  nix-shell "$NIX_BOOTSTRAP_PATH"
 }
 
 SNIPPET="# Automatically enter Nix shell

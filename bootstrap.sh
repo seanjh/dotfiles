@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-GIT_REF=main
+GIT_REF=
 GITHUB_REPO=seanjh/dotfiles
 NIX_FILENAME=shell.nix
 NIX_BOOTSTRAP_PATH="$HOME/temp.nix"
@@ -9,6 +9,12 @@ NIX_SHELL_URL="https://raw.githubusercontent.com/${GITHUB_REPO}/${GIT_REF}/${NIX
 CURRENT_SHELL="$(getent passwd $USER | cut -d: -f7)"
 SHELL_RC=
 SHELL_NAME=
+
+if [[ -z "$1" ]]; then
+  GIT_REF="$1"
+else
+  GIT_REF='main'
+fi
 
 check_nix_install() {
   if ! command -v nix-shell >/dev/null 2>&1; then
@@ -26,7 +32,7 @@ initialize_with_nix() {
   fi
 }
 
-configure_autoload_nix_shell() {
+configure_autoload() {
   if [[ "$CURRENT_SHELL" == *"/bash"* ]]; then
     $SHELL_RC="$HOME/.bashrc"
     $SHELL_NAME="bash"
@@ -56,10 +62,7 @@ finish() {
   . "$SHELL_RC"
 }
 
-check_nix_installed
+check_nix_install
 initialize_with_nix
-configure_autoload_nix_shell
-
-exit
-
-. "$SHELL_RC"
+configure_autoload
+finish

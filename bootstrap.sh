@@ -6,53 +6,60 @@ NIX_FILENAME=shell.nix
 NIX_BOOTSTRAP_PATH="$HOME/temp.nix"
 NIX_SHELL_URL="https://raw.githubusercontent.com/${GITHUB_REPO}/${GIT_REF}/${NIX_FILENAME}"
 
+CURRENT_SHELL="$(getent passwd $USER | cut -d: -f7)"
+SHELL_RC=
+SHELL_NAME=
+
 check_nix_install() {
-	if ! command -v nix-shell >/dev/null 2>&1; then
-		echo "Intalling Nix..."
-		curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-		. "$HOME/.nix-profile/etc/profile.d/nix.sh"
-	fi
+  if ! command -v nix-shell >/dev/null 2>&1; then
+    echo "Intalling Nix..."
+    curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+  fi
 }
 
 initialize_with_nix() {
-	if [ ! -f "$NIX_BOOTSTRAP_PATH" ]; then
-		echo "Downloading Nix bootstrap configuration..."
-		curl -L -o "$NIX_BOOTSTRAP_PATH" "$NIX_SHELL_URL"
-		nix-shell "$NIX_BOOTSTRAP_PATH"
-	fi
+  if [ ! -f "$NIX_BOOTSTRAP_PATH" ]; then
+    echo "Downloading Nix bootstrap configuration..."
+    curl -L -o "$NIX_BOOTSTRAP_PATH" "$NIX_SHELL_URL"
+    nix-shell "$NIX_BOOTSTRAP_PATH"
+  fi
 }
 
 configure_autoload_nix_shell() {
-	local current_shell=$(getent passwd $USER | cut -d: -f7)
-	local shell_rc
-	local shell_name
+  if [[ "$CURRENT_SHELL" == *"/bash"* ]]; then
+    $SHELL_RC="$HOME/.bashrc"
+    $SHELL_NAME="bash"
+  elif [[ "$CURRENT_SHELL" == *"/zsh"* ]]; then
+    $SHELL_RC="$HOME/.zshrc"
+    $SHELL_NAME="zsh"
+  else
+    echo "Unsupported shell."
+    exit 1
+  fi
 
-	if [[ "$current_shell" == *"/bash"* ]]; then
-		shell_rc="$HOME/.bashrc"
-		shell_name="bash"
-	elif [[ "$current_shell" == *"/zsh"* ]]; then
-		shell_rc="$HOME/.zshrc"
-		shell_name="zsh"
-	else
-		echo "Unsupported shell."
-		exit 1
-	fi
+  local snippet="# Automatically enter Nix shell
+  if [ -z \"\$IN_NIX_SHELL\" ]; then
+        nix-shell $NIX_SHELL_PATH --run \"exec $CURRENT_SHELL\"
+  fi"
 
-	local snippet="# Automatically enter Nix shell
-	if [ -z \"\$IN_NIX_SHELL\" ]; then
-		    nix-shell $NIX_SHELL_PATH --run \"exec $current_shell\"
-	fi"
+  if ! grep -q "Automatically enter Nix shell" "$SHELL_RC"; then
+    echo "$snippet" >> "$SHELL_RC"
+    echo "Snippet added to your $SHELL_RC."
+  else
+    echo "Snippet already exists in $SHELL_RC."
+  fi
+}
 
-	if ! grep -q "Automatically enter Nix shell" "$shell_rc"; then
-		echo "$snippet" >> "$shell_rc"
-		echo "Snippet added to your $shell_rc."
-	else
-		echo "Snippet already exists in $shell_rc."
-	fi
+finish() {
+  exit # drop out of the initial nix-shell
+  . "$SHELL_RC"
 }
 
 check_nix_installed
 initialize_with_nix
 configure_autoload_nix_shell
 
-rm -f "$NIX_BOOTSTRAP_PATH"
+exit
+
+. "$SHELL_RC"

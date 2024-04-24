@@ -7,11 +7,9 @@ in
   home.homeDirectory = "/home/sean";
   
   home.packages = with pkgs; [
-    direnv
     git
     go
     jq
-    neovim
     nodejs_20
     python312
     pyenv
@@ -63,7 +61,7 @@ in
 
   programs.neovim = with pkgs; {
   	enable = true;
-	extraLuaConfig = lib.fileContents ~/.env/nvim/init.lua;
+	extraLuaConfig = lib.strings.fileContents ~/.env/nvim/init.lua;
   };
 
   programs.tmux = {

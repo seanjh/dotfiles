@@ -1,65 +1,43 @@
 #!/usr/bin/env bash
 
-GIT_REF=main
-GITHUB_REPO=seanjh/dotfiles
-NIX_FILENAME=shell.nix
-NIX_BOOTSTRAP_PATH="$HOME/temp.nix"
-NIX_SHELL_URL="https://raw.githubusercontent.com/${GITHUB_REPO}/${GIT_REF}/${NIX_FILENAME}"
+GIT_REF="${1:-main}"
+DOTFILES_DIR="$HOME/.env/dotfiles"
+NIXPKGS_VERSION='23.11'
+DEFAULT_SHELL=$(basename "$SHELL")
 
-CURRENT_SHELL="$(getent passwd $USER | cut -d: -f7)"
-SHELL_RC=
-SHELL_NAME=
+SHELL_PROFILE=
+if [ "$DEFAULT_SHELL" = "bash" ]; then
+  SHELL_PROFILE="$HOME/.profile"
+elif [ "$DEFAULT_SHELL" = "zsh" ]; then
+  SHELL_PROFILE="$HOME/.zprofile"
+else
+  echo "Unsupported shell: $DEFAULT_SHELL"
+  exit 1
+fi
 
-check_nix_install() {
-  if ! command -v nix-shell >/dev/null 2>&1; then
-    echo "Intalling Nix..."
-    curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-  fi
-}
+DOTFILES_DIR="$HOME/.env/dotfiles"
+if [ ! -d "$DOTFILES_DIR" ]; then
+  echo "Cloning dotfiles repository..."
+  mkdir -p "$HOME/.env"
+  git clone -b "$GIT_REF" --single-branch https://github.com/seanjh/dotfiles "$DOTFILES_DIR"
+fi
 
-initialize_with_nix() {
-  if [ ! -f "$NIX_BOOTSTRAP_PATH" ]; then
-    echo "Downloading Nix bootstrap configuration..."
-    curl -L -o "$NIX_BOOTSTRAP_PATH" "$NIX_SHELL_URL"
-    nix-shell "$NIX_BOOTSTRAP_PATH"
-  fi
-}
+if ! command -v nix-shell >/dev/null 2>&1; then
+  echo "Intalling Nix..."
+  curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
 
-configure_autoload_nix_shell() {
-  if [[ "$CURRENT_SHELL" == *"/bash"* ]]; then
-    $SHELL_RC="$HOME/.bashrc"
-    $SHELL_NAME="bash"
-  elif [[ "$CURRENT_SHELL" == *"/zsh"* ]]; then
-    $SHELL_RC="$HOME/.zshrc"
-    $SHELL_NAME="zsh"
-  else
-    echo "Unsupported shell."
-    exit 1
-  fi
+if ! command -v home-manager >/dev/null 2>&1; then
+  echo "Installing Home Manager..."
+  #nix-channel --add "https://nixos.org/channels/nixos-${NIXPKGS_VERSION}"
+  nix-channel --add "https://github.com/nix-community/home-manager/archive/release-${NIXPKGS_VERSION}.tar.gz" home-manager
+  nix-channel --update
+  nix-shell '<home-manager>' -A install
 
-  local snippet="# Automatically enter Nix shell
-  if [ -z \"\$IN_NIX_SHELL\" ]; then
-        nix-shell $NIX_SHELL_PATH --run \"exec $CURRENT_SHELL\"
-  fi"
+  . "$SHELL_PROFILE"
+fi
 
-  if ! grep -q "Automatically enter Nix shell" "$SHELL_RC"; then
-    echo "$snippet" >> "$SHELL_RC"
-    echo "Snippet added to your $SHELL_RC."
-  else
-    echo "Snippet already exists in $SHELL_RC."
-  fi
-}
+ln -sf "$DOTFILES_DIR/home.nix" "$HOME/.config/home-manager/home.nix"
 
-finish() {
-  exit # drop out of the initial nix-shell
-  . "$SHELL_RC"
-}
-
-check_nix_installed
-initialize_with_nix
-configure_autoload_nix_shell
-
-exit
-
-. "$SHELL_RC"
+echo "Setup complete. Please restart your shell."

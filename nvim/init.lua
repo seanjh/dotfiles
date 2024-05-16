@@ -125,8 +125,8 @@ require('lazy').setup({
             formatters.black,
           },
           terraform = formatters.lsp,
-          typescript = formatters.eslint_d_fix,
-          typescriptreact = formatters.eslint_d_fix,
+          typescript = formatters.prettierd,
+          typescriptreact = formatters.prettierd,
           yaml = formatters.lsp,
         },
         -- fallback_formatter = {
@@ -331,6 +331,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
+  pickers = {
+    live_grep = {
+      hidden = true,
+    },
+    find_files = {
+      hidden = true,
+    },
+  },
+  builtin = {
+    find_files = {
+      hidden = true,
+    },
+  },
   defaults = {
     mappings = {
       i = {
@@ -338,7 +351,7 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
-    file_ignore_patterns = { "dist", "node_modules" },
+    file_ignore_patterns = { "dist", "node_modules", ".git", "coverage" },
   },
 }
 

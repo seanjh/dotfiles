@@ -2,7 +2,8 @@
 
 GIT_REF="${1:-main}"
 DOTFILES_DIR="$HOME/.env/dotfiles"
-NIXPKGS_VERSION='23.11'
+NIXPKGS_VERSION='24.05'
+DETERMINATE_INSTALLER_VERSION='0.24.0'
 DEFAULT_SHELL=$(basename "$SHELL")
 
 SHELL_PROFILE=
@@ -24,18 +25,12 @@ fi
 
 if ! command -v nix-shell >/dev/null 2>&1; then
   echo "Intalling Nix..."
-  curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+  curl --proto '=https' --tlsv1.2 -sSf -L "https://github.com/DeterminateSystems/nix-installer/releases/download/v$DETERMINATE_INSTALLER_VERSION/nix-installer.sh" | sh -s -- install
 fi
 
 if ! command -v home-manager >/dev/null 2>&1; then
   echo "Installing Home Manager..."
-  #nix-channel --add "https://nixos.org/channels/nixos-${NIXPKGS_VERSION}"
-  nix-channel --add "https://github.com/nix-community/home-manager/archive/release-${NIXPKGS_VERSION}.tar.gz" home-manager
-  nix-channel --update
-  nix-shell '<home-manager>' -A install
-
-  . "$SHELL_PROFILE"
+  nix run "home-manager/release-$NIXPKGS_VERSION" -- init --switch
 fi
 
 ln -sf "$DOTFILES_DIR/home.nix" "$HOME/.config/home-manager/home.nix"

@@ -21,18 +21,18 @@
   programs.home-manager.enable = true;
 
   programs.direnv = {
-  	enable = true;
+    enable = true;
     stdlib = ''
     '';
   };
 
   programs.readline = with pkgs; {
-  	enable = true;
+    enable = true;
     extraConfig = lib.strings.fileContents ./inputrc;
   };
 
   programs.neovim = with pkgs; {
-  	enable = true;
+    enable = true;
     extraLuaConfig = lib.strings.fileContents ./init.lua;
   };
 

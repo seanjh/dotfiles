@@ -103,3 +103,6 @@ $RECYCLE.BIN/
 # environment files
 .env
 .envrc
+
+# TypeScript
+tsconfig.tsbuildinfo

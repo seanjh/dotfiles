@@ -1,10 +1,9 @@
-let 
-  nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/tarball/nixos-23.11";
-  pkgs = import nixpkgs { config = {}; overlays = []; };
-in
+{ config, pkgs, ... }:
+
 {
-  home.username = "sean";
-  home.homeDirectory = "/home/sean";
+  imports = [ ./hosts ]
+
+  home.stateVersion = "24.05";
   
   home.packages = with pkgs; [
     gcc
@@ -12,36 +11,33 @@ in
     gnumake
     go
     jq
-    nodejs_20
+    nodejs_22
     python312
     pyenv
     ripgrep
     unzip
   ];
 
-
-  home.stateVersion = "23.11";
-
   programs.home-manager.enable = true;
 
   programs.direnv = {
-  	enable = true;
-	stdlib = ''
-	'';
+    enable = true;
+    stdlib = ''
+    '';
   };
 
   programs.readline = with pkgs; {
-  	enable = true;
-	extraConfig = lib.strings.fileContents ~/.env/inputrc;
+    enable = true;
+    extraConfig = lib.strings.fileContents ./inputrc;
   };
 
   programs.neovim = with pkgs; {
-  	enable = true;
-	extraLuaConfig = lib.strings.fileContents ~/.env/nvim/init.lua;
+    enable = true;
+    extraLuaConfig = lib.strings.fileContents ./init.lua;
   };
 
   programs.tmux = with pkgs; {
-	enable = true;
-	extraConfig = lib.strings.fileContents ~/.env/tmux.conf;
+    enable = true;
+    extraConfig = lib.strings.fileContents ./tmux.conf;
   };
 }

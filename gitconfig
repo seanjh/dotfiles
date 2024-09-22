@@ -10,10 +10,14 @@
 	autocorrect = 30
 [merge]
 	tool = vimdiff
+    conflictstyle = zdiff3
 [diff]
 	tool = vimdiff
+    algorithm = histogram
 [github]
 	user = seanjh
+[commit]
+    verbose = true
 [alias]
   a     = add
   aa    = add --all
@@ -41,12 +45,14 @@
 	defaultBranch = main
 [pull]
 	rebase = false
+[push]
+    autoSetupRemote = true
 [includeIf "gitdir:~/rbi"]
-  path = ~/rbi/.gitconfig
+    path = ~/rbi/.gitconfig
 [includeIf "gitdir:/Users/"]
-	path = ~/.gitconfig-macos
+	path = .gitconfig-macos
 [includeIf "gitdir:/home/"]
-	path = ~/.gitconfig-linux
+	path = .config-linux
 [includeIf "gitdir:C:/"]
-	path = ~/.gitconfig-windows
+	path = .gitconfig-windows
 # vim: ft=gitconfig

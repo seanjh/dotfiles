@@ -520,6 +520,18 @@ mason_lspconfig.setup_handlers {
   end
 }
 
+require('mason-tool-installer').setup({
+  ensure_installed = {
+    "ruff",
+    "nixpkgs-fmt",
+    "nilaway",
+    "oxlint",
+    "prettierd",
+    "stylelint",
+    "htmlhint",
+  }
+})
+
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'

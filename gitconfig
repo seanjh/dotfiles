@@ -44,9 +44,9 @@
 [includeIf "gitdir:~/rbi"]
   path = ~/rbi/.gitconfig
 [includeIf "gitdir:/Users/"]
-	path = ~/.gitconfig-macos
+	path = .gitconfig_macos
 [includeIf "gitdir:/home/"]
-	path = ~/.gitconfig-linux
+	path = .gitconfig_linux
 [includeIf "gitdir:C:/"]
-	path = ~/.gitconfig-windows
+	path = .gitconfig_windows
 # vim: ft=gitconfig

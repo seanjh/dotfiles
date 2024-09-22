@@ -460,7 +460,9 @@ end
 local lspconfig_util = require 'lspconfig.util'
 
 local servers = {
-  -- clangd = {},
+  denols = {
+    root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc"),
+  },
   gopls = {
     settings = {
       gopls = {
@@ -471,18 +473,6 @@ local servers = {
       },
     },
   },
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-  denols = {
-    root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc"),
-  },
-  tsserver = {
-    root_dir = lspconfig_util.root_pattern("tsconfig.json"),
-  },
-  terraformls = {},
-
   lua_ls = {
     settings = {
       Lua = {
@@ -490,6 +480,13 @@ local servers = {
         telemetry = { enable = false },
       },
     },
+  },
+  pyright = {},
+  ruff_lsp = {},
+  tailwindcss = {},
+  terraformls = {},
+  ts_ls = {
+    root_dir = lspconfig_util.root_pattern("tsconfig.json"),
   },
 }
 

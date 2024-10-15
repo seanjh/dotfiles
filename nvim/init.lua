@@ -4,10 +4,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.tabstop = 2
-vim.g.shiftwidth = 2
-vim.g.expandtab = true
-vim.g.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.softtabstop = 2
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -78,33 +78,39 @@ require('lazy').setup({
   },
 
   {
-    "elentok/format-on-save.nvim",
-    opts = function()
-      local formatters = require("format-on-save.formatters")
-      return {
-        exclude_path_patterns = {
-          "/node_modules/",
-          ".local/share/nvim/lazy",
-        },
-        formatter_by_ft = {
-          html = formatters.lsp,
-          json = formatters.lsp,
-          python = {
-            formatters.remove_trailing_whitespace,
-            formatters.black,
-          },
-          terraform = formatters.lsp,
-          typescript = formatters.eslint_d_fix,
-          typescriptreact = formatters.eslint_d_fix,
-          yaml = formatters.lsp,
-        },
-        fallback_formatter = {
-          formatters.remove_trailing_whitespace,
-          formatters.remove_trailing_newlines,
-        },
-      }
-    end
+    "mhartington/formatter.nvim",
   },
+
+  -- {
+  --   "elentok/format-on-save.nvim",
+  --   opts = function()
+  --     local formatters = require("format-on-save.formatters")
+  --     return {
+  --       exclude_path_patterns = {
+  --         "/node_modules/",
+  --         ".local/share/nvim/lazy",
+  --       },
+  --       formatter_by_ft = {
+  --         css = formatters.lsp,
+  --         html = formatters.lsp,
+  --         json = formatters.lsp,
+  --         python = {
+  --           formatters.remove_trailing_whitespace,
+  --           formatters.ruff,
+  --           formatters.isort,
+  --         },
+  --         terraform = formatters.lsp,
+  --         typescript = formatters.lazy_prettierd,
+  --         typescriptreact = formatters.lazy_prettierd,
+  --         yaml = formatters.lsp,
+  --       },
+  --       fallback_formatter = {
+  --         formatters.remove_trailing_whitespace,
+  --         formatters.remove_trailing_newlines,
+  --       },
+  --     }
+  --   end
+  -- },
 
   {
     -- Autocompletion
@@ -282,9 +288,8 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Toggle NvimTreeToggle open/closed
+--- Toggle NvimTreeToggle open/closed
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
-
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -444,9 +449,9 @@ local on_attach = function(_, bufnr)
   end, '[W]orkspace [L]ist Folders')
 
   -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
+  -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+  --   vim.lsp.buf.format()
+  -- end, { desc = 'Format current buffer with LSP' })
 end
 
 -- Enable the following language servers
@@ -460,9 +465,7 @@ end
 local lspconfig_util = require 'lspconfig.util'
 
 local servers = {
-  denols = {
-    root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc"),
-  },
+  denols = { root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc") },
   gopls = {
     settings = {
       gopls = {
@@ -482,13 +485,49 @@ local servers = {
     },
   },
   pyright = {},
-  ruff_lsp = {},
   tailwindcss = {},
   terraformls = {},
-  ts_ls = {
-    root_dir = lspconfig_util.root_pattern("tsconfig.json"),
+  biome = {},
+  ts_ls = { root_dir = lspconfig_util.root_pattern("tsconfig.json") },
+  yamlls = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["https://json.schemastore.org/circleciconfig.json"] = "/.circleci/config.yaml",
+      },
+    },
   },
 }
+
+require('formatter').setup {
+  logging = true,
+  log_level = vim.log.levels.INFO,
+  filetype = {
+    lua = {
+      require("formatter.filetypes.lua").stylua,
+    },
+    python = {
+      require("formatter.filetypes.python").ruff,
+      require("formatter.filetypes.python").isort,
+    },
+    javascript = { require("formatter.defaults.prettierd") },
+    typescript = { require("formatter.defaults.prettierd") },
+    typescriptreact = { require("formatter.defaults.prettierd") },
+    go = {
+      require("formatter.filetypes.go").gopls,
+    },
+    terraform = {
+      require("formatter.filetypes.terraform").terraformfmt,
+    },
+    ["*"] = {
+      require("formatter.filetypes.any").remove_trailing_whitespace,
+    },
+  },
+}
+
+--- Run formatter
+vim.keymap.set('n', '<C-f>', ':FormatLock<CR>', { silent = true })
+vim.keymap.set('n', '<C-F>', ':FormatWriteLock<CR>', { silent = true })
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -521,12 +560,13 @@ mason_lspconfig.setup_handlers {
 require('mason-tool-installer').setup({
   ensure_installed = {
     "ruff",
-    "nixpkgs-fmt",
+    "isort",
     "nilaway",
-    "oxlint",
-    "prettierd",
     "stylelint",
     "htmlhint",
+    "prettierd",
+    "eslint_d",
+    "stylua",
   }
 })
 
@@ -582,7 +622,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
     local params = vim.lsp.util.make_range_params()
-    params.context = {only = {"source.organizeImports"}}
+    params.context = { only = { "source.organizeImports" } }
     -- buf_request_sync defaults to a 1000ms timeout. Depending on your
     -- machine and codebase, you may want longer. Add an additional
     -- argument after params if you find that you have to write the file
@@ -597,7 +637,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         end
       end
     end
-    vim.lsp.buf.format{ async = false }
+    vim.lsp.buf.format { async = false }
   end
 })
 

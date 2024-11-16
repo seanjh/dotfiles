@@ -94,7 +94,7 @@ require('lazy').setup({
             formatters.black,
           },
           terraform = formatters.lsp,
-          typescript = formatters.eslint_d_fix,
+          typescript = formatters.lsp,
           typescriptreact = formatters.eslint_d_fix,
           yaml = formatters.lsp,
         },
@@ -473,6 +473,10 @@ local servers = {
       },
     },
   },
+  tailwindcss = {},
+  biome = {
+    root_dir = lspconfig_util.root_pattern("tsconfig.json"),
+  },
   lua_ls = {
     settings = {
       Lua = {
@@ -481,13 +485,9 @@ local servers = {
       },
     },
   },
-  pyright = {},
-  ruff_lsp = {},
-  tailwindcss = {},
   terraformls = {},
-  ts_ls = {
-    root_dir = lspconfig_util.root_pattern("tsconfig.json"),
-  },
+  pyright = {},
+  ruff = {},
 }
 
 -- Setup neovim lua configuration
@@ -520,13 +520,13 @@ mason_lspconfig.setup_handlers {
 
 require('mason-tool-installer').setup({
   ensure_installed = {
+    "nilaway",
     "ruff",
     "nixpkgs-fmt",
-    "nilaway",
-    "oxlint",
-    "prettierd",
-    "stylelint",
-    "htmlhint",
+    "markuplint",
+    "tflint",
+    "shellcheck",
+    "editorconfig-checker",
   }
 })
 

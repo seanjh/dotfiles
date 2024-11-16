@@ -472,6 +472,7 @@ local servers = {
         staticcheck = true
       },
     },
+  sqls = {},
   },
   tailwindcss = {},
   biome = {
@@ -527,6 +528,7 @@ require('mason-tool-installer').setup({
     "tflint",
     "shellcheck",
     "editorconfig-checker",
+    "sqlfluff",
   }
 })
 

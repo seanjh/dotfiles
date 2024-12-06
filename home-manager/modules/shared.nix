@@ -10,7 +10,6 @@
     jq
     neovim
     gnumake
-    bash
     direnv
   ];
 

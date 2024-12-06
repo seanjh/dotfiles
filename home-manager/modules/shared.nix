@@ -18,8 +18,6 @@
 
   programs.bash = {
     enable = true;
-    interactiveShellInit = ''
-    '';
   };
 
   programs.direnv = {

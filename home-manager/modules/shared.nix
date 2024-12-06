@@ -26,7 +26,6 @@
   };
 
   home.sessionVariables = {
-    SHELL = "${pkgs.bash}/bin/bash";
     EDITOR = "nvim";
   };
 }

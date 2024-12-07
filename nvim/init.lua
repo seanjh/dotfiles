@@ -208,6 +208,7 @@ require('lazy').setup({
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    tag = "v0.9.2",
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
@@ -472,8 +473,8 @@ local servers = {
         staticcheck = true
       },
     },
-  sqls = {},
   },
+  sqls = {},
   tailwindcss = {},
   biome = {
     root_dir = lspconfig_util.root_pattern("tsconfig.json"),

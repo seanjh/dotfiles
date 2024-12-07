@@ -20,6 +20,7 @@ in
 
     python312
     python312Packages.pip
+    nodejs_22
     go
     nil
     cargo

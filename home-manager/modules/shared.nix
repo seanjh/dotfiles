@@ -16,6 +16,7 @@ in
     direnv
     gcc
     jq
+    unzip
 
     python312
     python312Packages.pip

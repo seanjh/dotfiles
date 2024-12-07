@@ -41,7 +41,9 @@ in
         if [ -f ~/.config/bash/sensible.bash ]; then
           source ~/.config/bash/sensible.bash
         fi
+
         export dev="$HOME/dev"
+        export CDPATH="$CDPATH:$HOME/dev"
       '';
     shellAliases = {
       c = "clear";

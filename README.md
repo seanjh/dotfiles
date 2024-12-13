@@ -1,13 +1,12 @@
 # Requirements
 
 - `git`
-- `curl`
 - `bash`
 
 # Setup
 
-- Run the bootstrap script. This script will install Nix and configure the shell.nix autoload.
-
-```shell
-$ curl -s 'https://raw.githubusercontent.com/seanjh/dotfiles/main/bootstrap.sh' | bash -s
-```
+- Clone dotfiles - `git clone git@github.com:seanjh/dotfiles.git ~/.config/dotfiles`
+- Clone neovim config - `git clone git@github.com:seanjh/nvim.git ~/.config/nvim`
+- Install nix - ([Getting started with Determinate](https://docs.determinate.systems/getting-started))
+- Install home-manager - `nix run home-manager/release-24.11 -- init`
+- Activate home-manager - `home-manager switch --flake ~/.config/dotfiles/home-manager#HOSTNAME`

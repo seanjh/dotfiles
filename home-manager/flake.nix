@@ -2,9 +2,9 @@
   description = "Home Manager configuration of sean";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -33,14 +33,14 @@
         ];
       };
 
-      "rbi-sherman1-m1" = let
+      "rbi" = let
         system = "aarch64-darwin";
       in home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs { inherit system; };
         modules = [
           ./modules/shared.nix
           ./modules/common-darwin.nix
-          ./modules/host-rbi-sherman1-m1.nix
+          ./modules/host-rbi.nix
         ];
       };
     };

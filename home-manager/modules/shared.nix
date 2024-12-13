@@ -47,7 +47,11 @@ in
     bashrcExtra =
       ''
         if [ -f ~/.config/bash/sensible.bash ]; then
-          source ~/.config/bash/sensible.bash
+            source ~/.config/bash/sensible.bash
+        fi
+
+        if [ -f ~/.config/secrets ]; then
+            source ~/.config/secrets
         fi
       '';
     shellAliases = {

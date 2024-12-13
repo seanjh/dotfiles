@@ -54,7 +54,7 @@ in
       c = "clear";
       e = "exit";
       ls = "ls --color=auto";
-      ll = "ls -alF";
+      ll = "ls -alFh";
       la = "ls -A";
       l = "ls -CF -lh";
     };

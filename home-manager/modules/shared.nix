@@ -21,6 +21,8 @@ in
     python312
     python312Packages.pip
     nodejs_22
+    lua
+    luarocks
     go
     nil
     cargo

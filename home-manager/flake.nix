@@ -32,6 +32,17 @@
           ./modules/host-flipper.nix
         ];
       };
+
+      "rbi-sherman1-m1" = let
+        system = "aarch64-darwin";
+      in home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs { inherit system; };
+        modules = [
+          ./modules/shared.nix
+          ./modules/common-darwin.nix
+          ./modules/host-rbi-sherman1-m1.nix
+        ];
+      };
     };
   };
 }

@@ -9,24 +9,30 @@ in
     fontconfig
     git
     curl
-    ripgrep
     gnumake
-    neovim
     tmux
     direnv
     gcc
     jq
     unzip
 
-    python312
-    python312Packages.pip
-    nodejs_22
+    neovim
+    # LazyVim dependencies
+    ripgrep
     lua
     luarocks
+    fzf
+    fd
+    lazygit
+
+    # LSP dependencies
     go
     nil
     cargo
     rustc
+    python312
+    python312Packages.pip
+    nodejs_22
   ];
 
   programs.home-manager.enable = true;
@@ -43,9 +49,6 @@ in
         if [ -f ~/.config/bash/sensible.bash ]; then
           source ~/.config/bash/sensible.bash
         fi
-
-        export dev="$HOME/dev"
-        export CDPATH="$CDPATH:$HOME/dev"
       '';
     shellAliases = {
       c = "clear";
@@ -62,7 +65,6 @@ in
   home.file = {
     ".tmux.conf".source = "${baseDir}/tmux.conf";
     ".inputrc".source = "${baseDir}/inputrc";
-    ".config/nvim/init.lua".source = "${baseDir}/nvim/init.lua";
     ".config/git/ignore".source = "${baseDir}/gitignore_global";
     ".config/git/config".source = "${baseDir}/gitconfig";
     ".config/git/config_linux".source = "${baseDir}/gitconfig-linux";

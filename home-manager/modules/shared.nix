@@ -62,20 +62,20 @@ in
       l = "ls -CF -lh";
     };
     shellOptions = [
-        "histappend",
-        "autocd",
-        "dirspell",
-        "cdspell",
-        "dotglob",
-        "promptvars",
-        "extglob",
-        "globstar",
-        "nocaseglob",
+        "histappend"
+        "autocd"
+        "dirspell"
+        "cdspell"
+        "dotglob"
+        "promptvars"
+        "extglob"
+        "globstar"
+        "nocaseglob"
         "checkjobs"
     ];
     historySize = 1000000;
-    historyControl = "ignoreboth";
-    historyIgnore = ["ls", "exit", "cd"]
+    historyControl = ["ignoreboth"];
+    historyIgnore = ["ls" "exit" "cd"];
   };
 
   programs.gh.enable = true;

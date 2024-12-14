@@ -18,9 +18,15 @@ in
     jq
     unzip
 
+<<<<<<< Updated upstream
     python312
     python312Packages.pip
     nodejs_22
+=======
+    # neovim/lazyvim
+    neovim
+    ripgrep
+>>>>>>> Stashed changes
     lua
     luarocks
     go
@@ -40,6 +46,7 @@ in
     enableCompletion = true;
     bashrcExtra =
       ''
+        export PS1="\t \[\033[32m\]\w\[\033[33m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\] $ "
         if [ -f ~/.config/bash/sensible.bash ]; then
           source ~/.config/bash/sensible.bash
         fi
@@ -55,6 +62,21 @@ in
       la = "ls -A";
       l = "ls -CF -lh";
     };
+    shellOptions = [
+        "histappend",
+        "autocd",
+        "dirspell",
+        "cdspell",
+        "dotglob",
+        "promptvars",
+        "extglob",
+        "globstar",
+        "nocaseglob",
+        "checkjobs"
+    ];
+    historySize = 1000000;
+    historyControl = "ignoreboth";
+    historyIgnore = ["ls", "exit", "cd"]
   };
 
   programs.gh.enable = true;

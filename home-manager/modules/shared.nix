@@ -9,30 +9,29 @@ in
     fontconfig
     git
     curl
-    ripgrep
     gnumake
-    neovim
     tmux
     direnv
     gcc
     jq
     unzip
 
-<<<<<<< Updated upstream
-    python312
-    python312Packages.pip
-    nodejs_22
-=======
     # neovim/lazyvim
     neovim
     ripgrep
->>>>>>> Stashed changes
     lua
     luarocks
     go
     nil
     cargo
     rustc
+    fd
+    fzf
+
+    # runtimes
+    python312
+    python312Packages.pip
+    nodejs_22
   ];
 
   programs.home-manager.enable = true;
@@ -84,10 +83,8 @@ in
   home.file = {
     ".tmux.conf".source = "${baseDir}/tmux.conf";
     ".inputrc".source = "${baseDir}/inputrc";
-    ".config/nvim/init.lua".source = "${baseDir}/nvim/init.lua";
     ".config/git/ignore".source = "${baseDir}/gitignore_global";
     ".config/git/config".source = "${baseDir}/gitconfig";
-    ".config/git/config_linux".source = "${baseDir}/gitconfig-linux";
     ".config/bash/sensible.bash".source = "${fetchGit {
       url = "https://github.com/mrzool/bash-sensible";
       rev = "89fa380e3d46210a85b4236098ada2c2ae280ac4";

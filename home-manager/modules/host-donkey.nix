@@ -10,7 +10,7 @@
         owner = "ollama";
         repo = "ollama";
         rev = "v${version}";
-        hash = "sha256-a420a453b4783841e3e79c248ef0fe9548df6914";
+        hash = "sha256-foobar";
       };
       buildInputs = [ cuda cudaPackages.cudnn ];
     })

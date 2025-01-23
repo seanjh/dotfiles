@@ -28,6 +28,7 @@
           modules = [
             ./modules/shared.nix
             ./modules/common-linux.nix
+            ./modules/wsl.nix
             ./modules/host-flipper.nix
           ];
           extraSpecialArgs = { inherit nixpkgs-ollama; };

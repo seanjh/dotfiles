@@ -52,6 +52,8 @@ in
 
         export dev="$HOME/dev"
         export CDPATH="$CDPATH:$HOME/dev"
+
+        [ -f ~/.config/secrets ] && source ~/.config/secrets
       '';
     shellAliases = {
       c = "clear";

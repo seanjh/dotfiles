@@ -13,9 +13,10 @@ in
   home.username = "sean";
   home.homeDirectory = "/home/sean";
 
-  home.packages = [
+  home.packages = with pkgs; [
     ollamaPkgs.ollama
-    pkgs.cudaPackages.cuda_nvcc
-    pkgs.cudaPackages.cuda_cudart
+    cudaPackages.cuda_nvcc
+    cudaPackages.cuda_cudart
+    cudaPackages.cudatoolkit
   ];
 }

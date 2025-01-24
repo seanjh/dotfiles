@@ -7,6 +7,7 @@ let
       cudaSupport = true;
     };
   };
+  ldLibraryPath = "/usr/lib/wsl/lib:${pkgs.cudaPackages.cudatoolkit}/lib";
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -21,6 +22,23 @@ in
   ];
 
   home.sessionVariables = {
-    LD_LIBRARY_PATH = "/usr/lib/wsl/lib::${pkgs.cudaPackages.cudatoolkit}/lib:$LD_LIBRARY_PATH";
+    LD_LIBRARY_PATH = "${ldLibraryPath}:$LD_LIBRARY_PATH";
+  };
+
+  systemd.user.services.ollama = {
+    Unit = {
+      Description = "Ollama Service";
+      After = [ "network.target" ];
+    };
+
+    Service = {
+      ExecStart = "${ollamaPkgs.ollama}/bin/ollama serve";
+      Restart = "always";
+      Environment = "LD_LIBRARY_PATH=${ldLibraryPath}";
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
   };
 }

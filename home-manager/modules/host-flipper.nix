@@ -19,4 +19,8 @@ in
     cudaPackages.cuda_cudart
     cudaPackages.cudatoolkit
   ];
+
+  home.sessionVariables = {
+    LD_LIBRARY_PATH = "/usr/lib/wsl/lib::${pkgs.cudaPackages.cudatoolkit}/lib:$LD_LIBRARY_PATH";
+  };
 }

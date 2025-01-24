@@ -50,9 +50,6 @@ in
           source ~/.config/bash/sensible.bash
         fi
 
-        export dev="$HOME/dev"
-        export CDPATH="$CDPATH:$HOME/dev"
-
         [ -f ~/.config/secrets ] && source ~/.config/secrets
       '';
     shellAliases = {
@@ -75,6 +72,7 @@ in
       "nocaseglob"
       "checkjobs"
     ];
+    sessionVariables = { };
     historySize = 1000000;
     historyControl = [ "ignoreboth" ];
     historyIgnore = [ "ls" "exit" "cd" ];

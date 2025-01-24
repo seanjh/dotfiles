@@ -21,7 +21,7 @@ in
     ripgrep
     lua
     luarocks
-    go
+    go_1_23
     nil
     cargo
     rustc
@@ -50,8 +50,7 @@ in
           source ~/.config/bash/sensible.bash
         fi
 
-        export dev="$HOME/dev"
-        export CDPATH="$CDPATH:$HOME/dev"
+        [ -f ~/.config/secrets ] && source ~/.config/secrets
       '';
     shellAliases = {
       c = "clear";
@@ -62,20 +61,21 @@ in
       l = "ls -CF -lh";
     };
     shellOptions = [
-        "histappend"
-        "autocd"
-        "dirspell"
-        "cdspell"
-        "dotglob"
-        "promptvars"
-        "extglob"
-        "globstar"
-        "nocaseglob"
-        "checkjobs"
+      "histappend"
+      "autocd"
+      "dirspell"
+      "cdspell"
+      "dotglob"
+      "promptvars"
+      "extglob"
+      "globstar"
+      "nocaseglob"
+      "checkjobs"
     ];
+    sessionVariables = { };
     historySize = 1000000;
-    historyControl = ["ignoreboth"];
-    historyIgnore = ["ls" "exit" "cd"];
+    historyControl = [ "ignoreboth" ];
+    historyIgnore = [ "ls" "exit" "cd" ];
   };
 
   programs.gh.enable = true;

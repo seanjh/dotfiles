@@ -27,6 +27,9 @@ in
     rustc
     fd
     fzf
+    ruby
+    ruby-lsp
+    rubocop
 
     # runtimes
     python312

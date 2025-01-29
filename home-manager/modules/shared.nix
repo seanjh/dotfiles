@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   baseDir = toString ./../..;
 in
@@ -9,27 +14,40 @@ in
     fontconfig
     git
     curl
-    gnumake
     tmux
     direnv
-    gcc
     jq
     unzip
+
+    # building
+    gcc
+    gnumake
+    autoconf
+    automake
+    pkg-config
+    openssl
+    libiconv
+    libyaml
+    libffi
 
     # neovim/lazyvim
     neovim
     ripgrep
     lua
     luarocks
-    go_1_23
-    nil
-    cargo
-    rustc
     fd
     fzf
-    ruby
-    ruby-lsp
-    rubocop
+
+    # nix
+    nil
+    nixfmt-rfc-style
+
+    # rust
+    cargo
+    rustc
+
+    # go
+    go_1_23
 
     # runtimes
     python312
@@ -41,20 +59,27 @@ in
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    # LD_LIBRARY_PATH = lib.makeLibraryPath [ "${pkgs.libyaml}" ];
+    PKG_CONFIG_PATH =
+      with pkgs;
+      lib.makeSearchPath "lib/pkgconfig" [
+        "${openssl.dev}"
+        "${libffi.dev}"
+        "${zlib.dev}/lib/pkgconfig}"
+      ];
   };
 
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    bashrcExtra =
-      ''
-        export PS1="\t \[\033[32m\]\w\[\033[33m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\] $ "
-        if [ -f ~/.config/bash/sensible.bash ]; then
-          source ~/.config/bash/sensible.bash
-        fi
+    bashrcExtra = ''
+      export PS1="\t \[\033[32m\]\w\[\033[33m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\] $ "
+      if [ -f ~/.config/bash/sensible.bash ]; then
+        source ~/.config/bash/sensible.bash
+      fi
 
-        [ -f ~/.config/secrets ] && source ~/.config/secrets
-      '';
+      [ -f ~/.config/secrets ] && source ~/.config/secrets
+    '';
     shellAliases = {
       c = "clear";
       e = "exit";
@@ -78,7 +103,11 @@ in
     sessionVariables = { };
     historySize = 1000000;
     historyControl = [ "ignoreboth" ];
-    historyIgnore = [ "ls" "exit" "cd" ];
+    historyIgnore = [
+      "ls"
+      "exit"
+      "cd"
+    ];
   };
 
   programs.gh.enable = true;
@@ -97,8 +126,7 @@ in
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
-    stdlib = ''
-    '';
+    stdlib = '''';
   };
 
   editorconfig = {

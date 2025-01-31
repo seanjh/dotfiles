@@ -1,4 +1,10 @@
-{ config, pkgs, nixpkgs-ollama, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  nixpkgs-ollama,
+  ...
+}:
 let
   ollamaPkgs = import nixpkgs-ollama {
     system = pkgs.system;
@@ -7,7 +13,10 @@ let
       cudaSupport = true;
     };
   };
-  ldLibraryPath = "/usr/lib/wsl/lib:${pkgs.cudaPackages.cudatoolkit}/lib";
+  libPaths = lib.makeLibraryPath [
+    "usr/lib/wsl"
+    "${pkgs.cudaPackages.cudatoolkit}"
+  ];
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -21,10 +30,6 @@ in
     cudaPackages.cudatoolkit
   ];
 
-  home.sessionVariables = {
-    LD_LIBRARY_PATH = "${ldLibraryPath}:$LD_LIBRARY_PATH";
-  };
-
   systemd.user.services.ollama = {
     Unit = {
       Description = "Ollama Service";
@@ -34,7 +39,7 @@ in
     Service = {
       ExecStart = "${ollamaPkgs.ollama}/bin/ollama serve";
       Restart = "always";
-      Environment = "LD_LIBRARY_PATH=${ldLibraryPath}";
+      Environment = "LD_LIBRARY_PATH=${libPaths}";
     };
 
     Install = {

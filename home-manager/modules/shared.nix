@@ -49,20 +49,17 @@ in
     cargo
     rustc
 
-    # go
-    go_1_23
-
-    # runtimes
+    # other useful runtimes to have around
     python312
     python312Packages.pip
     nodejs_22
+    go_1_23
   ];
 
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    # LD_LIBRARY_PATH = lib.makeLibraryPath [ "${pkgs.libyaml}" ];
     PKG_CONFIG_PATH =
       with pkgs;
       lib.makeSearchPath "lib/pkgconfig" [

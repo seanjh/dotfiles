@@ -38,6 +38,9 @@ in
     fd
     fzf
 
+    # js/ts
+    prettierd
+
     # nix
     nil
     nixfmt-rfc-style

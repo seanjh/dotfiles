@@ -14,7 +14,7 @@ let
     };
   };
   libPaths = lib.makeLibraryPath [
-    "usr/lib/wsl"
+    "/usr/lib/wsl"
     "${pkgs.cudaPackages.cudatoolkit}"
   ];
 in

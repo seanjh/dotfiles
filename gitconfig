@@ -41,10 +41,12 @@
 	defaultBranch = main
 [pull]
 	rebase = false
-[includeIf "exists:~/rbi/.gitconfig"]
-  path = ~/rbi/.gitconfig
 [includeIf "gitdir:/Users/"]
 	path = .config_macos
 [includeIf "gitdir:/home/"]
 	path = .config_linux
+[includeIf "gitdir:~/dev/plk/**"]
+  path = ~/dev/rbi/.gitconfig
+[includeIf "gitdir:~/dev/rbi/**"]
+  path = ~/dev/rbi/.gitconfig
 # vim: ft=gitconfig

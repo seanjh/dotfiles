@@ -1,6 +1,6 @@
 [user]
 	name = Sean Herman
-	email = sherman1@rbi.com
+	email = seanjh@hey.com
 [push]
   default = simple
 [core]
@@ -41,7 +41,7 @@
 	defaultBranch = main
 [pull]
 	rebase = false
-[includeIf "gitdir:~/rbi"]
+[includeIf "exists:~/rbi/.gitconfig"]
   path = ~/rbi/.gitconfig
 [includeIf "gitdir:/Users/"]
 	path = .config_macos

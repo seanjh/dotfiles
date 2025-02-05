@@ -1,6 +1,6 @@
 [user]
 	name = Sean Herman
-	email = sherman1@rbi.com
+	email = seanjh@hey.com
 [push]
   default = simple
 [core]
@@ -41,12 +41,10 @@
 	defaultBranch = main
 [pull]
 	rebase = false
-[includeIf "gitdir:~/rbi"]
+[includeIf "exists:~/rbi/.gitconfig"]
   path = ~/rbi/.gitconfig
 [includeIf "gitdir:/Users/"]
-	path = .gitconfig_macos
+	path = .config_macos
 [includeIf "gitdir:/home/"]
-	path = .gitconfig_linux
-[includeIf "gitdir:C:/"]
-	path = .gitconfig_windows
+	path = .config_linux
 # vim: ft=gitconfig

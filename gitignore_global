@@ -102,4 +102,8 @@ $RECYCLE.BIN/
 
 # environment files
 .env
-.envrc
+
+# aider
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.v3/

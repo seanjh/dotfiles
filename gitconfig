@@ -42,6 +42,7 @@
 [pull]
 	rebase = false
 [push]
+    autoSetupRemote = true
     default = simple
 [includeIf "gitdir:/Users/"]
 	path = .config_macos

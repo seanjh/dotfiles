@@ -2,11 +2,11 @@
   config,
   pkgs,
   lib,
-  nixpkgs-ollama,
+  nixpkgs-unstable,
   ...
 }:
 let
-  ollamaPkgs = import nixpkgs-ollama {
+  unstablePkgs = import nixpkgs-unstable {
     system = pkgs.system;
     config = {
       allowUnfree = true;
@@ -24,7 +24,7 @@ in
   home.homeDirectory = "/home/sean";
 
   home.packages = with pkgs; [
-    ollamaPkgs.ollama
+    unstablePkgs.ollama
     cudaPackages.cuda_nvcc
     cudaPackages.cuda_cudart
     cudaPackages.cudatoolkit
@@ -37,7 +37,7 @@ in
     };
 
     Service = {
-      ExecStart = "${ollamaPkgs.ollama}/bin/ollama serve";
+      ExecStart = "${unstablePkgs.ollama}/bin/ollama serve";
       Restart = "always";
       Environment = "LD_LIBRARY_PATH=${libPaths}";
     };

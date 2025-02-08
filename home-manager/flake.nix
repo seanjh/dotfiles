@@ -3,48 +3,54 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-ollama.url = "github:nixos/nixpkgs/d0169965cf1ce1cd68e50a63eabff7c8b8959743";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/0b2f6b33aace254082b2082ef913c934dd80889a";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixpkgs-ollama, ... }: {
-    homeConfigurations = {
-      donkey =
-        home-manager.lib.homeManagerConfiguration {
+  outputs =
+    {
+      home-manager,
+      nixpkgs,
+      nixpkgs-unstable,
+      ...
+    }:
+    {
+      homeConfigurations = {
+        donkey = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-darwin"; };
           modules = [
             ./modules/shared.nix
             ./modules/common-darwin.nix
             ./modules/host-donkey.nix
           ];
+          extraSpecialArgs = { inherit nixpkgs-unstable; };
         };
 
-      flipper =
-        home-manager.lib.homeManagerConfiguration {
+        flipper = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           modules = [
             ./modules/shared.nix
             ./modules/common-linux.nix
             ./modules/host-flipper.nix
           ];
-          extraSpecialArgs = { inherit nixpkgs-ollama; };
+          extraSpecialArgs = { inherit nixpkgs-unstable; };
         };
 
-      "rbi" =
-        let
-          system = "aarch64-darwin";
-        in
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
-          modules = [
-            ./modules/shared.nix
-            ./modules/common-darwin.nix
-            ./modules/host-rbi.nix
-          ];
-        };
+        "rbi" =
+          let
+            system = "aarch64-darwin";
+          in
+          home-manager.lib.homeManagerConfiguration {
+            pkgs = import nixpkgs { inherit system; };
+            modules = [
+              ./modules/shared.nix
+              ./modules/common-darwin.nix
+              ./modules/host-rbi.nix
+            ];
+          };
+      };
     };
-  };
 }

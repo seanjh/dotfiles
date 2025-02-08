@@ -41,6 +41,8 @@
 	defaultBranch = main
 [pull]
 	rebase = false
+[push]
+    default = simple
 [includeIf "gitdir:/Users/"]
 	path = .config_macos
 [includeIf "gitdir:/home/"]

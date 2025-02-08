@@ -54,6 +54,9 @@ in
     python312Packages.pip
     nodejs_22
     go_1_23
+
+    # AI
+    aider-chat
   ];
 
   programs.home-manager.enable = true;
@@ -113,14 +116,24 @@ in
   programs.gh.enable = true;
 
   home.file = {
-    ".tmux.conf".source = "${baseDir}/tmux.conf";
-    ".inputrc".source = "${baseDir}/inputrc";
-    ".config/git/ignore".source = "${baseDir}/gitignore_global";
-    ".config/git/config".source = "${baseDir}/gitconfig";
-    ".config/bash/sensible.bash".source = "${fetchGit {
+    "./.tmux.conf".source = "${baseDir}/tmux.conf";
+    "./.inputrc".source = "${baseDir}/inputrc";
+    "./.config/git/ignore".source = "${baseDir}/gitignore_global";
+    "./.config/git/config".source = "${baseDir}/gitconfig";
+    "./.config/bash/sensible.bash".source = "${fetchGit {
       url = "https://github.com/mrzool/bash-sensible";
       rev = "89fa380e3d46210a85b4236098ada2c2ae280ac4";
     }}";
+    aidir-chat = {
+      target = ".aider.conf.yml";
+      text = ''
+        watch-files: true
+        analytics-disable: true
+        check-update: false
+        vim: true
+        multiline: true
+      '';
+    };
   };
 
   programs.direnv = {

@@ -1,11 +1,18 @@
 {
   config,
   pkgs,
+  nixpkgs-unstable,
   lib,
   ...
 }:
 let
   baseDir = toString ./../..;
+  unstablePkgs = import nixpkgs-unstable {
+    system = pkgs.system;
+    config = {
+      allowUnfree = true;
+    };
+  };
 in
 {
   home.stateVersion = "24.05";
@@ -56,7 +63,7 @@ in
     go_1_23
 
     # AI
-    aider-chat
+    unstablePkgs.aider-chat
   ];
 
   programs.home-manager.enable = true;
@@ -124,7 +131,7 @@ in
       url = "https://github.com/mrzool/bash-sensible";
       rev = "89fa380e3d46210a85b4236098ada2c2ae280ac4";
     }}";
-    aidir-chat = {
+    aider-chat = {
       target = ".aider.conf.yml";
       text = ''
         watch-files: true

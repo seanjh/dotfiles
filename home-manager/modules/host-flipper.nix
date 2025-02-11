@@ -23,6 +23,10 @@ in
   home.username = "sean";
   home.homeDirectory = "/home/sean";
 
+  home.sessionVariables = {
+    DISPLAY = ":0"; # for X11 / xclip in WSL
+  };
+
   home.packages = with pkgs; [
     unstablePkgs.ollama
     cudaPackages.cuda_nvcc
@@ -39,7 +43,7 @@ in
     Service = {
       ExecStart = "${unstablePkgs.ollama}/bin/ollama serve";
       Restart = "always";
-      Environment = "LD_LIBRARY_PATH=${libPaths}";
+      Environment = [ "LD_LIBRARY_PATH=${libPaths}" ];
     };
 
     Install = {

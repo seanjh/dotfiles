@@ -1,17 +1,32 @@
 [user]
-	name = Sean Herman
-	email = seanjh@hey.com
+    name = Sean Herman
+    email = seanjh@hey.com
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 [push]
-  default = simple
+    default = simple
+    autoSetupRemote = true
+    followTags = true
 [core]
-	editor = vim
+    editor = vim
 	excludesfile = ~/.gitignore_global
-[help]
-	autocorrect = 30
-[merge]
-	tool = vimdiff
 [diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[help]
+    autocorrect = prompt
+[merge]
+    conflictstyle = zdiff3
 	tool = vimdiff
+[commit]
+        verbose = true
+[rerere]
+        enabled = true
+        autoupdate = true
 [github]
 	user = seanjh
 [alias]

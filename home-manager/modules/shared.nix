@@ -75,7 +75,7 @@ in
       lib.makeSearchPath "lib/pkgconfig" [
         "${openssl.dev}"
         "${libffi.dev}"
-        "${zlib.dev}/lib/pkgconfig}"
+        "${zlib.dev}"
       ];
   };
 

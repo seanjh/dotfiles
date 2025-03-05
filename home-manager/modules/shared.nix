@@ -64,6 +64,7 @@ in
 
     # AI
     unstablePkgs.aider-chat
+    unstablePkgs.claude-code
   ];
 
   programs.home-manager.enable = true;

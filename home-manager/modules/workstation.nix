@@ -65,53 +65,13 @@ in
   imports = [
     ./programs/claude-code.nix
     ./programs/aider-chat.nix
+    ./programs/bash.nix
   ];
 
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
     EDITOR = "nvim";
-  };
-
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-    bashrcExtra = ''
-      export PS1="\t \[\033[32m\]\w\[\033[33m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\] $ "
-      if [ -f ~/.config/bash/sensible.bash ]; then
-        source ~/.config/bash/sensible.bash
-      fi
-
-      [ -f ~/.config/secrets ] && source ~/.config/secrets
-    '';
-    shellAliases = {
-      c = "clear";
-      e = "exit";
-      ls = "ls --color=auto";
-      ll = "ls -alF";
-      la = "ls -A";
-      l = "ls -CF -lh";
-    };
-    shellOptions = [
-      "histappend"
-      "autocd"
-      "dirspell"
-      "cdspell"
-      "dotglob"
-      "promptvars"
-      "extglob"
-      "globstar"
-      "nocaseglob"
-      "checkjobs"
-    ];
-    sessionVariables = { };
-    historySize = 1000000;
-    historyControl = [ "ignoreboth" ];
-    historyIgnore = [
-      "ls"
-      "exit"
-      "cd"
-    ];
   };
 
   programs.gh.enable = true;
@@ -121,10 +81,6 @@ in
     "./.inputrc".source = "${baseDir}/inputrc";
     "./.config/git/ignore".source = "${baseDir}/gitignore_global";
     "./.config/git/config".source = "${baseDir}/gitconfig";
-    "./.config/bash/sensible.bash".source = "${fetchGit {
-      url = "https://github.com/mrzool/bash-sensible";
-      rev = "89fa380e3d46210a85b4236098ada2c2ae280ac4";
-    }}";
   };
 
   programs.direnv = {

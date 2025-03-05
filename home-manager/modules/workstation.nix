@@ -63,20 +63,14 @@ in
     ]);
 
   imports = [
-    ./claude-code.nix
+    ./programs/claude-code.nix
+    ./programs/aider-chat.nix
   ];
 
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    PKG_CONFIG_PATH =
-      with pkgs;
-      lib.makeSearchPath "lib/pkgconfig" [
-        "${openssl.dev}"
-        "${libffi.dev}"
-        "${zlib.dev}"
-      ];
   };
 
   programs.bash = {
@@ -131,16 +125,6 @@ in
       url = "https://github.com/mrzool/bash-sensible";
       rev = "89fa380e3d46210a85b4236098ada2c2ae280ac4";
     }}";
-    aider-chat = {
-      target = ".aider.conf.yml";
-      text = ''
-        watch-files: true
-        analytics-disable: true
-        check-update: false
-        vim: true
-        multiline: true
-      '';
-    };
   };
 
   programs.direnv = {

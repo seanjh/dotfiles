@@ -29,7 +29,6 @@ in
 
   imports = [
     ./programs/bash.nix
-    ./programs/fail2ban.nix
   ];
 
   programs.home-manager.enable = true;

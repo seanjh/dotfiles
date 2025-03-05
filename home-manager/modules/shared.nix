@@ -17,53 +17,53 @@ in
 {
   home.stateVersion = "24.05";
 
-  home.packages = with pkgs; [
-    fontconfig
-    git
-    curl
-    tmux
-    direnv
-    jq
-    unzip
+  home.packages =
+    with pkgs;
+    [
+      fontconfig
+      git
+      curl
+      tmux
+      direnv
+      jq
+      unzip
 
-    # building
-    gcc
-    gnumake
-    autoconf
-    automake
-    pkg-config
-    openssl
-    libiconv
-    libyaml
-    libffi
+      # building
+      gcc
+      gnumake
 
-    # neovim/lazyvim
-    neovim
-    ripgrep
-    lua
-    luarocks
-    fd
-    fzf
+      # neovim/lazyvim
+      neovim
+      ripgrep
+      lua
+      luarocks
+      fd
+      fzf
 
-    # js/ts
-    prettierd
+      # js/ts
+      prettierd
 
-    # nix
-    nil
-    nixfmt-rfc-style
+      # nix
+      nil
+      nixfmt-rfc-style
 
-    # rust
-    cargo
-    rustc
+      # rust
+      cargo
+      rustc
 
-    # other useful runtimes to have around
-    python312
-    python312Packages.pip
-    nodejs_22
-    go_1_23
+      # other useful runtimes to have around
+      python312
+      python312Packages.pip
+      nodejs_22
+      go_1_23
+    ]
+    ++ (with unstablePkgs; [
+      # AI
+      aider-chat
+    ]);
 
-    # AI
-    unstablePkgs.aider-chat
+  imports = [
+    ./claude-code.nix
   ];
 
   programs.home-manager.enable = true;

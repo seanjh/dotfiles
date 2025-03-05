@@ -22,7 +22,7 @@
         donkey = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-darwin"; };
           modules = [
-            ./modules/shared-workstation.nix
+            ./modules/workstation.nix
             ./modules/common-darwin.nix
             ./hosts/host-donkey.nix
           ];
@@ -32,7 +32,7 @@
         flipper = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           modules = [
-            ./modules/shared-workstation.nix
+            ./modules/workstation.nix
             ./modules/common-linux.nix
             ./hosts/host-flipper.nix
           ];
@@ -46,7 +46,7 @@
           home-manager.lib.homeManagerConfiguration {
             pkgs = import nixpkgs { inherit system; };
             modules = [
-              ./modules/shared-workstation.nix
+              ./modules/workstation.nix
               ./modules/common-darwin.nix
               ./hosts/host-rbi.nix
             ];

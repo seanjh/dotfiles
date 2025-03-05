@@ -81,10 +81,6 @@ in
     "./.inputrc".source = "${baseDir}/inputrc";
     "./.config/git/ignore".source = "${baseDir}/gitignore_global";
     "./.config/git/config".source = "${baseDir}/gitconfig";
-    "./.config/bash/sensible.bash".source = "${fetchGit {
-      url = "https://github.com/mrzool/bash-sensible";
-      rev = "89fa380e3d46210a85b4236098ada2c2ae280ac4";
-    }}";
   };
 
   programs.direnv = {

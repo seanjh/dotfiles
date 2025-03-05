@@ -34,6 +34,11 @@ in
 
   programs.home-manager.enable = true;
 
+  home.file = {
+    "./.config/git/ignore".source = "${baseDir}/gitignore_global";
+    "./.config/git/config".source = "${baseDir}/gitconfig";
+  };
+
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 1800;

@@ -1,5 +1,12 @@
 { ... }:
 {
+  home.file = {
+    "./.config/bash/sensible.bash".source = "${fetchGit {
+      url = "https://github.com/mrzool/bash-sensible";
+      rev = "89fa380e3d46210a85b4236098ada2c2ae280ac4";
+    }}";
+  };
+
   programs.bash = {
     enable = true;
     enableCompletion = true;

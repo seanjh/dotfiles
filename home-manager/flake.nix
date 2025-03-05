@@ -38,19 +38,6 @@
           ];
           extraSpecialArgs = { inherit nixpkgs-unstable; };
         };
-
-        "rbi" =
-          let
-            system = "aarch64-darwin";
-          in
-          home-manager.lib.homeManagerConfiguration {
-            pkgs = import nixpkgs { inherit system; };
-            modules = [
-              ./modules/workstation.nix
-              ./modules/common-darwin.nix
-              ./hosts/host-rbi.nix
-            ];
-          };
       };
     };
 }

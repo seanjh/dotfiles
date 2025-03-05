@@ -38,6 +38,22 @@
           ];
           extraSpecialArgs = { inherit nixpkgs-unstable; };
         };
+
+        bromeliad = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "armv7l-linux"; }; # Raspberry Pi 2
+          modules = [
+            ./modules/common-linux.nix
+            ./hosts/host-bromeliad.nix
+          ];
+        };
+
+        mosquito = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "armv6l-linux"; }; # Raspberry PI 1
+          modules = [
+            ./modules/common-linux.nix
+            ./hosts/host-mosquito.nix
+          ];
+        };
       };
     };
 }

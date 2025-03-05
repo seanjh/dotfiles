@@ -48,7 +48,7 @@
         };
 
         mosquito = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "armv6l-linux"; }; # Raspberry PI 1
+          pkgs = import nixpkgs { system = "armv6l-linux"; }; # Raspberry Pi 1
           modules = [
             ./modules/common-linux.nix
             ./hosts/host-mosquito.nix

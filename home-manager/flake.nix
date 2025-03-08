@@ -17,31 +17,57 @@
       nixpkgs-unstable,
       ...
     }:
+    let
+      unstableOverlay = final: prev: {
+        unstable = import nixpkgs-unstable {
+          system = prev.system;
+          config = prev.config;
+        };
+      };
+    in
     {
       homeConfigurations = {
+        # Macbook Air (Intel)
         donkey = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-darwin"; }; # Macbook Air (Intel)
+          pkgs = import nixpkgs {
+            system = "x86_64-darwin";
+            overlays = [ unstableOverlay ];
+            config = {
+              allowUnfree = true;
+            };
+          };
           modules = [
             ./modules/workstation.nix
             ./modules/common-darwin.nix
             ./hosts/host-donkey.nix
           ];
-          extraSpecialArgs = { inherit nixpkgs-unstable; };
         };
 
+        # Windows WSL2
         flipper = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; }; # Windows WSL2
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ unstableOverlay ];
+            config = {
+              allowUnfree = true;
+              cudaSupport = true;
+            };
+          };
           modules = [
             ./modules/workstation.nix
             ./modules/common-linux.nix
             ./hosts/host-flipper.nix
           ];
-          extraSpecialArgs = { inherit nixpkgs-unstable; };
         };
 
+        # Raspberry Pi 4
         coontie = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "aarch64-linux"; }; # Raspberry Pi 4
+          pkgs = import nixpkgs {
+            system = "aarch64-linux";
+            overlays = [ unstableOverlay ];
+          };
           modules = [
+            ./modules/server.nix
             ./modules/common-linux.nix
             ./hosts/host-coontie.nix
           ];

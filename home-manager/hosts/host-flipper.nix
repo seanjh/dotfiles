@@ -2,17 +2,9 @@
   config,
   pkgs,
   lib,
-  nixpkgs-unstable,
   ...
 }:
 let
-  unstablePkgs = import nixpkgs-unstable {
-    system = pkgs.system;
-    config = {
-      allowUnfree = true;
-      cudaSupport = true;
-    };
-  };
   libPaths = lib.makeLibraryPath [
     "/usr/lib/wsl"
     "${pkgs.cudaPackages.cudatoolkit}"
@@ -28,7 +20,7 @@ in
   };
 
   home.packages = with pkgs; [
-    unstablePkgs.ollama
+    unstable.ollama
     cudaPackages.cuda_nvcc
     cudaPackages.cuda_cudart
     cudaPackages.cudatoolkit
@@ -41,7 +33,7 @@ in
     };
 
     Service = {
-      ExecStart = "${unstablePkgs.ollama}/bin/ollama serve";
+      ExecStart = "${pkgs.unstable.ollama}/bin/ollama serve";
       Restart = "always";
       Environment = [ "LD_LIBRARY_PATH=${libPaths}" ];
     };

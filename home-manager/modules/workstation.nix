@@ -1,66 +1,52 @@
 {
   config,
   pkgs,
-  nixpkgs-unstable,
   lib,
   ...
 }:
 let
   baseDir = toString ./../..;
-  unstablePkgs = import nixpkgs-unstable {
-    system = pkgs.system;
-    config = {
-      allowUnfree = true;
-    };
-  };
 in
 {
   home.stateVersion = "24.05";
 
-  home.packages =
-    with pkgs;
-    [
-      fontconfig
-      git
-      curl
-      tmux
-      direnv
-      jq
-      unzip
+  home.packages = with pkgs; [
+    fontconfig
+    git
+    curl
+    tmux
+    direnv
+    jq
+    unzip
 
-      # building
-      gcc
-      gnumake
+    # building
+    gcc
+    gnumake
 
-      # neovim/lazyvim
-      neovim
-      ripgrep
-      lua
-      luarocks
-      fd
-      fzf
+    # neovim/lazyvim
+    neovim
+    ripgrep
+    lua
+    luarocks
+    fd
+    fzf
 
-      # js/ts
-      prettierd
+    # js/ts
+    prettierd
 
-      # nix
-      nil
-      nixfmt-rfc-style
+    # nix
+    nil
+    nixfmt-rfc-style
 
-      # rust
-      cargo
-      rustc
+    # rust
+    cargo
+    rustc
 
-      # other useful runtimes to have around
-      python312
-      python312Packages.pip
-      nodejs_22
-      go_1_23
-    ]
-    ++ (with unstablePkgs; [
-      # AI
-      aider-chat
-    ]);
+    # other useful runtimes to have around
+    (python312.withPackages (ps: with ps; [ pip ]))
+    nodejs_22
+    go_1_23
+  ];
 
   imports = [
     ./programs/claude-code.nix

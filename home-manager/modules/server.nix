@@ -1,12 +1,10 @@
 {
   config,
   pkgs,
-  nixpkgs-unstable,
   ...
 }:
 let
   baseDir = toString ./../..;
-  unstablePkgs = import nixpkgs-unstable { system = pkgs.system; };
 in
 {
   home.stateVersion = "24.05";

@@ -20,7 +20,7 @@
     {
       homeConfigurations = {
         donkey = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-darwin"; };
+          pkgs = import nixpkgs { system = "x86_64-darwin"; }; # Macbook Air (Intel)
           modules = [
             ./modules/workstation.nix
             ./modules/common-darwin.nix
@@ -30,7 +30,7 @@
         };
 
         flipper = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          pkgs = import nixpkgs { system = "x86_64-linux"; }; # Windows WSL2
           modules = [
             ./modules/workstation.nix
             ./modules/common-linux.nix
@@ -39,19 +39,11 @@
           extraSpecialArgs = { inherit nixpkgs-unstable; };
         };
 
-        bromeliad = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "armv7l-linux"; }; # Raspberry Pi 2
+        coontie = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "aarch64-linux"; }; # Raspberry Pi 4
           modules = [
             ./modules/common-linux.nix
-            ./hosts/host-bromeliad.nix
-          ];
-        };
-
-        mosquito = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "armv6l-linux"; }; # Raspberry Pi 1
-          modules = [
-            ./modules/common-linux.nix
-            ./hosts/host-mosquito.nix
+            ./hosts/host-coontie.nix
           ];
         };
       };

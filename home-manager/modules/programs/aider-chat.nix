@@ -1,22 +1,13 @@
 {
   config,
   pkgs,
-  nixpkgs-unstable,
   lib,
   ...
 }:
-let
-  unstablePkgs = import nixpkgs-unstable {
-    system = pkgs.system;
-  };
-in
 {
-  home.packages =
-    with pkgs;
-    [ ]
-    ++ (with unstablePkgs; [
-      aider-chat
-    ]);
+  home.packages = with pkgs; [
+    unstable.aider-chat
+  ];
 
   home.file = {
     aider-chat = {

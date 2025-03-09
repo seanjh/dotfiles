@@ -13,12 +13,12 @@ in
     git
     curl
     btop
-    iotop
     mtr
     ripgrep
     jq
     unzip
     vim
+    tmux
   ];
 
   home.sessionVariables = {

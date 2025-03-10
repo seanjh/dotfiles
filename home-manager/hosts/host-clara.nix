@@ -23,6 +23,7 @@ in
       ${builtins.readFile "${baseDir}/tmux.conf"}
 
       set-option -g default-shell ${pkgs.bash}/bin/bash
+      set -g default-command "${pkgs.bash}/bin/bash -l"
     '';
   };
 

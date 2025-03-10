@@ -32,10 +32,21 @@ in
     settings = {
       env = {
         TERM = "xterm-256color";
+        TERM_PROGRAM = "Alacritty";
       };
 
       scrolling = {
         history = 100000;
+      };
+
+      decorations = "Buttonless";
+
+      window = {
+        padding = {
+          x = 10;
+          y = 10;
+        };
+        option_as_alt = "Both";
       };
 
       font = {

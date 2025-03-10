@@ -63,8 +63,6 @@
 	path = .config_macos
 [includeIf "gitdir:/home/"]
 	path = .config_linux
-[includeIf "gitdir:~/dev/plk/**"]
-  path = ~/dev/rbi/.gitconfig
-[includeIf "gitdir:~/dev/rbi/**"]
-  path = ~/dev/rbi/.gitconfig
+[includeIf "gitdir:~/work/**"]
+  path = ~/work/.gitconfig
 # vim: ft=gitconfig

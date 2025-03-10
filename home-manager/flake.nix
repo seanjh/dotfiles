@@ -72,6 +72,22 @@
             ./hosts/host-coontie.nix
           ];
         };
+
+        # Macbook Pro 2025
+        clara = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+            overlays = [ unstableOverlay ];
+            config = {
+              allowUnfree = true;
+            };
+          };
+          modules = [
+            ./modules/workstation.nix
+            ./modules/common-darwin.nix
+            ./hosts/host-clara.nix
+          ];
+        };
       };
     };
 }

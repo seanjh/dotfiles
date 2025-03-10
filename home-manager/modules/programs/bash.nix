@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home.file = {
     "./.config/bash/sensible.bash".source = "${fetchGit {
@@ -23,6 +23,7 @@
       fi
 
       [ -f ~/.config/secrets ] && source ~/.config/secrets
+      source ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
     '';
     shellAliases = {
       c = "clear";

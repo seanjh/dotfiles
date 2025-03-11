@@ -1,32 +1,32 @@
 [user]
-    name = Sean Herman
-    email = seanjh@hey.com
+  name = Sean Herman
+  email = seanjh@hey.com
 [fetch]
-    prune = true
-    pruneTags = true
-    all = true
+  prune = true
+  pruneTags = true
+  all = true
 [push]
-    default = simple
-    autoSetupRemote = true
-    followTags = true
+  default = simple
+  autoSetupRemote = true
+  followTags = true
 [core]
-    editor = vim
-	excludesfile = ~/.gitignore_global
+  editor = vim
+	excludesfile = ~/.config/git/ignore
 [diff]
-    algorithm = histogram
-    colorMoved = plain
-    mnemonicPrefix = true
-    renames = true
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
 [help]
-    autocorrect = prompt
+  autocorrect = prompt
 [merge]
-    conflictstyle = zdiff3
+  conflictstyle = zdiff3
 	tool = vimdiff
 [commit]
-        verbose = true
+  verbose = true
 [rerere]
-        enabled = true
-        autoupdate = true
+  enabled = true
+  autoupdate = true
 [github]
 	user = seanjh
 [alias]
@@ -57,12 +57,12 @@
 [pull]
 	rebase = false
 [push]
-    autoSetupRemote = true
-    default = simple
+  autoSetupRemote = true
+  default = simple
 [includeIf "gitdir:/Users/"]
-	path = .config_macos
+	path = ~/.config/git/config_macos
 [includeIf "gitdir:/home/"]
-	path = .config_linux
-[includeIf "gitdir:~/work/**"]
-  path = ~/work/.gitconfig
+	path = ~/.config/git/config_linux
+[includeIf "gitdir:~/work/"]
+  path = ~/.config/git/config_work
 # vim: ft=gitconfig

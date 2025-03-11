@@ -16,14 +16,24 @@ in
       ];
     })
   ];
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+    bashrcExtra = '''';
+
+    shellAliases = {
+      hm-switch = "home-manager switch --flake ${baseDir}/home-manager#clara";
+      hm-switch-impure = "hm-switch --impure";
+    };
+  };
 
   programs.tmux = {
     enable = true;
     extraConfig = ''
       ${builtins.readFile "${baseDir}/tmux.conf"}
 
-      set-option -g default-shell ${pkgs.bash}/bin/bash
-      set -g default-command "${pkgs.bash}/bin/bash -l"
+      set-option -g default-shell ${pkgs.bashInteractive}/bin/bash
+      set -g default-command "${pkgs.bashInteractive}/bin/bash -l"
     '';
   };
 
@@ -38,8 +48,6 @@ in
       scrolling = {
         history = 100000;
       };
-
-      decorations = "Buttonless";
 
       window = {
         padding = {
@@ -68,7 +76,7 @@ in
       };
 
       terminal.shell = {
-        program = "${pkgs.bash}/bin/bash";
+        program = "${pkgs.bashInteractive}/bin/bash";
         args = [ "--login" ];
       };
     };

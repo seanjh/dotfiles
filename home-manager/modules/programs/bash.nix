@@ -5,7 +5,7 @@
   ];
 
   home.file = {
-    "./.config/bash/sensible.bash".source = "${fetchGit {
+    "./.config/bash/sensible".source = "${fetchGit {
       url = "https://github.com/mrzool/bash-sensible";
       rev = "89fa380e3d46210a85b4236098ada2c2ae280ac4";
     }}";
@@ -15,25 +15,18 @@
     enable = true;
     enableCompletion = true;
     bashrcExtra = ''
-      if [ -f ~/.config/bash/sensible.bash/sensible.bash ]; then
-        source ~/.config/bash/sensible.bash/sensible.bash
+      if [ -f ~/.config/bash/sensible/sensible.bash ]; then
+        source ~/.config/bash/sensible/sensible.bash
       fi
 
       if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
         export PS1='\t \[\033[35m\]\u@\h:\[\033[00m\] \[\033[32m\]\w\[\033[33m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\] \$ '
       else
-        export PS1='\t \[\033[32m\]\w\[\033[33m\]$(__git_ps1 " (%s)")\[\033[00m\] \$ '
-        # export PS1='\t \[\033[32m\]\w\[\033[33m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\] \$ '
+        export PS1='\t \[\033[32m\]\w\[\033[33m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\] \$ '
       fi
 
       [ -f ~/.config/secrets ] && source ~/.config/secrets
       source ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
-
-      # if [ -n "$TMUX" ]; then
-      #   export TERM=tmux-256color
-      # else
-      #   export TERM=xterm-256color
-      # fi
     '';
     shellAliases = {
       c = "clear";

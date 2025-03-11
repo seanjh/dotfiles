@@ -69,9 +69,8 @@ in
         program = "${pkgs.bashInteractive}/bin/bash";
         args = [
           "--login"
-          # TODO(sean) re-enable
-          # "-c"
-          # "tmux attach || tmux"
+          "-c"
+          "tmux attach || tmux"
         ];
       };
     };

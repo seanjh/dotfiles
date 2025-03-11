@@ -1,7 +1,4 @@
-{ config, pkgs, ... }:
-let
-  baseDir = toString ./../..;
-in
+{ pkgs, ... }:
 {
   home.username = "sean";
   home.homeDirectory = "/Users/sean";

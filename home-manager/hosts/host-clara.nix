@@ -27,16 +27,6 @@ in
     };
   };
 
-  programs.tmux = {
-    enable = true;
-    extraConfig = ''
-      ${builtins.readFile "${baseDir}/tmux.conf"}
-
-      set-option -g default-shell ${pkgs.bashInteractive}/bin/bash
-      set-option -g default-command "${pkgs.bashInteractive}/bin/bash --login"
-    '';
-  };
-
   programs.alacritty = {
     enable = true;
     settings = {

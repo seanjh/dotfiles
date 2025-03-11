@@ -4,7 +4,7 @@
     enable = true;
 
     historyLimit = 100000;
-    focusEvents = true;
+    # focusEvents = true;
     mouse = true;
     prefix = "C-a";
     shell = "${pkgs.bashInteractive}/bin/bash";

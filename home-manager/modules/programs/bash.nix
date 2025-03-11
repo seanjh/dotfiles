@@ -26,6 +26,7 @@
       fi
 
       [ -f ~/.config/secrets ] && source ~/.config/secrets
+      source ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
     '';
     shellAliases = {
       c = "clear";

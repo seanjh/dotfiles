@@ -49,9 +49,11 @@ in
   ];
 
   imports = [
+    ./programs/bash.nix
+    ./programs/tmux.nix
+    ./programs/readline.nix
     ./programs/claude-code.nix
     ./programs/aider-chat.nix
-    ./programs/bash.nix
   ];
 
   programs.home-manager.enable = true;
@@ -63,8 +65,6 @@ in
   programs.gh.enable = true;
 
   home.file = {
-    "./.tmux.conf".source = "${baseDir}/tmux.conf";
-    "./.inputrc".source = "${baseDir}/inputrc";
     "./.config/git/ignore".source = "${baseDir}/gitignore_global";
     "./.config/git/config".source = "${baseDir}/gitconfig";
   };

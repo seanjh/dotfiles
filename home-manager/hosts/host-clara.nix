@@ -16,19 +16,14 @@ in
       ];
     })
   ];
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-    bashrcExtra = '''';
 
-    shellAliases = {
-      hm-switch = "home-manager switch --flake ${baseDir}/home-manager#clara";
-      hm-switch-impure = "hm-switch --impure";
-    };
+  programs.bash = {
+    bashrcExtra = '''';
   };
 
   programs.alacritty = {
     enable = true;
+
     settings = {
       env = {
         TERM = "xterm-256color";

@@ -33,7 +33,7 @@ in
       ${builtins.readFile "${baseDir}/tmux.conf"}
 
       set-option -g default-shell ${pkgs.bashInteractive}/bin/bash
-      set -g default-command "${pkgs.bashInteractive}/bin/bash -l"
+      set-option -g default-command "${pkgs.bashInteractive}/bin/bash --login"
     '';
   };
 
@@ -77,7 +77,12 @@ in
 
       terminal.shell = {
         program = "${pkgs.bashInteractive}/bin/bash";
-        args = [ "--login" ];
+        args = [
+          "--login"
+          # TODO(sean) re-enable
+          # "-c"
+          # "tmux attach || tmux"
+        ];
       };
     };
   };

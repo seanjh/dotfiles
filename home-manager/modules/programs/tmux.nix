@@ -17,7 +17,7 @@
       bind-key C-a send-prefix
 
       # Config reloads
-      bind r source-file ~/.tmux.conf
+      bind r source-file ~/.config/tmux/tmux.conf
 
       # Switch panes with Alt-arrow
       bind -n M-Left select-pane -L
@@ -37,6 +37,13 @@
 
       set-option -g focus-events on
       set-window-option -g xterm-keys on
+
+      # Resolves bizarre issues with tmux muddling/misinterpreting <Esc>j and <Esc>k as Alt-j and Alt-k
+      # https://github.com/tmux/tmux/wiki/Modifier-Keys#the-escape-key
+      # https://github.com/LazyVim/LazyVim/discussions/163
+      # https://www.reddit.com/r/lunarvim/comments/1334htt/lunarvim_in_tmux_moving_line_up_or_down_when/
+      set -sg escape-time 0
+      set -g status-interval 0
     '';
   };
 

@@ -11,7 +11,7 @@
       ];
     })
     unstable.ollama
-    unstable.postgres_16
+    unstable.postgresql_16
   ];
 
   fonts.fontconfig.enable = true;
@@ -96,9 +96,9 @@
       config = {
         Label = "org.postgresql.postgres";
         ProgramArguments = [
-          "${pkgs.unstable.postgres_16}/bin/postgres"
+          "${pkgs.unstable.postgresql_16}/bin/postgres"
           "-D"
-          "/Users/sean/.local/share/postgresql16/data"
+          "/Users/sean/.local/share/postgresql/data"
         ];
         RunAtLoad = true;
         KeepAlive = {

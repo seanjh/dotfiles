@@ -18,6 +18,7 @@ in
     direnv
     jq
     unzip
+    btop
 
     # building
     gcc

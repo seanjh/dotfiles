@@ -11,6 +11,7 @@
       ];
     })
     unstable.ollama
+    unstable.postgresql_16
   ];
 
   fonts.fontconfig.enable = true;
@@ -69,19 +70,49 @@
     };
   };
 
-  launchd.agents.ollama = with pkgs; {
-    enable = true;
-    config = {
-      Label = "com.ollama.service";
-      ProgramArguments = [
-        "${pkgs.unstable.ollama}/bin/ollama"
-        "serve"
-      ];
-      KeepAlive = true;
-      RunAtLoad = true;
-      EnvironmentVariables.PATH = "";
-      StandardOutPath = "/Users/sean/.local/state/ollama.log";
-      StandardErrorPath = "/Users/sean/.local/state/ollama.log";
+  launchd.agents = {
+    ollama = {
+      enable = true;
+      config = {
+        Label = "com.ollama.service";
+        ProgramArguments = [
+          "${pkgs.unstable.ollama}/bin/ollama"
+          "serve"
+        ];
+        RunAtLoad = true;
+        KeepAlive = {
+          Crashed = true;
+          SuccessfulExit = false;
+        };
+        ProcessType = "Background";
+        EnvironmentVariables.PATH = "";
+        StandardOutPath = "/Users/sean/.local/state/ollama.log";
+        StandardErrorPath = "/Users/sean/.local/state/ollama.log";
+      };
+    };
+
+    postgres = {
+      enable = true;
+      config = {
+        Label = "org.postgresql.postgres";
+        ProgramArguments = [
+          "${pkgs.unstable.postgresql_16}/bin/postgres"
+          "-D"
+          "/Users/sean/.local/share/postgresql/data"
+        ];
+        RunAtLoad = true;
+        KeepAlive = {
+          Crashed = true;
+          SuccessfulExit = false;
+        };
+        ProcessType = "Background";
+        EnvironmentVariables = {
+          LC_ALL = "C.UTF-8";
+        };
+        StandardOutPath = "/Users/sean/.local/state/postgresql/postgres.log";
+        StandardErrorPath = "/Users/sean/.local/state/postgresql/error.log";
+      };
     };
   };
+
 }

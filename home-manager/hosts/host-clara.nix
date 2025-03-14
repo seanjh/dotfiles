@@ -80,8 +80,8 @@
       KeepAlive = true;
       RunAtLoad = true;
       EnvironmentVariables.PATH = "";
-      StandardOutPath = "${config.home.homeDirectory}/.local/state/ollama.log";
-      StandardErrorPath = "${config.home.homeDirectory}/.local/state/ollama.log";
+      StandardOutPath = "/Users/sean/.local/state/ollama.log";
+      StandardErrorPath = "/Users/sean/.local/state/ollama.log";
     };
   };
 }

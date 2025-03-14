@@ -3,8 +3,6 @@
   home.username = "sean";
   home.homeDirectory = "/Users/sean";
 
-  fonts.fontconfig.enable = true;
-
   home.packages = with pkgs; [
     (nerdfonts.override {
       fonts = [
@@ -12,7 +10,10 @@
         "FiraCode"
       ];
     })
+    unstable.ollama
   ];
+
+  fonts.fontconfig.enable = true;
 
   programs.bash = {
     bashrcExtra = '''';
@@ -68,4 +69,19 @@
     };
   };
 
+  launchd.agents.ollama = with pkgs; {
+    enable = true;
+    config = {
+      Label = "com.ollama.service";
+      ProgramArguments = [
+        "${pkgs.unstable.ollama}/bin/ollama"
+        "serve"
+      ];
+      KeepAlive = true;
+      RunAtLoad = true;
+      EnvironmentVariables.PATH = "";
+      StandardOutPath = "${config.home.homeDirectory}/.local/state/ollama.log";
+      StandardErrorPath = "${config.home.homeDirectory}/.local/state/ollama.log";
+    };
+  };
 }

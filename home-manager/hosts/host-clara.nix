@@ -12,6 +12,13 @@
     })
     unstable.ollama
     unstable.postgresql_16
+    unstable.lazygit
+    unstable.mise
+
+    openssl_3
+    libyaml
+    gmp
+    rustc
   ];
 
   fonts.fontconfig.enable = true;

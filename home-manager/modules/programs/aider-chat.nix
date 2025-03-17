@@ -13,11 +13,16 @@
     aider-chat = {
       target = ".aider.conf.yml";
       text = ''
+        dark-mode: false
         watch-files: true
-        analytics-disable: true
         check-update: false
         vim: true
         multiline: true
+        alias:
+          - "fast:gpt-4o-mini"
+          - "smart:o3-mini"
+          - "hacker:claude-3-sonnet-20240229"
+          - "local:ollama_chat/qwen2.5-coder"
       '';
     };
   };

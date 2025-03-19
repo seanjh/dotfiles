@@ -31,6 +31,7 @@ in
     luarocks
     fd
     fzf
+    lazygit
 
     # js/ts
     prettierd
@@ -73,6 +74,7 @@ in
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+    nix-direnv.enable = true;
     stdlib = '''';
   };
 

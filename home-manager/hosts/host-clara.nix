@@ -17,7 +17,7 @@
   fonts.fontconfig.enable = true;
 
   programs.bash = {
-    bashrcExtra = '''';
+    bashrcExtra = with pkgs; lib.mkAfter '''';
   };
 
   programs.alacritty = {

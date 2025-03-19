@@ -11,10 +11,10 @@
     }}";
   };
 
-  programs.bash = {
+  programs.bash = with pkgs; {
     enable = true;
     enableCompletion = true;
-    bashrcExtra = ''
+    initExtra = lib.mkBefore ''
       if [ -f ~/.config/bash/sensible/sensible.bash ]; then
         source ~/.config/bash/sensible/sensible.bash
       fi
@@ -24,9 +24,10 @@
       else
         export PS1='\t \[\033[32m\]\w\[\033[33m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\] \$ '
       fi
-
+      source ${git}/share/git/contrib/completion/git-prompt.sh
+    '';
+    bashrcExtra = lib.mkBefore ''
       [ -f ~/.config/secrets ] && source ~/.config/secrets
-      source ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
     '';
     shellAliases = {
       c = "clear";

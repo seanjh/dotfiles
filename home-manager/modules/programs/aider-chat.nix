@@ -16,6 +16,7 @@
         dark-mode: false
         watch-files: true
         check-update: false
+        gitignore: false
         vim: true
         multiline: true
         alias:

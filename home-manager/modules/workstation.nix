@@ -31,6 +31,7 @@ in
     luarocks
     fd
     fzf
+    lazygit
 
     # js/ts
     prettierd

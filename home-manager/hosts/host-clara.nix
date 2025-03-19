@@ -12,7 +12,6 @@
     })
     unstable.ollama
     unstable.postgresql_16
-    unstable.lazygit
   ];
 
   fonts.fontconfig.enable = true;

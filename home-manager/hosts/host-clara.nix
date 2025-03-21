@@ -13,6 +13,7 @@
     unstable.ollama
     unstable.postgresql_16
     unstable.raycast
+    unstable.ngrok
   ];
 
   fonts.fontconfig.enable = true;

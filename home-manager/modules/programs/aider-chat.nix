@@ -1,12 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
-    unstable.aider-chat
+    unstable.aider-chat.withPlaywright
   ];
 
   home.file = {
@@ -20,9 +15,10 @@
         vim: true
         multiline: true
         alias:
-          - "fast:gpt-4o-mini"
+          - "fast:openai/gpt-4o-mini"
           - "smart:o3-mini"
-          - "hacker:claude-3-sonnet-20240229"
+          - "code:anthropic/claude-3-7-sonnet-latest"
+          - "code-gpt:openai/gpt-4o"
           - "local:ollama_chat/qwen2.5-coder"
       '';
     };

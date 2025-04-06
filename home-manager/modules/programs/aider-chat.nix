@@ -1,14 +1,11 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    unstable.aider-chat-full
-    # aider-chat.withOptional { withPlaywright = true; withBrowser = true; }
-    # unstable.aider-chat.withOptional
-    # {
-    #   withPlaywright = true;
-    #   withBrowser = true;
-    #   withHelp = true;
-    # }
+    (unstable.aider-chat.withOptional {
+      withPlaywright = true;
+      withBrowser = true;
+      withHelp = true;
+    })
   ];
 
   home.file = {

@@ -15,7 +15,6 @@
     unstable.raycast
     unstable.ngrok
     unstable.graphite-cli
-    unstable.httpie
   ];
 
   fonts.fontconfig.enable = true;

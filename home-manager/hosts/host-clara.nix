@@ -12,6 +12,9 @@
     })
     unstable.ollama
     unstable.postgresql_16
+    unstable.raycast
+    unstable.ngrok
+    unstable.graphite-cli
   ];
 
   fonts.fontconfig.enable = true;

@@ -97,6 +97,10 @@ in
         indent_style = "space";
         indent_size = 2;
       };
+      "*.{py,pyi}" = {
+        indent_size = 4;
+        indent_style = "space";
+      };
     };
   };
 }

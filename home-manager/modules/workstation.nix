@@ -101,7 +101,6 @@ in
         indent_size = 4;
         indent_style = "space";
       };
-
     };
   };
 }

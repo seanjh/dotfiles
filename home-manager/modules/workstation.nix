@@ -55,7 +55,7 @@ in
     ./programs/tmux.nix
     ./programs/readline.nix
     ./programs/claude-code.nix
-    ./programs/aider-chat.nix
+    # ./programs/aider-chat.nix
   ];
 
   programs.home-manager.enable = true;

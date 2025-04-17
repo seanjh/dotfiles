@@ -16,7 +16,7 @@
     bleeding-edge.raycast
     bleeding-edge.graphite-cli
     bleeding-edge.podman
-    bleeding-edge.codex
+    # bleeding-edge.codex
   ];
 
   fonts.fontconfig.enable = true;

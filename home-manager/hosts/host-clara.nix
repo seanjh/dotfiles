@@ -17,7 +17,6 @@
     bleeding-edge.graphite-cli
     bleeding-edge.podman
     npm-openai-codex
-    # bleeding-edge.codex
   ];
 
   fonts.fontconfig.enable = true;

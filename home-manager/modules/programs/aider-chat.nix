@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    (unstable.aider-chat.withOptional {
+    (bleeding-edge.aider-chat.withOptional {
       withPlaywright = true;
       withBrowser = true;
       withHelp = true;

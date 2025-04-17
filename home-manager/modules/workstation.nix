@@ -25,7 +25,7 @@ in
     gnumake
 
     # neovim/lazyvim
-    neovim
+    unstable.neovim
     ripgrep
     lua
     luarocks
@@ -47,7 +47,7 @@ in
     cargo
     rustc
 
-    _1password-cli
+    bleeding-edge._1password-cli
   ];
 
   imports = [
@@ -55,7 +55,7 @@ in
     ./programs/tmux.nix
     ./programs/readline.nix
     ./programs/claude-code.nix
-    ./programs/aider-chat.nix
+    # ./programs/aider-chat.nix
   ];
 
   programs.home-manager.enable = true;

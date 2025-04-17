@@ -32,6 +32,11 @@
           config = prev.config;
         };
       };
+      overlays = [
+        unstableOverlay
+        bleedingEdgeOverlay
+        (import ./overlays/npm-openai-codex.nix)
+      ];
 
     in
     {
@@ -39,11 +44,8 @@
         # Macbook Air (Intel)
         donkey = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
+            inherit overlays;
             system = "x86_64-darwin";
-            overlays = [
-              unstableOverlay
-              bleedingEdgeOverlay
-            ];
             config = {
               allowUnfree = true;
             };
@@ -59,10 +61,7 @@
         flipper = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "x86_64-linux";
-            overlays = [
-              unstableOverlay
-              bleedingEdgeOverlay
-            ];
+            inherit overlays;
             config = {
               allowUnfree = true;
               cudaSupport = true;
@@ -79,10 +78,7 @@
         coontie = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "aarch64-linux";
-            overlays = [
-              unstableOverlay
-              bleedingEdgeOverlay
-            ];
+            inherit overlays;
           };
           modules = [
             ./modules/server.nix
@@ -95,10 +91,7 @@
         clara = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "aarch64-darwin";
-            overlays = [
-              unstableOverlay
-              bleedingEdgeOverlay
-            ];
+            inherit overlays;
             config = {
               allowUnfree = true;
             };

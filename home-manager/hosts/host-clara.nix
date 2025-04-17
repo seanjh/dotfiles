@@ -12,9 +12,11 @@
     })
     unstable.ollama
     unstable.postgresql_16
-    unstable.raycast
     unstable.ngrok
-    unstable.graphite-cli
+    bleeding-edge.raycast
+    bleeding-edge.graphite-cli
+    bleeding-edge.podman
+    bleeding-edge.codex
   ];
 
   fonts.fontconfig.enable = true;

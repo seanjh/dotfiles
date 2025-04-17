@@ -25,7 +25,7 @@ in
     gnumake
 
     # neovim/lazyvim
-    neovim
+    unstable.neovim
     ripgrep
     lua
     luarocks
@@ -47,7 +47,7 @@ in
     cargo
     rustc
 
-    _1password-cli
+    bleeding-edge._1password-cli
   ];
 
   imports = [

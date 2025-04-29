@@ -18,18 +18,20 @@ in
     direnv
     jq
     unzip
+    btop
 
     # building
     gcc
     gnumake
 
     # neovim/lazyvim
-    neovim
+    unstable.neovim
     ripgrep
     lua
     luarocks
     fd
     fzf
+    lazygit
 
     # js/ts
     prettierd
@@ -38,20 +40,22 @@ in
     nil
     nixfmt-rfc-style
 
-    # rust
-    cargo
-    rustc
-
-    # other useful runtimes to have around
+    # other useful languages/runtimes to have around
     (python312.withPackages (ps: with ps; [ pip ]))
     nodejs_22
     go_1_23
+    cargo
+    rustc
+
+    bleeding-edge._1password-cli
   ];
 
   imports = [
-    ./programs/claude-code.nix
-    ./programs/aider-chat.nix
     ./programs/bash.nix
+    ./programs/tmux.nix
+    ./programs/readline.nix
+    ./programs/claude-code.nix
+    # ./programs/aider-chat.nix
   ];
 
   programs.home-manager.enable = true;
@@ -63,8 +67,6 @@ in
   programs.gh.enable = true;
 
   home.file = {
-    "./.tmux.conf".source = "${baseDir}/tmux.conf";
-    "./.inputrc".source = "${baseDir}/inputrc";
     "./.config/git/ignore".source = "${baseDir}/gitignore_global";
     "./.config/git/config".source = "${baseDir}/gitconfig";
   };
@@ -72,6 +74,7 @@ in
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+    nix-direnv.enable = true;
     stdlib = '''';
   };
 
@@ -93,6 +96,10 @@ in
       "*.json,*.yaml" = {
         indent_style = "space";
         indent_size = 2;
+      };
+      "*.{py,pyi}" = {
+        indent_size = 4;
+        indent_style = "space";
       };
     };
   };

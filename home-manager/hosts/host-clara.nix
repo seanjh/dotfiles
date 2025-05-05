@@ -21,6 +21,34 @@
 
   fonts.fontconfig.enable = true;
 
+  # increase max files per process over the prohibitive default of 256
+  home.file."Library/LaunchAgents/limit.maxfiles.plist" = {
+    text = ''
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+        "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+      <dict>
+        <key>Label</key>
+        <string>limit.maxfiles</string>
+
+        <key>ProgramArguments</key>
+        <array>
+          <string>launchctl</string>
+          <string>limit</string>
+          <string>maxfiles</string>
+          <string>8192</string>
+          <string>8192</string>
+        </array>
+
+        <key>RunAtLoad</key>
+        <true/>
+      </dict>
+      </plist>
+    '';
+    executable = false;
+  };
+
   programs.bash = {
     bashrcExtra = with pkgs; lib.mkAfter '''';
   };

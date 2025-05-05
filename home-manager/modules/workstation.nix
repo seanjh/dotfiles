@@ -41,11 +41,16 @@ in
     nixfmt-rfc-style
 
     # other useful languages/runtimes to have around
-    (python312.withPackages (ps: with ps; [ pip ]))
-    nodejs_22
-    go_1_23
-    cargo
-    rustc
+    (unstable.python312.withPackages (
+      ps: with ps; [
+        pip
+        uv
+      ]
+    ))
+    unstable.nodejs_22
+    unstable.go_1_23
+    unstable.cargo
+    unstable.rustc
 
     bleeding-edge._1password-cli
   ];

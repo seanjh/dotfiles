@@ -1,4 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  alacritty-themes = pkgs.fetchFromGitHub {
+    owner = "alacritty";
+    repo = "alacritty-theme";
+    rev = "master";
+    sha256 = "sha256-n9Rvm+VqdmHyPPgkyujPm+VnWee5L4DTv6QvmEeHkUA=";
+  };
+in
 {
   home.username = "sean";
   home.homeDirectory = "/Users/sean";
@@ -16,7 +24,7 @@
     bleeding-edge.raycast
     bleeding-edge.graphite-cli
     bleeding-edge.podman
-    npm-openai-codex
+    # npm-openai-codex
   ];
 
   fonts.fontconfig.enable = true;
@@ -57,6 +65,9 @@
     enable = true;
 
     settings = {
+      general.import = [
+        "${alacritty-themes}/themes/nord.toml"
+      ];
       env = {
         TERM = "xterm-256color";
         TERM_PROGRAM = "Alacritty";

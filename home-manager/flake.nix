@@ -35,7 +35,6 @@
       overlays = [
         unstableOverlay
         bleedingEdgeOverlay
-        (import ./overlays/npm-openai-codex.nix)
       ];
 
     in

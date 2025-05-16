@@ -3,6 +3,13 @@
   home.username = "sean";
   home.homeDirectory = "/Users/sean";
 
+  imports = [
+    (import ../modules/programs/alacritty.nix {
+      inherit pkgs;
+      shell = pkgs.bashInteractive;
+    })
+  ];
+
   home.packages = with pkgs; [
     (nerdfonts.override {
       fonts = [

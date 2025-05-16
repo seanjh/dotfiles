@@ -3,6 +3,18 @@
   home.username = "sean";
   home.homeDirectory = "/Users/sean";
 
+<<<<<<< Updated upstream
+||||||| Stash base
+  imports = [
+    ../modules/programs/alacritty.nix
+  ];
+
+=======
+  imports = [
+    (import ../modules/programs/alacritty.nix { inherit pkgs; shell = pkgs.bashInteractive; })
+  ];
+
+>>>>>>> Stashed changes
   home.packages = with pkgs; [
     (nerdfonts.override {
       fonts = [

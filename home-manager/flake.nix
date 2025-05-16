@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-bleeding-edge.url = "github:nixos/nixpkgs/30876db20b68252b900ee77a622ac3d88ca881fb";
+    nixpkgs-bleeding-edge.url = "github:nixos/nixpkgs/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +35,6 @@
       overlays = [
         unstableOverlay
         bleedingEdgeOverlay
-        (import ./overlays/npm-openai-codex.nix)
       ];
 
     in

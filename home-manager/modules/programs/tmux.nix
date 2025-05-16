@@ -27,6 +27,7 @@
 
       # https://github.com/tmux/tmux/wiki/FAQ#how-do-i-use-a-256-colour-terminal
       set -g default-terminal "tmux-256color"
+      set -sa terminal-features ",xterm-256color:RGB"
 
       set-option -g default-command "/Users/sean/.nix-profile/bin/bash --login"
 

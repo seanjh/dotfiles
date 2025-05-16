@@ -24,7 +24,7 @@ in
     gcc
     gnumake
 
-    # neovim/lazyvim
+    # neovim/lazyvim dependencies
     unstable.neovim
     ripgrep
     lua
@@ -34,7 +34,7 @@ in
     lazygit
 
     # js/ts
-    prettierd
+    unstable.prettierd
 
     # nix
     nil
@@ -47,10 +47,10 @@ in
         uv
       ]
     ))
-    unstable.nodejs_22
-    unstable.go_1_23
-    unstable.cargo
-    unstable.rustc
+    unstable.nodejs_20
+    go_1_23
+    cargo
+    rustc
 
     bleeding-edge._1password-cli
   ];
@@ -60,7 +60,6 @@ in
     ./programs/tmux.nix
     ./programs/readline.nix
     ./programs/claude-code.nix
-    # ./programs/aider-chat.nix
   ];
 
   programs.home-manager.enable = true;

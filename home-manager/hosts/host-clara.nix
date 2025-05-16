@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.username = "sean";
   home.homeDirectory = "/Users/sean";
@@ -23,7 +23,7 @@
     bleeding-edge.raycast
     bleeding-edge.graphite-cli
     bleeding-edge.podman
-    npm-openai-codex
+    # npm-openai-codex
   ];
 
   fonts.fontconfig.enable = true;
@@ -58,56 +58,6 @@
 
   programs.bash = {
     bashrcExtra = with pkgs; lib.mkAfter '''';
-  };
-
-  programs.alacritty = {
-    enable = true;
-
-    settings = {
-      env = {
-        TERM = "xterm-256color";
-        TERM_PROGRAM = "Alacritty";
-      };
-
-      scrolling = {
-        history = 100000;
-      };
-
-      window = {
-        padding = {
-          x = 10;
-          y = 10;
-        };
-        option_as_alt = "Both";
-      };
-
-      font = {
-        normal.family = "JetBrainsMono Nerd Font";
-        bold = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Bold";
-        };
-        italic = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Italic";
-        };
-        size = 14.0;
-      };
-
-      cursor = {
-        style.blinking = "On";
-        unfocused_hollow = true;
-      };
-
-      terminal.shell = {
-        program = "${pkgs.bashInteractive}/bin/bash";
-        args = [
-          "--login"
-          "-c"
-          "tmux attach || tmux"
-        ];
-      };
-    };
   };
 
   launchd.agents = {
@@ -154,5 +104,4 @@
       };
     };
   };
-
 }

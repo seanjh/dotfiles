@@ -1,19 +1,20 @@
-{ pkgs, shell ? pkgs.bashInteractive, ... }:
-let
-  alacritty-themes = pkgs.fetchFromGitHub {
-    owner = "alacritty";
-    repo = "alacritty-theme";
-    rev = "master";
-    sha256 = "sha256-n9Rvm+VqdmHyPPgkyujPm+VnWee5L4DTv6QvmEeHkUA=";
-  };
-in
 {
+  pkgs,
+  shell ? pkgs.bashInteractive,
+  ...
+}:
+{
+  home.packages = with pkgs; [
+    alacritty
+    alacritty-theme
+  ];
+
   programs.alacritty = {
     enable = true;
 
     settings = {
       general.import = [
-        "${alacritty-themes}/themes/nord.toml"
+        "${pkgs.alacritty-theme}/themes/nord.toml"
       ];
       env = {
         TERM = "xterm-256color";

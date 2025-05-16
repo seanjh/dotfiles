@@ -4,7 +4,10 @@
   home.homeDirectory = "/Users/sean";
 
   imports = [
-    ../modules/programs/alacritty.nix
+    (import ../modules/programs/alacritty.nix {
+      inherit pkgs;
+      shell = pkgs.bashInteractive;
+    })
   ];
 
   home.packages = with pkgs; [
@@ -101,5 +104,4 @@
       };
     };
   };
-
 }

@@ -24,7 +24,7 @@ in
     gcc
     gnumake
 
-    # neovim/lazyvim
+    # neovim/lazyvim dependencies
     unstable.neovim
     ripgrep
     lua
@@ -34,15 +34,20 @@ in
     lazygit
 
     # js/ts
-    prettierd
+    unstable.prettierd
 
     # nix
     nil
     nixfmt-rfc-style
 
     # other useful languages/runtimes to have around
-    (python312.withPackages (ps: with ps; [ pip ]))
-    nodejs_22
+    (unstable.python312.withPackages (
+      ps: with ps; [
+        pip
+        uv
+      ]
+    ))
+    unstable.nodejs_20
     go_1_23
     cargo
     rustc
@@ -55,7 +60,6 @@ in
     ./programs/tmux.nix
     ./programs/readline.nix
     ./programs/claude-code.nix
-    # ./programs/aider-chat.nix
   ];
 
   programs.home-manager.enable = true;

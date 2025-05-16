@@ -1,7 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.username = "sean";
   home.homeDirectory = "/Users/sean";
+
+  imports = [
+    (import ../modules/programs/alacritty.nix {
+      inherit pkgs;
+      shell = pkgs.bashInteractive;
+    })
+  ];
 
   home.packages = with pkgs; [
     (nerdfonts.override {
@@ -16,63 +23,41 @@
     bleeding-edge.raycast
     bleeding-edge.graphite-cli
     bleeding-edge.podman
-    npm-openai-codex
+    # npm-openai-codex
   ];
 
   fonts.fontconfig.enable = true;
 
-  programs.bash = {
-    bashrcExtra = with pkgs; lib.mkAfter '''';
+  # increase max files per process over the prohibitive default of 256
+  home.file."Library/LaunchAgents/limit.maxfiles.plist" = {
+    text = ''
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+        "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+      <dict>
+        <key>Label</key>
+        <string>limit.maxfiles</string>
+
+        <key>ProgramArguments</key>
+        <array>
+          <string>launchctl</string>
+          <string>limit</string>
+          <string>maxfiles</string>
+          <string>8192</string>
+          <string>8192</string>
+        </array>
+
+        <key>RunAtLoad</key>
+        <true/>
+      </dict>
+      </plist>
+    '';
+    executable = false;
   };
 
-  programs.alacritty = {
-    enable = true;
-
-    settings = {
-      env = {
-        TERM = "xterm-256color";
-        TERM_PROGRAM = "Alacritty";
-      };
-
-      scrolling = {
-        history = 100000;
-      };
-
-      window = {
-        padding = {
-          x = 10;
-          y = 10;
-        };
-        option_as_alt = "Both";
-      };
-
-      font = {
-        normal.family = "JetBrainsMono Nerd Font";
-        bold = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Bold";
-        };
-        italic = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Italic";
-        };
-        size = 14.0;
-      };
-
-      cursor = {
-        style.blinking = "On";
-        unfocused_hollow = true;
-      };
-
-      terminal.shell = {
-        program = "${pkgs.bashInteractive}/bin/bash";
-        args = [
-          "--login"
-          "-c"
-          "tmux attach || tmux"
-        ];
-      };
-    };
+  programs.bash = {
+    bashrcExtra = with pkgs; lib.mkAfter '''';
   };
 
   launchd.agents = {
@@ -119,5 +104,4 @@
       };
     };
   };
-
 }

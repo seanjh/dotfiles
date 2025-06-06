@@ -20,10 +20,12 @@
     unstable.ollama
     unstable.postgresql_16
     unstable.ngrok
+    unstable.dbeaver-bin
     bleeding-edge.raycast
     bleeding-edge.graphite-cli
     bleeding-edge.podman
-    # npm-openai-codex
+    bleeding-edge.podman-compose
+    bleeding-edge.codex
   ];
 
   fonts.fontconfig.enable = true;

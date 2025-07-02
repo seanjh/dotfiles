@@ -47,12 +47,15 @@ in
         uv
       ]
     ))
+
     unstable.nodejs_20
     go_1_23
     cargo
     rustc
 
     bleeding-edge._1password-cli
+
+    unstable.devbox
   ];
 
   imports = [

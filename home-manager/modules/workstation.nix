@@ -47,11 +47,13 @@ in
         uv
       ]
     ))
+
     unstable.nodejs_20
     go_1_23
     cargo
     rustc
 
+    unstable.devbox
     bleeding-edge._1password-cli
   ];
 

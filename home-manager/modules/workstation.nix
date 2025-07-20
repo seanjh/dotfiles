@@ -47,6 +47,7 @@ in
         uv
       ]
     ))
+
     unstable.nodejs_20
     go_1_23
     cargo
@@ -54,6 +55,8 @@ in
 
     unstable.devbox
     bleeding-edge._1password-cli
+
+    unstable.devbox
   ];
 
   imports = [

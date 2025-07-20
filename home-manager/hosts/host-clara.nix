@@ -23,8 +23,9 @@
     unstable.dbeaver-bin
     bleeding-edge.raycast
     bleeding-edge.graphite-cli
-    bleeding-edge.podman
-    bleeding-edge.podman-compose
+    unstable.podman
+    unstable.podman-compose
+    unstable.podman-desktop
     bleeding-edge.codex
   ];
 

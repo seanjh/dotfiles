@@ -55,8 +55,6 @@ in
 
     unstable.devbox
     bleeding-edge._1password-cli
-
-    unstable.devbox
   ];
 
   imports = [

@@ -19,7 +19,6 @@
     })
     unstable.ollama
     unstable.postgresql_16
-    unstable.ngrok
     unstable.dbeaver-bin
     bleeding-edge.raycast
     bleeding-edge.graphite-cli

@@ -13,3 +13,5 @@ tags
 vim/bundle
 vim/plugged
 result
+**/settings.local.json
+**/CLAUDE.local.md

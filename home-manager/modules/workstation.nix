@@ -50,6 +50,7 @@ in
     cargo
     rustc
 
+    unstable.devbox
     bleeding-edge._1password-cli
 
     unstable.devbox

@@ -62,6 +62,7 @@ in
     ./programs/readline.nix
     ./programs/claude-code.nix
     ./programs/cspell.nix
+    ./programs/typos.nix
   ];
 
   programs.home-manager.enable = true;

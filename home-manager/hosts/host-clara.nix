@@ -26,6 +26,8 @@
     unstable.podman-compose
     unstable.podman-desktop
     bleeding-edge.codex
+    bleeding-edge.vscode
+    bleeding-edge.zed-editor
   ];
 
   fonts.fontconfig.enable = true;

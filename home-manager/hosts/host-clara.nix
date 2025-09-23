@@ -19,7 +19,6 @@
     })
     unstable.ollama
     unstable.postgresql_16
-    unstable.dbeaver-bin
     bleeding-edge.raycast
     bleeding-edge.graphite-cli
     unstable.podman
@@ -27,7 +26,6 @@
     unstable.podman-desktop
     bleeding-edge.codex
     bleeding-edge.vscode
-    bleeding-edge.zed-editor
   ];
 
   fonts.fontconfig.enable = true;
@@ -61,7 +59,7 @@
   };
 
   programs.bash = {
-    bashrcExtra = with pkgs; lib.mkAfter '''';
+    bashrcExtra = lib.mkAfter '''';
   };
 
   launchd.agents = {

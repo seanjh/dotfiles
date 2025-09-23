@@ -61,7 +61,6 @@ in
     ./programs/tmux.nix
     ./programs/readline.nix
     ./programs/claude-code.nix
-    ./programs/cspell.nix
     ./programs/typos.nix
   ];
 

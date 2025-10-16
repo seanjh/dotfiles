@@ -51,9 +51,8 @@ in
     rustc
 
     unstable.devbox
+    unstable.codex
     bleeding-edge._1password-cli
-
-    unstable.devbox
   ];
 
   imports = [

@@ -8,6 +8,7 @@
       inherit pkgs;
       shell = pkgs.bashInteractive;
     })
+    ../modules/programs/render-cli.nix
   ];
 
   home.packages = with pkgs; [

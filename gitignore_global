@@ -110,3 +110,9 @@ $RECYCLE.BIN/
 
 /.direnv
 /.gem
+
+# https://github.com/folke/neoconf.nvim
+.neoconf.json
+neoconf.json
+
+tmp/

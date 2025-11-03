@@ -27,8 +27,8 @@ in
     # neovim/lazyvim dependencies
     unstable.neovim
     ripgrep
-    lua
-    luarocks
+    lua5_1
+    lua51Packages.luarocks
     fd
     fzf
     lazygit

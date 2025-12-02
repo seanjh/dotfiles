@@ -25,6 +25,7 @@
     unstable.podman
     unstable.podman-compose
     unstable.podman-desktop
+    bleeding-edge.opencode
     bleeding-edge.vscode
   ];
 

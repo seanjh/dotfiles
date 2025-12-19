@@ -8,24 +8,24 @@ in
   ];
 
   home.file.opencode-config = {
-    target = ".config/opencode/opencode.jsonc";
+    target = ".config/opencode/opencode.json";
     source = json.generate "opencode.json" {
       autoupdate = false;
-      plugin = [ "opencode-openai-codex-auth@909adb7" ];
-      mcp = {
-        context7 = {
-          type = "local";
-          enabled = true;
-          command = "npx";
-          args = [
-            "-y"
-            "@upstash/context7-mcp"
-          ];
-          environment = {
-            CONTEXT7_API_KEY = "{env:CONTEXT7_API_KEY}";
-          };
-        };
-      };
+      # plugin = [ "opencode-openai-codex-auth@909adb7" ];
+      # mcp = {
+      #   context7 = {
+      #     type = "local";
+      #     enabled = true;
+      #     command = [
+      #       "npx"
+      #       "-y"
+      #       "@upstash/context7-mcp"
+      #     ];
+      #     environment = {
+      #       CONTEXT7_API_KEY = "{env:CONTEXT7_API_KEY}";
+      #     };
+      #   };
+      # };
     };
   };
 }

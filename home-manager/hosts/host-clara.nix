@@ -9,6 +9,7 @@
       shell = pkgs.bashInteractive;
     })
     ../modules/programs/render-cli.nix
+    ../modules/programs/opencode.nix
   ];
 
   home.packages = with pkgs; [

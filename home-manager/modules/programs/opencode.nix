@@ -10,6 +10,7 @@
       text = ''
         {
           "$schema": "https://opencode.ai/config.json",
+          "autoupdate": false,
           "plugin": [
             "opencode-openai-codex-auth@4.0.2"
           ]

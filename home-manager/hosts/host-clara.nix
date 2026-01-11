@@ -26,6 +26,7 @@
     unstable.podman
     unstable.podman-compose
     unstable.podman-desktop
+    unstable.gemini-cli
     bleeding-edge.vscode
   ];
 

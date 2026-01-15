@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # beads = {
+    #   url = "github:steveyegge/beads/v0.42.0";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =
@@ -17,6 +21,7 @@
       nixpkgs,
       nixpkgs-unstable,
       nixpkgs-bleeding-edge,
+      # beads,
       ...
     }:
     let
@@ -95,6 +100,9 @@
               allowUnfree = true;
             };
           };
+          # extraSpecialArgs = {
+          #   beadsFlake = beads;
+          # };
           modules = [
             ./modules/workstation.nix
             ./modules/common-darwin.nix

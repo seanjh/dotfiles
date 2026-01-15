@@ -19,6 +19,7 @@ in
     jq
     unzip
     btop
+    tree
 
     # building
     gcc
@@ -60,7 +61,7 @@ in
     ./programs/tmux.nix
     ./programs/readline.nix
     ./programs/claude-code.nix
-    ./programs/beads.nix
+    # ./programs/beads.nix
   ];
 
   programs.home-manager.enable = true;

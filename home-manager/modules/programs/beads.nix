@@ -1,18 +1,21 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
-  beads = pkgs.buildGoModule (finalAttrs: {
+  buildGo124Module = pkgs.buildGoModule.override { go = pkgs.unstable.go_1_24; };
+
+  beads = buildGo124Module rec {
     pname = "beads";
     version = "0.47.0";
 
     src = pkgs.fetchFromGitHub {
       owner = "steveyegge";
       repo = "beads";
-      tag = "v${finalAttrs.version}";
-      hash = lib.fakeSha256;
+      rev = "v${version}";
+      hash = "sha256-p7l4wla+8vQqBUeNyoGKWhBQO8m53A4UNSghQQCvk2A=";
     };
-    vendorHash = lib.fakeSha256;
-    subPackages = [ "cmd/beads" ];
-  });
+    vendorHash = "sha256-pY5m5ODRgqghyELRwwxOr+xlW41gtJWLXaW53GlLaFw=";
+    subPackages = [ "cmd/bd" ];
+    nativeCheckInputs = [ pkgs.git ];
+  };
 in
 {
   home.packages = [ beads ];

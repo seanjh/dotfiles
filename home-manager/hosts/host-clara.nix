@@ -1,4 +1,12 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  # beadsFlake,
+  lib,
+  ...
+}:
+# let
+#   beads = beadsFlake.packages.${pkgs.system}.default;
+# in
 {
   home.username = "sean";
   home.homeDirectory = "/Users/sean";
@@ -26,7 +34,9 @@
     unstable.podman
     unstable.podman-compose
     unstable.podman-desktop
+    unstable.gemini-cli
     bleeding-edge.vscode
+    # beads
   ];
 
   fonts.fontconfig.enable = true;

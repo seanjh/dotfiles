@@ -28,6 +28,11 @@
     '';
     bashrcExtra = lib.mkBefore ''
       [ -f ~/.config/secrets ] && source ~/.config/secrets
+
+      # disable terminal bell urgency (dock bouncing on macOS)
+      # https://github.com/alacritty/alacritty/issues/2950
+      # https://github.com/alacritty/alacritty/pull/4304
+      printf "\e[?1042l"
     '';
     shellAliases = {
       c = "clear";

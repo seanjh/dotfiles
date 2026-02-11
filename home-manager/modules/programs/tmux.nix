@@ -40,13 +40,11 @@
       # Window naming - detect Claude Code and rename window accordingly
       set-hook -g pane-focus-in 'run-shell "~/.config/dotfiles/scripts/tmux-window-name.sh #{pane_pid}"'
 
+      # Status bar content (inherit colors from terminal/alacritty)
       set -g status-left-length 20
       set -g status-right-length 50
       set -g status-left '[#S] '
       set -g status-right '#{?pane_synchronized,#[bg=red]SYNC#[default] ,}%H:%M %d-%b'
-
-      # Highlight active window
-      setw -g window-status-current-style fg=colour166,bold
     '';
   };
 

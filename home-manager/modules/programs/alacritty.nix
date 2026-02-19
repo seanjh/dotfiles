@@ -4,18 +4,13 @@
   ...
 }:
 {
-  home.packages = with pkgs; [
-    unstable.alacritty-theme
-  ];
-
   programs.alacritty = with pkgs; {
     enable = true;
     package = unstable.alacritty;
+    themePackage = unstable.alacritty-theme;
+    theme = "nord";
 
     settings = {
-      general.import = [
-        "${alacritty-theme}/nord.toml"
-      ];
       env = {
         TERM = "xterm-256color";
         TERM_PROGRAM = "Alacritty";

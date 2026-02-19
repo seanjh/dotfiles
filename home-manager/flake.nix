@@ -2,11 +2,11 @@
   description = "Home Manager configuration of sean";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-bleeding-edge.url = "github:nixos/nixpkgs/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -22,14 +22,12 @@
     let
       unstableOverlay = final: prev: {
         unstable = import nixpkgs-unstable {
-          system = prev.system;
-          config = prev.config;
+          inherit (prev) system config;
         };
       };
       bleedingEdgeOverlay = final: prev: {
         bleeding-edge = import nixpkgs-bleeding-edge {
-          system = prev.system;
-          config = prev.config;
+          inherit (prev) system config;
         };
       };
       overlays = [

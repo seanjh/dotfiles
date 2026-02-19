@@ -4,9 +4,15 @@
   ...
 }:
 let
-  baseDir = toString ./../..;
+  baseDir = toString ./../../..;
 in
 {
+  home.file.claude-statusline = {
+    target = ".claude/statusline.sh";
+    source = "${baseDir}/scripts/claude-statusline.sh";
+    executable = true;
+  };
+
   programs.claude-code = {
     enable = true;
     package = pkgs.bleeding-edge.claude-code;
@@ -54,10 +60,4 @@ in
       # };
     };
   };
-
-  # home.file.claude-statusline = {
-  #   target = ".claude/statusline.sh";
-  #   source = "${baseDir}/scripts/claude-statusline.sh";
-  #   executable = true;
-  # };
 }

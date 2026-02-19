@@ -19,14 +19,17 @@
         "FiraCode"
       ];
     })
+
     unstable.ollama
     unstable.postgresql_16
-    bleeding-edge.raycast
-    bleeding-edge.graphite-cli
     unstable.podman
     unstable.podman-compose
     unstable.podman-desktop
-    bleeding-edge.vscode
+    unstable.vscode
+    unstable.beads
+
+    bleeding-edge.raycast
+    bleeding-edge.graphite-cli
   ];
 
   fonts.fontconfig.enable = true;

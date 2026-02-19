@@ -36,7 +36,11 @@
       # https://www.reddit.com/r/lunarvim/comments/1334htt/lunarvim_in_tmux_moving_line_up_or_down_when/
       set-option -g focus-events on
       set-window-option -g xterm-keys on
-      set -g status-interval 0
+
+      set -g status-left-length 20
+      set -g status-right-length 50
+      set -g status-left '[#S] '
+      set -g status-right '#{?pane_synchronized,#[bg=red]SYNC#[default] ,}%H:%M %d-%b'
     '';
   };
 

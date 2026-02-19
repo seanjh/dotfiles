@@ -36,6 +36,8 @@ in
     # nix
     nil
     nixfmt-rfc-style
+    statix
+    deadnix
 
     # other useful languages/runtimes to have around
     (unstable.python312.withPackages (

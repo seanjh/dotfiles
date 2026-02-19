@@ -14,7 +14,7 @@
 
     settings = {
       general.import = [
-        "${alacritty-theme}/nord.toml"
+        "${unstable.alacritty-theme}/nord.toml"
       ];
       env = {
         TERM = "xterm-256color";

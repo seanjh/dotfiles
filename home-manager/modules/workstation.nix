@@ -47,8 +47,8 @@ in
       ]
     ))
 
-    unstable.nodejs_20
-    go_1_23
+    unstable.nodejs
+    go
     cargo
     rustc
 

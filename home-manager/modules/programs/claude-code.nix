@@ -19,7 +19,7 @@ in
 
     settings = {
       permissions = {
-        defaultMode = "plan";
+        defaultMode = "default";
         allow = [
           "WebSearch"
           "Bash(gh:*)"
@@ -54,10 +54,10 @@ in
         "ralph-wiggum@claude-plugins-official" = true;
       };
       alwaysThinkingEnabled = true;
-      # statusLine = {
-      #   type = "command";
-      #   command = "~/.claude/statusline.sh";
-      # };
+      statusLine = {
+        type = "command";
+        command = "~/.claude/statusline.sh";
+      };
     };
   };
 }

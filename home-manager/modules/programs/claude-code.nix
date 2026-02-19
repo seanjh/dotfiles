@@ -32,8 +32,8 @@ in
           "mcp__context7__resolve-library-id"
           "mcp__context7__get-library-docs"
         ];
-        deny = [];
-        ask = [];
+        deny = [ ];
+        ask = [ ];
         additionalDirectories = [
           "/Users/sean/work/sage-ios/"
         ];
@@ -48,16 +48,16 @@ in
         "ralph-wiggum@claude-plugins-official" = true;
       };
       alwaysThinkingEnabled = true;
-      statusLine = {
-        type = "command";
-        command = "~/.claude/statusline.sh";
-      };
+      # statusLine = {
+      #   type = "command";
+      #   command = "~/.claude/statusline.sh";
+      # };
     };
   };
 
-  home.file.claude-statusline = {
-    target = ".claude/statusline.sh";
-    source = "${baseDir}/scripts/claude-statusline.sh";
-    executable = true;
-  };
+  # home.file.claude-statusline = {
+  #   target = ".claude/statusline.sh";
+  #   source = "${baseDir}/scripts/claude-statusline.sh";
+  #   executable = true;
+  # };
 }

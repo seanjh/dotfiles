@@ -1,16 +1,49 @@
 {
   pkgs,
-  lib,
   ...
 }:
 let
   baseDir = toString ./../../..;
 in
 {
-  home.file.claude-statusline = {
-    target = ".claude/statusline.sh";
-    source = "${baseDir}/scripts/claude-statusline.sh";
-    executable = true;
+  home.file = {
+    claude-statusline = {
+      target = ".claude/statusline.sh";
+      source = "${baseDir}/scripts/claude-statusline.sh";
+      executable = true;
+    };
+
+    claude-command-beads = {
+      target = ".claude/commands/plan-to-beads.md";
+      source = "${
+        pkgs.fetchFromGitHub {
+          owner = "steveyegge";
+          repo = "beads";
+          rev = "e3b9e86c4abc9fa759319b0fca0573600b07e732";
+          sha256 = "sha256-YFIH2xk32ClW3bJ1zH/dS2Uz7IwzzLT48NNFByKWaF4=";
+        }
+      }/integrations/claude-code/commands/plan-to-beads.md";
+    };
+
+    claude-command-plan-guide = {
+      target = ".claude/commands/plan-guide.md";
+      text = ''
+        ---
+        description: Walk through an existing plan
+        model: claude-sonnet-4-5-20250929
+        ---
+
+        You will guide me through the completed plan step-by-step, but WILL NOT directly edit and files or write any code, unless I explicitly ask you to do so. Instead, I will be entering all code changes. You are responsible for guiding me through the plan, while I manually enter all code changes.
+
+        Guidelines:
+
+        - DO scrutinize my changes for correctness, idioms, and best practices
+        - DO provide feedback on better, simpler alternative solutions
+        - DO review changes for cohesion, SOLID principles, and correctness
+        - DO provide additional learning and instructive context, to promote learning
+        - DO NOT edit code unless I explicitly ask you to do so
+      '';
+    };
   };
 
   programs.claude-code = {
@@ -23,14 +56,14 @@ in
         allow = [
           "WebSearch"
           "Bash(gh:*)"
+          "Bash(git:*)"
           "Bash(gt:*)"
           "Bash(grep:*)"
           "Bash(find:*)"
           "Bash(mkdir:*)"
           "Bash(echo:*)"
-          "Bash(mv:*)"
-          "Bash(rm:*)"
           "Bash(chmod:*)"
+          "Bash(bd:*)"
           "WebFetch(domain:github.com)"
           "WebFetch(domain:raw.githubusercontent.com)"
           "WebFetch(domain:api.github.com)"
@@ -39,10 +72,11 @@ in
           "mcp__context7__get-library-docs"
         ];
         deny = [ ];
-        ask = [ ];
-        additionalDirectories = [
-          "/Users/sean/work/sage-ios/"
+        ask = [
+          "Bash(mv:*)"
+          "Bash(rm:*)"
         ];
+        additionalDirectories = [ ];
       };
       enabledPlugins = {
         "context7@claude-plugins-official" = true;

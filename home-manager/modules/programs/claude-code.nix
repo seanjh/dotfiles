@@ -84,6 +84,7 @@ in
         ];
         additionalDirectories = [ ];
       };
+
       enabledPlugins = {
         "beads@beads-marketplace" = true;
         "context7@claude-plugins-official" = true;
@@ -93,7 +94,9 @@ in
         "learning-output-style@claude-plugins-official" = true;
         "security-guidance@claude-plugins-official" = true;
         "ralph-wiggum@claude-plugins-official" = true;
+        "code-review@claude-plugins-official" = true;
       };
+
       extraKnownMarketplaces = {
         beads-marketplace = {
           source = {
@@ -104,9 +107,41 @@ in
       };
 
       alwaysThinkingEnabled = true;
+
       statusLine = {
         type = "command";
         command = "~/.claude/statusline.sh";
+      };
+
+      # beads specific
+      # via https://github.com/steveyegge/beads/blob/main/docs/INSTALLING.md
+      prompt = ''
+        Before starting any work, run 'bd onboard' to understand the current project state and available issues.
+      '';
+
+      hooks = {
+        PreCompact = [
+          {
+            hooks = [
+              {
+                command = "bd prime --stealth";
+                type = "command";
+              }
+            ];
+            matcher = "";
+          }
+        ];
+        SessionStart = [
+          {
+            hooks = [
+              {
+                command = "bd prime --stealth";
+                type = "command";
+              }
+            ];
+            matcher = "";
+          }
+        ];
       };
     };
   };

@@ -59,11 +59,16 @@ in
           "Bash(git:*)"
           "Bash(gt:*)"
           "Bash(grep:*)"
+          "Bash(rg:*)"
           "Bash(find:*)"
+          "Bash(fd:*)"
           "Bash(mkdir:*)"
           "Bash(echo:*)"
-          "Bash(chmod:*)"
           "Bash(bd:*)"
+          "Bas(head:*)"
+          "Bas(tail:*)"
+          "Bas(sed:*)"
+          "Bas(awk:*)"
           "WebFetch(domain:github.com)"
           "WebFetch(domain:raw.githubusercontent.com)"
           "WebFetch(domain:api.github.com)"
@@ -75,10 +80,12 @@ in
         ask = [
           "Bash(mv:*)"
           "Bash(rm:*)"
+          "Bash(chmod:*)"
         ];
         additionalDirectories = [ ];
       };
       enabledPlugins = {
+        "beads@beads-marketplace" = true;
         "context7@claude-plugins-official" = true;
         "explanatory-output-style@claude-plugins-official" = true;
         "github@claude-plugins-official" = false;
@@ -87,6 +94,15 @@ in
         "security-guidance@claude-plugins-official" = true;
         "ralph-wiggum@claude-plugins-official" = true;
       };
+      extraKnownMarketplaces = {
+        beads-marketplace = {
+          source = {
+            source = "git";
+            url = "https://github.com/steveyegge/beads.git";
+          };
+        };
+      };
+
       alwaysThinkingEnabled = true;
       statusLine = {
         type = "command";

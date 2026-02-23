@@ -82,7 +82,7 @@ in
           "Bash(rm:*)"
           "Bash(chmod:*)"
         ];
-        additionalDirectories = [ ];
+        additionalDirectories = [ "~/.claude/plans" ];
       };
 
       enabledPlugins = {

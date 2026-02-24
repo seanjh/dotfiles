@@ -22,7 +22,6 @@
     unstable.podman-compose
     unstable.podman-desktop
     unstable.vscode
-    unstable.beads
 
     bleeding-edge.raycast
     bleeding-edge.graphite-cli
@@ -59,7 +58,7 @@
   };
 
   programs.bash = {
-    bashrcExtra = lib.mkAfter '''';
+    bashrcExtra = lib.mkAfter "";
   };
 
   launchd.agents = {

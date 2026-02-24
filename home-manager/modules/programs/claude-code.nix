@@ -6,6 +6,10 @@ let
   baseDir = toString ./../../..;
 in
 {
+  home.packages = with pkgs; [
+    unstable.beads
+  ];
+
   home.file = {
     claude-statusline = {
       target = ".claude/statusline.sh";

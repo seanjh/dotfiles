@@ -17,6 +17,11 @@ in
       executable = true;
     };
 
+    claude-command-concise = {
+      target = ".claude/commands/shh.md";
+      text = "Be concise. Avoid unnecessary explanation, preamble, or filler. Get to the point.";
+    };
+
     claude-command-beads = {
       target = ".claude/commands/plan-to-beads.md";
       source = "${

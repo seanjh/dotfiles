@@ -20,12 +20,12 @@ in
 
     claude-command-concise = {
       target = ".claude/commands/shh.md";
-      source = "${claudeCodeDir}/skills/shh.md";
+      source = "${claudeCodeDir}/commands/shh.md";
     };
 
-    claude-skill-libq = {
-      target = ".claude/commands/libq.md";
-      source = "${claudeCodeDir}/skills/libq.md";
+    claude-skill-ref = {
+      target = ".claude/skills/ref/SKILL.md";
+      source = "${claudeCodeDir}/skills/ref/SKILL.md";
     };
 
     claude-command-beads = {
@@ -42,7 +42,7 @@ in
 
     claude-command-plan-guide = {
       target = ".claude/commands/plan-guide.md";
-      source = "${claudeCodeDir}/skills/plan-guide.md";
+      source = "${claudeCodeDir}/commands/plan-guide.md";
     };
   };
 

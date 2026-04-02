@@ -4,6 +4,7 @@
 }:
 let
   baseDir = toString ./../../..;
+  claudeCodeDir = "${baseDir}/claude-code";
 in
 {
   home.packages = with pkgs; [
@@ -19,7 +20,12 @@ in
 
     claude-command-concise = {
       target = ".claude/commands/shh.md";
-      text = "Be concise. Avoid unnecessary explanation, preamble, or filler. Get to the point.";
+      source = "${claudeCodeDir}/skills/shh.md";
+    };
+
+    claude-skill-libq = {
+      target = ".claude/commands/libq.md";
+      source = "${claudeCodeDir}/skills/libq.md";
     };
 
     claude-command-beads = {

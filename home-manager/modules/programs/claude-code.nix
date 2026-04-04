@@ -4,6 +4,7 @@
 }:
 let
   baseDir = toString ./../../..;
+  claudeCodeDir = "${baseDir}/claude-code";
 in
 {
   home.packages = with pkgs; [
@@ -19,7 +20,12 @@ in
 
     claude-command-concise = {
       target = ".claude/commands/shh.md";
-      text = "Be concise. Avoid unnecessary explanation, preamble, or filler. Get to the point.";
+      source = "${claudeCodeDir}/commands/shh.md";
+    };
+
+    claude-skill-ref = {
+      target = ".claude/skills/ref/SKILL.md";
+      source = "${claudeCodeDir}/skills/ref/SKILL.md";
     };
 
     claude-command-beads = {
@@ -36,22 +42,7 @@ in
 
     claude-command-plan-guide = {
       target = ".claude/commands/plan-guide.md";
-      text = ''
-        ---
-        description: Walk through an existing plan
-        model: claude-sonnet-4-5-20250929
-        ---
-
-        You will guide me through the completed plan step-by-step, but WILL NOT directly edit and files or write any code, unless I explicitly ask you to do so. Instead, I will be entering all code changes. You are responsible for guiding me through the plan, while I manually enter all code changes.
-
-        Guidelines:
-
-        - DO scrutinize my changes for correctness, idioms, and best practices
-        - DO provide feedback on better, simpler alternative solutions
-        - DO review changes for cohesion, SOLID principles, and correctness
-        - DO provide additional learning and instructive context, to promote learning
-        - DO NOT edit code unless I explicitly ask you to do so
-      '';
+      source = "${claudeCodeDir}/commands/plan-guide.md";
     };
   };
 
@@ -74,10 +65,10 @@ in
           "Bash(mkdir:*)"
           "Bash(echo:*)"
           "Bash(bd:*)"
-          "Bas(head:*)"
-          "Bas(tail:*)"
-          "Bas(sed:*)"
-          "Bas(awk:*)"
+          "Bash(head:*)"
+          "Bash(tail:*)"
+          "Bash(sed:*)"
+          "Bash(awk:*)"
           "WebFetch(domain:github.com)"
           "WebFetch(domain:raw.githubusercontent.com)"
           "WebFetch(domain:api.github.com)"

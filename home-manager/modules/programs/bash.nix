@@ -25,6 +25,8 @@
         export PS1='\t \[\033[32m\]\w\[\033[33m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1)\[\033[00m\] \$ '
       fi
       source ${git}/share/git/contrib/completion/git-prompt.sh
+
+      set -o vi
     '';
     bashrcExtra = lib.mkBefore ''
       [ -f ~/.config/secrets ] && source ~/.config/secrets

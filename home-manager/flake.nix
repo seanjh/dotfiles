@@ -22,12 +22,14 @@
     let
       unstableOverlay = final: prev: {
         unstable = import nixpkgs-unstable {
-          inherit (prev) system config;
+          inherit (prev.stdenv.hostPlatform) system;
+          inherit (prev) config;
         };
       };
       bleedingEdgeOverlay = final: prev: {
         bleeding-edge = import nixpkgs-bleeding-edge {
-          inherit (prev) system config;
+          inherit (prev.stdenv.hostPlatform) system;
+          inherit (prev) config;
         };
       };
       overlays = [

@@ -27,8 +27,6 @@
       source ${git}/share/git/contrib/completion/git-prompt.sh
 
       set -o vi
-      set vi-ins-mode-string "+"
-      set vi-cmd-mode-string ":"
     '';
     bashrcExtra = lib.mkBefore ''
       [ -f ~/.config/secrets ] && source ~/.config/secrets

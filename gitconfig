@@ -12,6 +12,12 @@
 [core]
   editor = vim
 	excludesfile = ~/.config/git/ignore
+  pager = delta
+[delta]
+  side-by-side = true
+  navigate = true
+[interactive]
+  diffFilter = delta --color-only
 [diff]
   algorithm = histogram
   colorMoved = plain

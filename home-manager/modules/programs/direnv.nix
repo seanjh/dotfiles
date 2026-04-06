@@ -1,7 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
 let
   baseDir = toString ./../../..;
-  scripts = builtins.attrNames (builtins.attrNames (builtins.readDir "${baseDir}/direnv"));
+  scripts = builtins.attrNames (builtins.readDir "${baseDir}/direnv");
 in
 {
   programs.direnv = {

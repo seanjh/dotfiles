@@ -1,4 +1,7 @@
 { pkgs, lib, ... }:
+let
+  baseDir = toString ./../..;
+in
 {
   home = {
     username = "sean";
@@ -60,6 +63,10 @@
   programs.bash = {
     bashrcExtra = lib.mkAfter "";
   };
+
+  home.activation.ollamaPullModels = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    ${pkgs.bash}/bin/bash ${baseDir}/scripts/ollama-pull-models.sh
+  '';
 
   launchd.agents = {
     ollama = {

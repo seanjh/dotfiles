@@ -64,10 +64,6 @@ in
     bashrcExtra = lib.mkAfter "";
   };
 
-  home.activation.ollamaPullModels = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${pkgs.bash}/bin/bash ${baseDir}/scripts/ollama-pull-models.sh
-  '';
-
   launchd.agents = {
     ollama = {
       enable = true;

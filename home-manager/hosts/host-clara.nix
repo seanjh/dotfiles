@@ -1,30 +1,30 @@
 { pkgs, lib, ... }:
 {
-  home.username = "sean";
-  home.homeDirectory = "/Users/sean";
+  home = {
+    username = "sean";
+    homeDirectory = "/Users/sean";
+    packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
+
+      unstable.ollama
+      unstable.postgresql_16
+      unstable.podman
+      unstable.podman-compose
+      unstable.podman-desktop
+      unstable.vscode
+
+      bleeding-edge.raycast
+      bleeding-edge.graphite-cli
+    ];
+  };
 
   imports = [
     (import ../modules/programs/alacritty.nix {
       inherit pkgs;
       shell = pkgs.bashInteractive;
     })
-    ../modules/programs/render-cli.nix
     ../modules/programs/opencode.nix
-  ];
-
-  home.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
-
-    unstable.ollama
-    unstable.postgresql_16
-    unstable.podman
-    unstable.podman-compose
-    unstable.podman-desktop
-    unstable.vscode
-
-    bleeding-edge.raycast
-    bleeding-edge.graphite-cli
   ];
 
   fonts.fontconfig.enable = true;

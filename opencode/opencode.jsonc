@@ -37,25 +37,25 @@
       },
       "models": {
         "qwen2.5-coder:7b": {
-          "name": "Qwen 2.5 Coder 7B (local)"
+          "name": "Qwen 2.5 Coder 7B (local, coding, fast)"
         },
         "qwen2.5-coder:14b": {
-          "name": "Qwen 2.5 Coder 14B (local)"
+          "name": "Qwen 2.5 Coder 14B (local, coding, slower)"
         },
         "deepseek-r1:14b": {
-          "name": "DeepSeek R1 14B (local)"
+          "name": "DeepSeek R1 14B (local, reasoning, slower)"
         },
         "gemma3:4b": {
-          "name": "Gemma 3 4B (local)"
+          "name": "Gemma 3 4B (local, general, fast)"
         },
         "gemma3:12b": {
-          "name": "Gemma 3 12B (local)"
+          "name": "Gemma 3 12B (local, general, slower)"
         },
         "qwen3.5:4b": {
-          "name": "Qwen 3.5 4B (local)"
+          "name": "Qwen 3.5 4B (local, general, fast)"
         },
         "qwen3.5:9b": {
-          "name": "Qwen 3.5 9B (local)"
+          "name": "Qwen 3.5 9B (local, general, balanced)"
         }
       }
     }

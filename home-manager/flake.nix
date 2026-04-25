@@ -32,9 +32,18 @@
           inherit (prev) config;
         };
       };
+      # NOTE: (sean) temporary
+      # direnv 2.37.1 fish test suite is SIGKILL'd on aarch64-darwin due to
+      # a broken code signature on the Hydra-built fish binary (nixpkgs#507531)
+      direnvOverlay = final: prev: {
+        direnv = prev.direnv.overrideAttrs (_: {
+          checkPhase = "";
+        });
+      };
       overlays = [
         unstableOverlay
         bleedingEdgeOverlay
+        direnvOverlay
       ];
 
     in

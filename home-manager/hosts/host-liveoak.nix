@@ -12,5 +12,7 @@
     fd
     fzf
     lazygit
+
+    podman
   ];
 }

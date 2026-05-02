@@ -4,6 +4,7 @@
   home.homeDirectory = "/home/sean";
 
   home.packages = with pkgs; [
+    # neovim
     neovim
     ripgrep
     lua5_1

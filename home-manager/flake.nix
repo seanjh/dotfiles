@@ -86,6 +86,19 @@
           ];
         };
 
+        # Raspberry Pi 5
+        liveoak = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "aarch64-linux";
+            inherit overlays;
+          };
+          modules = [
+            ./modules/server.nix
+            ./modules/common-linux.nix
+            ./hosts/host-liveoak.nix
+          ];
+        };
+
         # Macbook Pro 2025
         clara = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {

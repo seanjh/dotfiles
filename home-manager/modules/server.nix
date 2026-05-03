@@ -1,40 +1,43 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 let
   baseDir = toString ./../..;
 in
 {
-  home.stateVersion = "24.05";
+  programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [
-    git
-    curl
-    btop
-    mtr
-    ripgrep
-    jq
-    unzip
-    vim
-    tmux
-  ];
+  home = {
+    stateVersion = "24.05";
 
-  home.sessionVariables = {
-    EDITOR = "vim";
+    packages = with pkgs; [
+      git
+      curl
+      btop
+      mtr
+      ripgrep
+      jq
+      unzip
+      vim
+      tmux
+      fzf
+      fd
+    ];
+
+    sessionVariables = {
+      EDITOR = "vim";
+    };
+
+    file = {
+      "./.config/git/ignore".source = "${baseDir}/gitignore_global";
+      "./.config/git/config".source = "${baseDir}/gitconfig";
+      "./.vimrc".source = "${baseDir}/vimrc";
+    };
   };
 
   imports = [
     ./programs/bash.nix
+    ./programs/readline.nix
+    ./programs/tmux.nix
   ];
-
-  programs.home-manager.enable = true;
-
-  home.file = {
-    "./.config/git/ignore".source = "${baseDir}/gitignore_global";
-    "./.config/git/config".source = "${baseDir}/gitconfig";
-  };
 
   services.gpg-agent = {
     enable = true;

@@ -78,3 +78,6 @@ autocmd FileType go setlocal ts=4 sw=4 sts=4 noexpandtab
 autocmd FileType make setlocal noexpandtab
 autocmd FileType markdown setlocal wrap linebreak nolist
 autocmd BufWritePre * %s/\s\+$//e
+
+set background=dark
+silent! colorscheme habamax

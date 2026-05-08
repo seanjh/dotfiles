@@ -1,7 +1,6 @@
 ---
 name: docs
 description: Explain a library/framework concept with primary source documentation references
-context: fork
 ---
 
 Explain: $ARGUMENTS

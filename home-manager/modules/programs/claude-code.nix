@@ -5,6 +5,7 @@
 let
   baseDir = toString ./../../..;
   claudeCodeDir = "${baseDir}/claude-code";
+  agentsDir = "${baseDir}/agents";
 in
 {
   home.packages = with pkgs; [
@@ -14,18 +15,18 @@ in
   home.file = {
     claude-statusline = {
       target = ".claude/statusline.sh";
-      source = "${baseDir}/scripts/claude-statusline.sh";
+      source = "${claudeCodeDir}/statusline.sh";
       executable = true;
     };
 
     claude-command-concise = {
       target = ".claude/commands/shh.md";
-      source = "${claudeCodeDir}/commands/shh.md";
+      source = "${agentsDir}/commands/shh.md";
     };
 
-    claude-skill-ref = {
-      target = ".claude/skills/ref/SKILL.md";
-      source = "${claudeCodeDir}/skills/ref/SKILL.md";
+    claude-skill-docs = {
+      target = ".claude/skills/docs/SKILL.md";
+      source = "${agentsDir}/skills/docs/SKILL.md";
     };
 
     claude-command-beads = {
@@ -42,7 +43,7 @@ in
 
     claude-command-plan-guide = {
       target = ".claude/commands/plan-guide.md";
-      source = "${claudeCodeDir}/commands/plan-guide.md";
+      source = "${agentsDir}/commands/plan-guide.md";
     };
   };
 

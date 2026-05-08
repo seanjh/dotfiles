@@ -1,0 +1,80 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": false,
+  "plugin": [],
+  "lsp": {},
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": [
+        "npx",
+        "@playwright/mcp@latest"
+      ],
+      "enabled": true
+    }
+  },
+  "provider": {
+    "fireworks-ai": {
+      "options": {
+        "apiKey": "{env:FIREWORKS_API_KEY}"
+      },
+      "models": {
+        "accounts/fireworks/models/deepseek-ocr": {},
+        "accounts/fireworks/models/deepseek-v3p2": {},
+        "accounts/fireworks/models/glm-4.7": {},
+        "accounts/fireworks/models/glm-5p1": {},
+        "accounts/fireworks/models/gpt-oss-120b": {},
+        "accounts/fireworks/models/gpt-oss-20b": {},
+        "accounts/fireworks/models/kimi-k2-0905": {},
+        "accounts/fireworks/models/kimi-k2-thinking": {},
+        "accounts/fireworks/models/kimi-k2p5": {},
+        "accounts/fireworks/models/kimi-k2p6": {},
+        "accounts/fireworks/models/llama-v3p1-8b-instruct": {},
+        "accounts/fireworks/models/llama-v3p2-1b-instruct": {},
+        "accounts/fireworks/models/llama-v3p2-3b-instruct": {},
+        "accounts/fireworks/models/llama-v3p3-70b-instruct": {},
+        "accounts/fireworks/models/minimax-2.5": {},
+        "accounts/fireworks/models/qwen2.5-32b-coder": {},
+        "accounts/fireworks/models/qwen2.5-72b-instruct": {},
+        "accounts/fireworks/models/qwen2.5-vl-3b-instruct": {},
+        "accounts/fireworks/models/qwen2.5-vl-7b-instruct": {},
+        "accounts/fireworks/models/qwen2.5-vl-72b-instruct": {},
+        "accounts/fireworks/models/qwen3-14b": {},
+        "accounts/fireworks/models/qwen3-235b-a22b": {},
+        "accounts/fireworks/models/qwen3-4b": {},
+        "accounts/fireworks/models/qwen3-8b": {},
+        "accounts/fireworks/models/qwen3-vl-30b-a3b": {},
+        "accounts/fireworks/models/qwen3p6-plus": {},
+        "accounts/fireworks/routers/kimi-k2p5-turbo": {}
+      }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen2.5-coder:7b": {
+          "name": "Qwen 2.5 Coder 7B (local, coding, fast)"
+        },
+        "qwen2.5-coder:14b": {
+          "name": "Qwen 2.5 Coder 14B (local, coding, slower)"
+        },
+        "gemma4:e2b": {
+          "name": "Gemma 4 E2B (local, general, fast)"
+        },
+        "gemma4:e4b": {
+          "name": "Gemma 4 E4B (local, general, balanced)"
+        },
+        "qwen3.5:4b": {
+          "name": "Qwen 3.5 4B (local, general, fast)"
+        },
+        "qwen3.5:9b": {
+          "name": "Qwen 3.5 9B (local, general, balanced)"
+        }
+      }
+    }
+  },
+  "model": "fireworks-ai/accounts/fireworks/models/kimi-k2p6"
+}

@@ -39,6 +39,7 @@
     shellAliases = {
       c = "clear";
       e = "exit";
+      cat = "bat --style=plain";
       ls = "ls --color=auto";
       ll = "ls -alF";
       la = "ls -A";

@@ -1,14 +1,14 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 let
   baseDir = toString ./../..;
 in
 {
-  home.stateVersion = "24.05";
+  home = {
+    stateVersion = "24.05";
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
 
   home.packages = with pkgs; [
     fontconfig
@@ -55,49 +55,32 @@ in
     unstable.devbox
     unstable.codex
     bleeding-edge._1password-cli
+
+    delta
+    bat
+    jless
   ];
 
   imports = [
     ./programs/bash.nix
     ./programs/tmux.nix
     ./programs/readline.nix
+    ./programs/direnv.nix
     ./programs/claude-code.nix
   ];
 
-  programs.home-manager.enable = true;
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
+  programs = {
+    home-manager.enable = true;
+    gh.enable = true;
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+    };
   };
-
-  programs.gh.enable = true;
 
   home.file = {
     "./.config/git/ignore".source = "${baseDir}/gitignore_global";
     "./.config/git/config".source = "${baseDir}/gitconfig";
-  };
-
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    nix-direnv.enable = true;
-    stdlib = ''
-            layout_uv() {
-          if [[ -d ".venv" ]]; then
-              VIRTUAL_ENV="$(pwd)/.venv"
-          fi
-
-          if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
-              log_status "No virtual environment exists. Executing \`uv venv\` to create one."
-              uv venv
-              VIRTUAL_ENV="$(pwd)/.venv"
-          fi
-
-          PATH_add "$VIRTUAL_ENV/bin"
-          export UV_ACTIVE=1  # or VENV_ACTIVE=1
-          export VIRTUAL_ENV
-      }
-    '';
   };
 
   editorconfig = {

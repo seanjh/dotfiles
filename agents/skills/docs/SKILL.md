@@ -9,10 +9,10 @@ Explain: $ARGUMENTS
 
 1. Identify the language, library, or framework the concept belongs to.
 
-2. Find the installed version - search for `package.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `flake.lock`, `mix.exs`, or equivalent in the current working directory.
+2. Determine version and docs URL: Launch a subagent via the Task tool (subagent_type: explore) with the prompt: "Find the installed version of [framework] in this project. Search package.json, pyproject.toml, go.mod, Cargo.toml, flake.lock, mix.exs, and equivalent version files. Also determine the canonical documentation URL for this specific version. Return ONLY in this exact format: VERSION: <version>\nDOCS_URL: <url>". Wait for the result before proceeding.
 
 3. Gather primary sources in priority order:
-   - **Official documentation**: fetch version-matched docs via WebFetch. Quote directly - include section heading or URL.
+   - **Official documentation**: fetch version-matched docs via WebFetch, preferring the returned DOCS_URL. Quote directly - include section heading or URL.
    - **Closed-source libraries**: documentation quotes are the primary evidence. Be precise - include exact wording, section titles, and version.
 
 4. Build the explanation - every major claim anchored to a source. Flag inferences explicitly.

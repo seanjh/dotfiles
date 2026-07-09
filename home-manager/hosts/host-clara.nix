@@ -16,9 +16,8 @@ in
       unstable.podman-compose
       unstable.podman-desktop
       unstable.vscode
-
-      bleeding-edge.raycast
-      bleeding-edge.graphite-cli
+      unstable.raycast
+      graphite-cli
     ];
   };
 

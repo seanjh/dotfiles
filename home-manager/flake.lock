@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784350909,
-        "narHash": "sha256-ZWyzLbS1yKUTeFJLmdVuWNnHttL333/ldJbEE+KzCrM=",
+        "lastModified": 1785119570,
+        "narHash": "sha256-Rgs2xKnGLFWQscxUaXX07oyZeuMDOHEbqDOsgliLFGM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4ce190229c73d44536caa7072f6308fb2d8feeb3",
+        "rev": "d4fd24667c8cbef124bb70a20380cab75ec8474d",
         "type": "github"
       },
       "original": {
@@ -23,11 +23,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784561547,
-        "narHash": "sha256-az8zjdgPOF1StzLvFkDBP27EXJ7aWy1CweGyVN5a7BI=",
+        "lastModified": 1785772869,
+        "narHash": "sha256-ganzvukBbPnT4EwI7WrbkuFSeRqcrmPHFvWjt+wCWoU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c32d61d0ec0d0cada72878ff498816935115a9d5",
+        "rev": "11734ea084740802ad80a48e4f3c02457f1400a7",
         "type": "github"
       },
       "original": {
@@ -39,11 +39,11 @@
     },
     "nixpkgs-bleeding-edge": {
       "locked": {
-        "lastModified": 1784561435,
-        "narHash": "sha256-I4A+WtPcTjGTK8HxDi2orMHXvWDjoiLm1mjp4E6xyoI=",
+        "lastModified": 1785772594,
+        "narHash": "sha256-saXnK/2D2WijtwCMl4px2ELWwpo3Ua4B5GWglE/ZQ5g=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e5dd6b2d0195288edb35652b7837f5af2ee507b7",
+        "rev": "46b7c8ac8c997aaed3114f5023cf6f92bef0e4cb",
         "type": "github"
       },
       "original": {
@@ -55,11 +55,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1784525419,
-        "narHash": "sha256-yocJ4I4Kd4as0UPMFs9P7laPvvA2x/Bj8EW46iW3VVM=",
+        "lastModified": 1785747939,
+        "narHash": "sha256-D740uKsMbgsfK2oaDenJLLPIZfq7W0/g4KN/Fls8eKs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a16c3fde2ffeab7f6326f50f460aaffde7ae066d",
+        "rev": "104240a772428cc2e20d8fd86c9ddbb886bbaff2",
         "type": "github"
       },
       "original": {

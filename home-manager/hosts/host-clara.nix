@@ -10,15 +10,15 @@ in
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-code
 
+      vscode
+      raycast
+
       unstable.ollama
       unstable.postgresql_16
       unstable.podman
       unstable.podman-compose
       unstable.podman-desktop
-      unstable.vscode
-
-      bleeding-edge.raycast
-      bleeding-edge.graphite-cli
+      unstable.graphite-cli
     ];
   };
 

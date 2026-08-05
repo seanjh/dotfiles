@@ -19,33 +19,24 @@
         "apiKey": "{env:FIREWORKS_API_KEY}"
       },
       "models": {
-        "accounts/fireworks/models/deepseek-ocr": {},
-        "accounts/fireworks/models/deepseek-v3p2": {},
-        "accounts/fireworks/models/glm-4.7": {},
-        "accounts/fireworks/models/glm-5p1": {},
+        "accounts/fireworks/models/deepseek-v4-flash": {},
+        "accounts/fireworks/models/deepseek-v4-pro": {},
+        "accounts/fireworks/models/glm-5p2": {},
         "accounts/fireworks/models/gpt-oss-120b": {},
         "accounts/fireworks/models/gpt-oss-20b": {},
-        "accounts/fireworks/models/kimi-k2-0905": {},
-        "accounts/fireworks/models/kimi-k2-thinking": {},
-        "accounts/fireworks/models/kimi-k2p5": {},
         "accounts/fireworks/models/kimi-k2p6": {},
-        "accounts/fireworks/models/llama-v3p1-8b-instruct": {},
-        "accounts/fireworks/models/llama-v3p2-1b-instruct": {},
-        "accounts/fireworks/models/llama-v3p2-3b-instruct": {},
+        "accounts/fireworks/models/kimi-k2p7-code": {},
+        "accounts/fireworks/models/kimi-k3": {},
         "accounts/fireworks/models/llama-v3p3-70b-instruct": {},
-        "accounts/fireworks/models/minimax-2.5": {},
-        "accounts/fireworks/models/qwen2.5-32b-coder": {},
-        "accounts/fireworks/models/qwen2.5-72b-instruct": {},
-        "accounts/fireworks/models/qwen2.5-vl-3b-instruct": {},
-        "accounts/fireworks/models/qwen2.5-vl-7b-instruct": {},
-        "accounts/fireworks/models/qwen2.5-vl-72b-instruct": {},
-        "accounts/fireworks/models/qwen3-14b": {},
-        "accounts/fireworks/models/qwen3-235b-a22b": {},
+        "accounts/fireworks/models/minimax-m3": {},
         "accounts/fireworks/models/qwen3-4b": {},
         "accounts/fireworks/models/qwen3-8b": {},
+        "accounts/fireworks/models/qwen3-14b": {},
+        "accounts/fireworks/models/qwen3-235b-a22b": {},
+        "accounts/fireworks/models/qwen3-coder-30b-a3b-instruct": {},
+        "accounts/fireworks/models/qwen3-coder-480b-a35b-instruct": {},
         "accounts/fireworks/models/qwen3-vl-30b-a3b": {},
-        "accounts/fireworks/models/qwen3p6-plus": {},
-        "accounts/fireworks/routers/kimi-k2p5-turbo": {}
+        "accounts/fireworks/models/qwen3p7-plus": {}
       }
     },
     "ollama": {
@@ -55,26 +46,31 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
+        "phi4-mini": {
+          "name": "Phi-4 Mini 3.8B tools"
+        },
         "qwen2.5-coder:7b": {
-          "name": "Qwen 2.5 Coder 7B (local, coding, fast)"
-        },
-        "qwen2.5-coder:14b": {
-          "name": "Qwen 2.5 Coder 14B (local, coding, slower)"
-        },
-        "gemma4:e2b": {
-          "name": "Gemma 4 E2B (local, general, fast)"
-        },
-        "gemma4:e4b": {
-          "name": "Gemma 4 E4B (local, general, balanced)"
-        },
-        "qwen3.5:4b": {
-          "name": "Qwen 3.5 4B (local, general, fast)"
+          "name": "Qwen 2.5 Coder 7B tools"
         },
         "qwen3.5:9b": {
-          "name": "Qwen 3.5 9B (local, general, balanced)"
+          "name": "Qwen 3.5 9B tools think"
+        },
+        "qwen3:14b": {
+          "name": "Qwen 3 14B tools think"
         }
       }
     }
   },
-  "model": "fireworks-ai/accounts/fireworks/models/kimi-k2p6"
+  "agent": {
+    "build-review": {
+      "mode": "primary",
+      "description": "Build mode that requires approval for all code edits",
+      "color": "accent",
+      "permission": {
+        "edit": "ask"
+      }
+    }
+  },
+  "default_agent": "build-review",
+  "model": "fireworks-ai/accounts/fireworks/models/deepseek-v4-flash"
 }

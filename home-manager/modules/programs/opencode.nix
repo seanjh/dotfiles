@@ -30,6 +30,11 @@ in
         target = ".config/opencode/commands/plan-guide.md";
         source = "${agentsDir}/commands/plan-guide.md";
       };
+
+      opencode-command-test-build = {
+        target = ".config/opencode/commands/test-build.md";
+        source = "${agentsDir}/commands/test-build.md";
+      };
     };
   };
 }

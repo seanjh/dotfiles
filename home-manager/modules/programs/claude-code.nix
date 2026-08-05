@@ -22,6 +22,11 @@ in
       target = ".claude/commands/plan-guide.md";
       source = "${agentsDir}/commands/plan-guide.md";
     };
+
+    claude-command-test-build = {
+      target = ".claude/commands/test-build.md";
+      source = "${agentsDir}/commands/test-build.md";
+    };
   };
 
   programs.claude-code = {

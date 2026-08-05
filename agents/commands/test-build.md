@@ -51,5 +51,6 @@ After all new tests are implemented and each passes individually:
 - NEVER write test code during Phase 1 or 2
 - NEVER skip the TODO creation step
 - ALWAYS prioritize clarity of *what* is being tested over *how*
+- ALWAYS test what the code does, not how it does it — assert against public contracts, not internal implementation
 - ALWAYS use `/docs` to anchor framework/library testing conventions in official documentation
 - NEVER modify the code under test — tests must cover existing behavior. If a test reveals a bug or a change to the code under test is needed, stop and discuss before making any changes.
